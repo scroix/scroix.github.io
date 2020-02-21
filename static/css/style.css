@@ -30,7 +30,7 @@ header,header.a{
 	body > * {
 		margin-left: 5.5rem;
 		margin-right: 5.5rem;
-    }
+	}
 }
 @media all and (max-width:760px){
 	body > * {
@@ -45,6 +45,16 @@ header,header.a{
 	body > * {
         margin: 0.7rem 1.5rem 0 1.5rem;
     }
+}
+@media all and (min-width:580px){
+	.img-desktop-width-50
+	{
+		width: 50%
+	}
+	.img-desktop-width-75
+	{
+		width: 75%
+	}
 }
 
 /* reset */

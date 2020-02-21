@@ -4,7 +4,7 @@ title: "Work"
 ---
 
 <figure>
-  <img src="https://lh3.googleusercontent.com/sKOXGXXjvHkoJ-Ov5yFS6Xm76K7ftFpw6mC4ew7EO5BM9ZqMUtxt1lXAzQDsf6M" style="width: 10%;">
+  <img src="https://lh3.googleusercontent.com/sKOXGXXjvHkoJ-Ov5yFS6Xm76K7ftFpw6mC4ew7EO5BM9ZqMUtxt1lXAzQDsf6M" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # [Museums Victoria](museumsvictoria.com.au/) (2016 - 2019)
@@ -45,14 +45,14 @@ for multiple major exhibitions.
 In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adapation](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
 
 <figure>
-  <img src="https://cycling74-web-assets.s3.amazonaws.com/images/max8/what-is-max/gen-capture.gif" style="width: 75%; border-radius: 0px;">
+  <img class="img-desktop-width-75" src="https://cycling74-web-assets.s3.amazonaws.com/images/max8/what-is-max/gen-capture.gif" style="border-radius: 0px;">
 </figure>
 </br>
 
 This included introducing [support for OSC](https://gist.github.com/scroix/22a33fb8ebb868429e64042d153e288e) to our control system, and the [integration of an audio-over-IP (Dante) 81-channel soundscape](https://www.arup.com/projects/beyond-perception-seeing-the-unseen), which included several live components modulated from interactive experiences in the space (Cinder, openFrameworks) for a [spatialised audio experience](https://github.com/museumsvictoria/spatial_audio_server).
 
 <figure>
-  <img src="https://cornerstone.edu.in/images/rmit-logo-small.png" style="width: 10%;">
+  <img src="https://cornerstone.edu.in/images/rmit-logo-small.png" style="max-height: 100px; width: auto; border-radius: 0px;"">
 </figure>
 
 # [RMIT University](https://www.rmit.edu.au/) (2017 - 2018)
@@ -71,7 +71,7 @@ I also taught a first year course introducing students to object-oriented progra
 </br>
 
 <figure>
-  <img src="https://i.imgur.com/5hPD77n.png" style="width: 25%;">
+  <img src="https://i.imgur.com/5hPD77n.png" style="max-height: 100px; width: auto; border-radius: 0px;"">
 </figure>
 
 # 4Ward Productions (2014 - 2015)
@@ -85,13 +85,13 @@ I also taught a first year course introducing students to object-oriented progra
 📺 *You can watch the official, lovingly made, [recap here](https://youtu.be/UN-kQAIRo1s), [and my recording here](https://youtu.be/UN-kQAIRo1s).*
 
 <figure>
-  <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQEFcCNAAvCsdg/company-logo_200_200/0?e=2159024400&v=beta&t=qLHWOcu6pUJ0oKnGoOdOs3wlKMiR4CV4xAq5FWi7Lgw" style="width: 15%;">
+  <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQEFcCNAAvCsdg/company-logo_200_200/0?e=2159024400&v=beta&t=qLHWOcu6pUJ0oKnGoOdOs3wlKMiR4CV4xAq5FWi7Lgw" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # ABC (2013 - 2015)
 
 <figure>
-  <img src="https://i.imgur.com/E32WdApl.jpg" style="width: 35%;">
+  <img class="img-desktop-width-50" src="https://i.imgur.com/E32WdApl.jpg"">
 </figure>
 
 </br>
