@@ -1,4 +1,0 @@
-[submodule "public"]
-	path = public
-	url = https://github.com/scroix/scroix.github.io.git
-	branch = master
