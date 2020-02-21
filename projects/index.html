@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>ʕ•ᴥ•ʔ</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="">
+	
+	<meta itemprop="name" content="Projects">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Projects">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@">
+	<meta name="twitter:creator" content="@">
+	<meta name="twitter:image:src" content="">
+	
+	
+	<meta name="og:title" content="Projects">
+	<meta name="og:description" content="">
+	
+	<meta name="og:url" content="https://scroix.github.io/projects/">
+	<meta name="og:site_name" content="Projects">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+</head>
+<body>
+
+<header >
+	<a href="/" style="float: left;color:#777;"><strong>ʕ•ᴥ•ʔ</strong>
+	</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+<a href="https://scroix.github.io/education/" style="color:#777;"><strong>Education</strong></a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://scroix.github.io/work/" style="color:#777;"><strong>Work</strong></a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://scroix.github.io/projects/" style="color:#777;"><strong>Projects</strong></a>
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+	<h1>Projects <aside></aside></h1>
+	<h1 id="heading">🏡</h1>
+<h2 id="habitat-abstraction-layer-2017---2020">Habitat Abstraction Layer (2017 - 2020)</h2>
+<p><em>A dynamic control system for Featherston House.</em></p>
+<figure>
+    <img src="https://i.imgur.com/AuT8nia.jpg"/> 
+</figure>
+
+</br>
+<ul>
+<li>
+<p>An architecturally award winning house designed by prominent Australian Robin Boyd in the late 1960s.</p>
+</li>
+<li>
+<p>An intuitive climate control system that forecasts the weather, and then prepares the building for various conditions based on modern adaptive comfort modelling, <a href="https://comfort.cbe.berkeley.edu/">similar to ASHRAE-55 and EN-15251.</a></p>
+</li>
+<li>
+<p>Comprising of over a dozen temperature and humidity sensors, plus solar and wind read across a series of ADAM-6017s, scraped forecast data, and then a series of ADAM-6060s, plus some vendor-specific controllers for HVAC, Solar shades, Destratification fans etc.</p>
+</li>
+</ul>
+<figure>
+  <a class="icon-social" href="https://i.imgur.com/5AZugtC.jpg"><img src="https://i.imgur.com/5AZugtC.jpg" style="width: 75%; border-style: solid; border-width: 1px;"></a>
+</figure>
+</br>
+<ul>
+<li>
+<p>Published in <a href="https://www.archdaily.com/912803/featherston-studio-two-feathers">ArchDaily, the most visited architecture website worldwide</a>, and <a href="https://thedesignfiles.net/2016/08/featherston-2016/">The Design Files, Australia’s most popular design blog</a>.</p>
+</li>
+<li>
+<p>Utilising Java/Jython, Python, InfluxDB/Grafana, HTML/CSS &amp; Javascript.</p>
+</li>
+</ul>
+</br>
+<h1 id="heading-1">⚡</h1>
+<h2 id="the-pipes-2019">The Pipes (2019)</h2>
+<p><em>A digital art installation for Cato Square.</em></p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/eyr7atLp2Q8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+</br>
+<ul>
+<li>
+<p>An outdoor installation consisting of 28 11m tall interconnected polls covered in high-resolution LEDs located in Prahan’s Cato Square &ndash; part of a project by Ramus Lighting.</p>
+</li>
+<li>
+<p>Development of digital tools to assist the content creators, including basic UI/UX components (sliders, buttons), plus scripts for timed rotations and modulation of object positions within their Unity project.</p>
+</li>
+</ul>
+</br>
+<h1 id="heading-2">🐛</h1>
+<h2 id="ticker-2019">Ticker (2019)</h2>
+<p><em>A capacitance-sensor giving scale to the microbiome.</em></p>
+<figure>
+    <img src="https://i.imgur.com/GirRAYk.gif"/> 
+</figure>
+
+</br>
+<ul>
+<li>
+<p>An interactive experience which compares the number of microbes in the gut (per active participant) with other impressively large values in the universe. The development began as an OpenCV people counter, but transitioned to opt-in proximity sensors.</p>
+</li>
+<li>
+<p>An Arduino Duemilanove armed with a Sparkfun MRP121 across serial into a Python script utilising web-sockets to trigger an informative animation on a local webserver.</p>
+</li>
+</ul>
+</br>   
+<h1 id="heading-3">🔥</h1>
+<h2 id="fire-stick-2017">Fire-stick (2017)</h2>
+<p><em>A simulation of traditional Aboriginal burning technique.</em></p>
+<figure>
+    <img src="https://i.imgur.com/ZpRoQv8.jpg"/> 
+</figure>
+
+</br>
+<ul>
+<li>
+<p>Working with Michael Borthwick Consulting, we created an interactive interpretation of traditional fire-stick farming techniques for an exhibition about Australia’s First Peoples.</p>
+</li>
+<li>
+<p>A combination of a two-way rotary encoder, a humidity sensor, and a small NeoPixel Fire, along with voice prompts to simulate the rubbing and blowing needed to start a fire.</p>
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+
+<footer>
+
+<a class="icon-social" href="https://github.com/scroix"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="width: 50px; vertical-align: middle"/></a>
+
+
+<a class="icon-social" href="https://gitlab.com/scroix"><img src="https://about.gitlab.com/images/press/logo/svg/gitlab-icon-1-color-black-rgb.svg" style="width: 75px; vertical-align: middle"/></a>
+
+</footer>
+</body>
+</html>
