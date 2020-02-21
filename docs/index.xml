@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hello, I&#39;m Julien. on ʕ•ᴥ•ʔ</title>
+    <link>https://scroix.github.io/</link>
+    <description>Recent content in Hello, I&#39;m Julien. on ʕ•ᴥ•ʔ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Oct 1988 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://scroix.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Projects</title>
+      <link>https://scroix.github.io/projects/</link>
+      <pubDate>Sun, 16 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://scroix.github.io/projects/</guid>
+      <description>🏡 Habitat Abstraction Layer (2017 - 2020) A dynamic control system for Featherston House.
+    An architecturally award winning house designed by prominent Australian Robin Boyd in the late 1960s.
+  An intuitive climate control system that forecasts the weather, and then prepares the building for various conditions based on modern adaptive comfort modelling, similar to ASHRAE-55 and EN-15251.
+  Comprising of over a dozen temperature and humidity sensors, plus solar and wind read across a series of ADAM-6017s, scraped forecast data, and then a series of ADAM-6060s, plus some vendor-specific controllers for HVAC, Solar shades, Destratification fans etc.</description>
+    </item>
+    
+    <item>
+      <title>Work</title>
+      <link>https://scroix.github.io/work/</link>
+      <pubDate>Sun, 16 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://scroix.github.io/work/</guid>
+      <description>Museums Victoria (2016 - 2019) Comprising of Melbourne Museum (with Bunjilaka), Scienceworks, the Immigration Museum, and the Royal Exhibition Building, and hosting two million visitors annually. Museums Victoria is the largest museums organisation in Australasia.
+Nodel Project I worked primary on the integration of hardware, and development of new Python 🐍 &amp;ldquo;recipes&amp;rdquo; as part of a project to replace a legacy software system responsible for control, monitoring and scheduling for around 400 exhibits (that&amp;rsquo;s ~2000 pieces of networked audio-visual equipment) across all venues.</description>
+    </item>
+    
+    <item>
+      <title>Education</title>
+      <link>https://scroix.github.io/education/</link>
+      <pubDate>Mon, 26 Jun 2017 18:27:58 +0100</pubDate>
+      
+      <guid>https://scroix.github.io/education/</guid>
+      <description>RMIT University Bachelor of Software Engineering (B.SE) 2014 - 2019 3.5 GPA  A couple of neat projects completed during this degree&amp;hellip;
+ A simple turn-based strategy game employing common design patterns (☕). A algorithm oriented maze generator (and solver!) (☕). A solution to OpenAI&amp;rsquo;s FrozenLake-v0 (🐍) An AI-bot for a game of Connect 4 (🐍) A group of three.js generated turtles calmly swimming in a pond.</description>
+    </item>
+    
+  </channel>
+</rss>

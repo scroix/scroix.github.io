@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>ʕ•ᴥ•ʔ</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="">
+	
+	<meta itemprop="name" content="Education">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Education">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@">
+	<meta name="twitter:creator" content="@">
+	<meta name="twitter:image:src" content="">
+	
+	
+	<meta name="og:title" content="Education">
+	<meta name="og:description" content="">
+	
+	<meta name="og:url" content="https://scroix.github.io/education/">
+	<meta name="og:site_name" content="Education">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+</head>
+<body>
+
+<header >
+	<a href="/" style="float: left;color:#777;"><strong>ʕ•ᴥ•ʔ</strong>
+	</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+<a href="https://scroix.github.io/education/" style="color:#777;"><strong>Education</strong></a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://scroix.github.io/work/" style="color:#777;"><strong>Work</strong></a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://scroix.github.io/projects/" style="color:#777;"><strong>Projects</strong></a>
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+	<h1>Education <aside></aside></h1>
+	<figure>
+  <img src="https://cornerstone.edu.in/images/rmit-logo-small.png" style="width: 10%;">
+</figure>
+<h1 id="rmit-universityhttpswwwrmiteduau"><a href="https://www.rmit.edu.au/">RMIT University</a></h1>
+<h2 id="bachelor-of-software-engineering-bse">Bachelor of Software Engineering (B.SE)</h2>
+<h3 id="2014---2019">2014 - 2019</h3>
+<h3 id="35-gpa">3.5 GPA</h3>
+</br>
+<hr>
+</br>
+<p><em>A couple of neat projects completed during this degree&hellip;</em></p>
+<ul>
+<li><a href="https://gitlab.com/scroix/oo2018_assignment">A simple turn-based strategy game employing common design patterns (☕).</a></li>
+<li><a href="https://gitlab.com/scroix/AlgorithmsA2">A algorithm oriented maze generator (and solver!) (☕).</a></li>
+<li><a href="https://gitlab.com/scroix/frozenlake-sol">A solution to OpenAI&rsquo;s FrozenLake-v0 (🐍)</a></li>
+<li><a href="https://gitlab.com/scroix/s3369242-ai1901-connectfour">An AI-bot for a game of Connect 4 (🐍)</a></li>
+<li><a href="http://sainte.xyz/tortue/">A group of three.js generated turtles calmly swimming in a pond. (🕸️)</a></li>
+<li><a href="https://gitlab.com/scroix/its-ticket-crud">A full-stack CRUD application using React, Laravel, Mongo and SQL. (🕸️)</a></li>
+</ul>
+<hr>
+</br>
+<h2 id="diploma-of-languages-diplang">Diploma of Languages (Dip.Lang)</h2>
+<h3 id="2015---2018">2015 - 2018</h3>
+<h3 id="cefr-b1-french">CEFR B1 French</h3>
+</br>
+<h2 id="diploma-of-audiovisual-technology-dipcms">Diploma of Audiovisual Technology (Dip.CMS)</h2>
+<h3 id="2013">2013</h3>
+<h3 id="36-gpa">3.6 GPA</h3>
+</br>
+<h2 id="certificate-iv-in-audiovisual-technology">Certificate IV in Audiovisual Technology</h2>
+<h3 id="2012">2012</h3>
+<h3 id="31-gpa">3.1 GPA</h3>
+
+</div>
+
+
+
+
+
+
+
+
+
+<footer>
+
+<a class="icon-social" href="https://github.com/scroix"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="width: 50px; vertical-align: middle"/></a>
+
+
+<a class="icon-social" href="https://gitlab.com/scroix"><img src="https://about.gitlab.com/images/press/logo/svg/gitlab-icon-1-color-black-rgb.svg" style="width: 75px; vertical-align: middle"/></a>
+
+</footer>
+</body>
+</html>
