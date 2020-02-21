@@ -1,4 +1,5 @@
 baseURL = "https://scroix.github.io/"
+publishDir = "docs"
 languageCode = "en-us"
 title = "ʕ•ᴥ•ʔ"
 enableEmoji = true
