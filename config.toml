@@ -1,0 +1,13 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "ʕ•ᴥ•ʔ"
+enableEmoji = true
+
+[params]
+    navigation = ["education", "work", "projects", "contact"]
+    style = ""
+    github = "https://github.com/scroix"
+    gitlab = "https://gitlab.com/scroix"
+
+[markup.goldmark.renderer]
+    unsafe = true
