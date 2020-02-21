@@ -4,7 +4,7 @@ title: "Education"
 ---
 
 <figure>
-  <img src="https://cornerstone.edu.in/images/rmit-logo-small.png" style="width: 10%;">
+  <img src="https://cornerstone.edu.in/images/rmit-logo-small.png" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # [RMIT University](https://www.rmit.edu.au/)
