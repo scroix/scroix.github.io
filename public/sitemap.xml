@@ -3,31 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/projects/</loc>
+    <loc>https://scroix.github.io/projects/</loc>
     <lastmod>2020-02-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/work/</loc>
+    <loc>https://scroix.github.io/work/</loc>
     <lastmod>2020-02-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/education/</loc>
+    <loc>https://scroix.github.io/education/</loc>
     <lastmod>2017-06-26T18:27:58+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://scroix.github.io/</loc>
     <lastmod>1988-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://scroix.github.io/categories/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://scroix.github.io/tags/</loc>
   </url>
   
 </urlset>
