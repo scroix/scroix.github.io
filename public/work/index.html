@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>ʕ•ᴥ•ʔ</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="">
+	
+	<meta itemprop="name" content="Work">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Work">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@">
+	<meta name="twitter:creator" content="@">
+	<meta name="twitter:image:src" content="">
+	
+	
+	<meta name="og:title" content="Work">
+	<meta name="og:description" content="">
+	
+	<meta name="og:url" content="https://scroix.github.io/work/">
+	<meta name="og:site_name" content="Work">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+</head>
+<body>
+
+<header >
+	<a href="/" style="float: left;color:#777;"><strong>ʕ•ᴥ•ʔ</strong>
+	</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+<a href="https://scroix.github.io/education/" style="color:#777;"><strong>Education</strong></a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://scroix.github.io/work/" style="color:#777;"><strong>Work</strong></a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://scroix.github.io/projects/" style="color:#777;"><strong>Projects</strong></a>
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+	<h1>Work <aside></aside></h1>
+	<figure>
+  <img src="https://lh3.googleusercontent.com/sKOXGXXjvHkoJ-Ov5yFS6Xm76K7ftFpw6mC4ew7EO5BM9ZqMUtxt1lXAzQDsf6M" style="max-height: 100px; width: auto; border-radius: 0px;">
+</figure>
+<h1 id="museums-victoriamuseumsvictoriacomau-2016---2019"><a href="museumsvictoria.com.au/">Museums Victoria</a> (2016 - 2019)</h1>
+<p><em>Comprising of Melbourne Museum (with Bunjilaka), Scienceworks, the Immigration Museum, and the Royal Exhibition Building, and hosting two million visitors annually. Museums Victoria is the largest museums organisation in Australasia.</em></p>
+<h2 id="nodel-project">Nodel Project</h2>
+<p>I worked primary on the integration of hardware, and development of new Python 🐍 &ldquo;recipes&rdquo; as part of a project to replace a legacy software system responsible for control, monitoring and scheduling for around 400 exhibits (that&rsquo;s ~2000 pieces of networked audio-visual equipment) across all venues.</p>
+<p>We <a href="https://github.com/museumsvictoria/nodel/">open-sourced it</a>. There&rsquo;s a bunch of <a href="https://github.com/museumsvictoria/nodel-recipes/">public recipes</a> available being used in organisations across the globe (<em>Te Papa Tongarewa in Wellington</em>, <em>Scienceworld in Vancouver</em>, <em>Children&rsquo;s Museum of Indianapolis</em>).</p>
+<p>Here&rsquo;s a couple of recipes I&rsquo;m proud of:</p>
+<ul>
+<li>
+<h3 id="a-wrapper-for-vlchttpsgithubcommuseumsvictorianodel-recipestreemastervlc20media20player"><a href="https://github.com/museumsvictoria/nodel-recipes/tree/master/VLC%20media%20player">A wrapper for VLC</a></h3>
+</li>
+<li>
+<h3 id="a-windows-os-controllerhttpsgithubcommuseumsvictorianodel-recipestreemastercomputer20controllerwindows2010"><a href="https://github.com/museumsvictoria/nodel-recipes/tree/master/Computer%20Controller/Windows%2010">A Windows-OS controller</a>.</h3>
+</li>
+<li>
+<h3 id="an-exhibit-templatehttpsgithubcommuseumsvictorianodel-recipestreemasterexhibit"><a href="https://github.com/museumsvictoria/nodel-recipes/tree/master/Exhibit">An exhibit <strong>template</strong></a>.</h3>
+</li>
+</ul>
+<h2 id="exhibition-creation">Exhibition Creation</h2>
+<p>I was also involved in the</p>
+<p>- design, 📏 </br>
+- planning, 📖 </br>
+- assembly, 🔧 </br>
+- installation 😅 </br>
+- and integration 💻 </br></p>
+<p>for multiple major exhibitions.</p>
+<table>
+<thead>
+<tr>
+<th><figure>
+    <img src="https://i.imgur.com/nYxXLZD.jpg"/> 
+</figure>
+</th>
+<th><figure>
+    <img src="https://i.imgur.com/OVY8JYT.jpg"/> 
+</figure>
+</th>
+<th><figure>
+    <img src="https://i.imgur.com/IThAjzl.jpg"/> 
+</figure>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>2018</td>
+<td>2017</td>
+</tr>
+<tr>
+<td><a href="https://museumsvictoria.com.au/melbournemuseum/whats-on/mini-mega-model-museum/">Mini Mega Model Museum</a></td>
+<td><a href="https://www.youtube.com/watch?v=UIuquCXOj9s">Beyond Perception</a></td>
+<td><a href="https://www.youtube.com/watch?v=x_WbUBVbPpo">Children&rsquo;s Gallery</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="soundscape-re-designs">Soundscape Re-designs</h2>
+<p>In an effort to unify the organisation&rsquo;s choice of engine for soundscapes 🔉, (<em>without</em> alienating staff lacking programming experience) I <a href="https://github.com/scroix/mv-gallery-audio-max">led the adapation</a> of a node-based programming solution with <a href="https://cycling74.com/products/max">Max/MSP</a>.</p>
+<figure>
+  <img class="img-desktop-width-75" src="https://cycling74-web-assets.s3.amazonaws.com/images/max8/what-is-max/gen-capture.gif" style="border-radius: 0px;">
+</figure>
+</br>
+<p>This included introducing <a href="https://gist.github.com/scroix/22a33fb8ebb868429e64042d153e288e">support for OSC</a> to our control system, and the <a href="https://www.arup.com/projects/beyond-perception-seeing-the-unseen">integration of an audio-over-IP (Dante) 81-channel soundscape</a>, which included several live components modulated from interactive experiences in the space (Cinder, openFrameworks) for a <a href="https://github.com/museumsvictoria/spatial_audio_server">spatialised audio experience</a>.</p>
+<figure>
+  <img src="https://cornerstone.edu.in/images/rmit-logo-small.png" style="max-height: 100px; width: auto; border-radius: 0px;"">
+</figure>
+<h1 id="rmit-universityhttpswwwrmiteduau-2017---2018"><a href="https://www.rmit.edu.au/">RMIT University</a> (2017 - 2018)</h1>
+<p><em>A public research university based on Melbourne, Australia. RMIT is known for their Art and Design, Architecture, Engineering and Computer Science programs.</em></p>
+<p>In addition to a couple of guest lectures for <em>IT Infrastructure &amp; Security COSC2737</em> and <em>Introduction to IT COSC1078 in 2018</em>, I was employed as a tutour for two subjects.</p>
+<ul>
+<li>
+<h3 id="programming-internet-of-things-piot-cosc2674">Programming Internet of Things (PIoT) COSC2674</h3>
+</li>
+</ul>
+<p>Where I helped design, and taught this advanced university elective utilising Python, a Raspberry Pi with SenseHAT, and Google Cloud APIs.</p>
+<ul>
+<li>
+<h3 id="introduction-to-programming-cosc2511">Introduction to Programming COSC2511</h3>
+</li>
+</ul>
+<p>I also taught a first year course introducing students to object-oriented programming with Java, from variables up to generics and polymorphism.
+</br></p>
+<figure>
+  <img src="https://i.imgur.com/5hPD77n.png" style="max-height: 100px; width: auto; border-radius: 0px;"">
+</figure>
+<h1 id="4ward-productions-2014---2015">4Ward Productions (2014 - 2015)</h1>
+<ul>
+<li>The design of the site (SketchUp) and assisted in the build (signal flow, manual handling, assembly) for the audio-visual production company running the inaugural season of <a href="https://piknicelectronik.com/melbourne/">Piknic Électronik</a>, an electronic music festival ran throughout the Melbourne summer.</li>
+</ul>
+<p>📺 <em>Here&rsquo;s some <a href="https://youtu.be/ZfgX1Z9GTSE">official footage posted in retrospect</a>, <a href="https://youtu.be/yfZzuMG_Sxs">and my recording here</a>.</em></p>
+<ul>
+<li>The supervision and coordination of a dozen sub-contracted staff members involved with the stage build and sound reinforcement for the flagship venue of <a href="https://mmw.melbourne.vic.gov.au/">Melbourne Museum Week</a>, an eight day music festival presented by the City of Melbourne.</li>
+</ul>
+<p>📺 <em>You can watch the official, lovingly made, <a href="https://youtu.be/UN-kQAIRo1s">recap here</a>, <a href="https://youtu.be/UN-kQAIRo1s">and my recording here</a>.</em></p>
+<figure>
+  <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQEFcCNAAvCsdg/company-logo_200_200/0?e=2159024400&v=beta&t=qLHWOcu6pUJ0oKnGoOdOs3wlKMiR4CV4xAq5FWi7Lgw" style="max-height: 100px; width: auto; border-radius: 0px;">
+</figure>
+<h1 id="abc-2013---2015">ABC (2013 - 2015)</h1>
+<figure>
+  <img class="img-desktop-width-50" src="https://i.imgur.com/E32WdApl.jpg"">
+</figure>
+</br>
+<ul>
+<li>
+<p>A camera operator on ABC3’s flagship program, <em>Studio 3</em>.</p>
+</li>
+<li>
+<p>A camera assistant (<em>Shaun Micallef&rsquo;s Mad as Hell</em>, <em>Spicks and Specks</em>, <em>Handa Women&rsquo;s Golf Open</em>) and CCU operator (<em>Australian Open</em>, on-loan to <strong>Seven Network</strong>).</p>
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+
+<footer>
+
+<a class="icon-social" href="https://github.com/scroix"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="width: 50px; vertical-align: middle"/></a>
+
+
+<a class="icon-social" href="https://gitlab.com/scroix"><img src="https://about.gitlab.com/images/press/logo/svg/gitlab-icon-1-color-black-rgb.svg" style="width: 75px; vertical-align: middle"/></a>
+
+</footer>
+</body>
+</html>
