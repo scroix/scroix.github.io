@@ -42,7 +42,7 @@ for multiple major exhibitions.
 
 ## Soundscape Re-designs
 
-In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adapation](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
+In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adoption ](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
 
 <figure>
   <img class="img-desktop-width-75" src="https://cycling74-web-assets.s3.amazonaws.com/images/max8/what-is-max/gen-capture.gif" style="border-radius: 0px;">
@@ -59,7 +59,7 @@ This included introducing [support for OSC](https://gist.github.com/scroix/22a33
 
 *A public research university based on Melbourne, Australia. RMIT is known for their Art and Design, Architecture, Engineering and Computer Science programs.*
 
-In addition to a couple of guest lectures for *IT Infrastructure & Security COSC2737* and *Introduction to IT COSC1078 in 2018*, I was employed as a tutour for two subjects.
+In addition to a couple of guest lectures for *IT Infrastructure & Security COSC2737* and *Introduction to IT COSC1078 in 2018*, I was employed as a tutor for two subjects.
 
 - ### Programming Internet of Things (PIoT) COSC2674
 
@@ -67,11 +67,11 @@ Where I helped design, and taught this advanced university elective utilising Py
 
 - ### Introduction to Programming COSC2511
 
-I also taught a first year course introducing students to object-oriented programming with Java, from variables up to generics and polymorphism.
+I also taught a first-year course introducing students to object-oriented programming with Java, from variables up to generics and polymorphism.
 </br>
 
 <figure>
-  <img src="https://i.imgur.com/5hPD77n.png" style="max-height: 100px; width: auto; border-radius: 0px;"">
+  <img src="https://i.imgur.com/5hPD77n.png" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # 4Ward Productions (2014 - 2015)

@@ -38,7 +38,7 @@ title: "Projects"
 
 </br>
 
-- An outdoor installation consisting of 28 11m tall interconnected polls covered in high-resolution LEDs located in Prahan’s Cato Square -- part of a project by Ramus Lighting.
+- An outdoor installation consisting of 28 11m tall interconnected polls covered in high-resolution LEDs located in Prahran’s Cato Square -- part of a project by Ramus Lighting.
 
 - Development of digital tools to assist the content creators, including basic UI/UX components (sliders, buttons), plus scripts for timed rotations and modulation of object positions within their Unity project.
 
