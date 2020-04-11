@@ -85,7 +85,7 @@ I also taught a first-year course introducing students to object-oriented progra
 📺 *You can watch the official, lovingly made, [recap here](https://youtu.be/UN-kQAIRo1s), [and my recording here](https://youtu.be/UN-kQAIRo1s).*
 
 <figure>
-  <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQEFcCNAAvCsdg/company-logo_200_200/0?e=2159024400&v=beta&t=qLHWOcu6pUJ0oKnGoOdOs3wlKMiR4CV4xAq5FWi7Lgw" style="max-height: 100px; width: auto; border-radius: 0px;">
+  <img src="https://www.abc.net.au/core/assets/abchome.png" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # ABC (2013 - 2015)
