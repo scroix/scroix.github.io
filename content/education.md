@@ -24,7 +24,7 @@ ___
 - [A algorithm oriented maze generator (and solver!) (☕).](https://gitlab.com/scroix/AlgorithmsA2)
 - [A solution to OpenAI's FrozenLake-v0 (🐍)](https://gitlab.com/scroix/frozenlake-sol)
 - [An AI-bot for a game of Connect 4 (🐍)](https://gitlab.com/scroix/s3369242-ai1901-connectfour)
-- [A group of three.js generated turtles calmly swimming in a pond. (🕸️)](http://scroix.gitlab.io/tortue3D)
+- [A group of three.js generated turtles calmly swimming in a pond. (🕸️)](https://scroix.gitlab.io/tortue3d)
 - [A full-stack CRUD application using React, Laravel, Mongo and SQL. (🕸️)](https://gitlab.com/scroix/its-ticket-crud)
 ___
 
