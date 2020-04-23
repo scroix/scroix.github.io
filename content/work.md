@@ -35,7 +35,7 @@ I was also involved in the
   
 for multiple major exhibitions.
 
-| {{< figure src="https://i.imgur.com/nYxXLZD.jpg" >}} 	| {{< figure src="https://i.imgur.com/OVY8JYT.jpg" >}} 	| {{< figure src="https://i.imgur.com/IThAjzl.jpg" >}} 	|
+| {{< figure src="https://i.imgur.com/nYxXLZDl.jpg" >}} 	| {{< figure src="https://i.imgur.com/OVY8JYT.jpg" >}} 	| {{< figure src="https://i.imgur.com/IThAjzll.jpg" >}} 	|
 |----	|----	|----	|
 | 2019| 2018 | 2017 |
 | [Mini Mega Model Museum](https://museumsvictoria.com.au/melbournemuseum/whats-on/mini-mega-model-museum/) | [Beyond Perception](https://www.youtube.com/watch?v=UIuquCXOj9s) | [Children's Gallery](https://www.youtube.com/watch?v=x_WbUBVbPpo) |
@@ -45,7 +45,7 @@ for multiple major exhibitions.
 In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adoption ](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
 
 <figure>
-  <img class="img-desktop-width-75" src="https://cycling74-web-assets.s3.amazonaws.com/images/max8/what-is-max/gen-capture.gif" style="border-radius: 0px;">
+  <img class="img-desktop-width-75" src="https://i.imgur.com/cktw9KA.gif" style="border-radius: 0px;">
 </figure>
 </br>
 
