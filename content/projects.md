@@ -49,7 +49,7 @@ title: "Projects"
 
 *A capacitance-sensor giving scale to the microbiome.*
 
-{{< figure src="https://i.imgur.com/GirRAYk.gif" >}}
+<img data-src="https://i.imgur.com/GirRAYk.gif" class="lazyload" />
 
 </br>
 

@@ -45,7 +45,7 @@ for multiple major exhibitions.
 In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adoption ](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
 
 <figure>
-  <img class="img-desktop-width-75" src="https://i.imgur.com/cktw9KA.gif" style="border-radius: 0px;">
+  <img class="img-desktop-width-75 lazyload" data-src="https://i.imgur.com/cktw9KA.gif"  style="border-radius: 0px;">
 </figure>
 </br>
 
