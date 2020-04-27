@@ -19,7 +19,7 @@ title: "Projects"
 - Comprising of over a dozen temperature and humidity sensors, plus solar and wind read across a series of ADAM-6017s, scraped forecast data, and then a series of ADAM-6060s, plus some vendor-specific controllers for HVAC, Solar shades, Destratification fans etc.
 
 <figure>
-  <a class="icon-social" href="https://i.imgur.com/5AZugtC.jpg"><img src="https://i.imgur.com/5AZugtC.jpg" style="width: 75%; border-style: solid; border-width: 1px;"></a>
+  <a class="icon-social" href="https://i.imgur.com/5AZugtC.jpg"><img src="https://i.imgur.com/5AZugtCh.jpg" style="width: 75%; border-style: solid; border-width: 1px;"></a>
 </figure>
 </br>
 

@@ -35,7 +35,7 @@ I was also involved in the
   
 for multiple major exhibitions.
 
-| {{< figure src="https://i.imgur.com/nYxXLZDl.jpg" >}} 	| {{< figure src="https://i.imgur.com/OVY8JYT.jpg" >}} 	| {{< figure src="https://i.imgur.com/IThAjzll.jpg" >}} 	|
+| {{< figure src="https://i.imgur.com/nYxXLZDl.jpg" >}} 	| {{< figure src="https://i.imgur.com/OVY8JYTl.jpg" >}} 	| {{< figure src="https://i.imgur.com/IThAjzll.jpg" >}} 	|
 |----	|----	|----	|
 | 2019| 2018 | 2017 |
 | [Mini Mega Model Museum](https://museumsvictoria.com.au/melbournemuseum/whats-on/mini-mega-model-museum/) | [Beyond Perception](https://www.youtube.com/watch?v=UIuquCXOj9s) | [Children's Gallery](https://www.youtube.com/watch?v=x_WbUBVbPpo) |
