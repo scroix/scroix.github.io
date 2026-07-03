@@ -4,9 +4,9 @@ date: "1988-10-28"
 ---
 
 <figure>
-  <img class="img-desktop-width-50" src="https://i.imgur.com/tdiDbY4h.jpg">
+  <img class="img-desktop-width-50" src="https://i.imgur.com/tdiDbY4h.jpg" alt="">
 </figure>
-</br>
+<br>
 
 I'm a *software engineer* 💻 and *creative technologist* 💡.
 

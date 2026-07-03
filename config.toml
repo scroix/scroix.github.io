@@ -1,9 +1,12 @@
 baseURL = "https://scroix.github.io/"
-languageCode = "en-us"
-title = "ʕ•ᴥ•ʔ"
+locale = "en-us"
+title = "Julien de Sainte-Croix ʕ•ᴥ•ʔ"
 enableEmoji = true
 
 [params]
+    logo = "ʕ•ᴥ•ʔ"
+    description = "Julien de Sainte-Croix is a software engineer and creative technologist working in museums, installations and the built environment."
+    image = "https://i.imgur.com/tdiDbY4h.jpg"
     navigation = ["education", "work", "projects"]
     style = ""
     github = "https://github.com/scroix"

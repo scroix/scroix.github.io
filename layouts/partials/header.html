@@ -3,40 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- COMMON TAGS -->
-	<title>{{ $.Site.Title }}</title>
-	<!-- Search Engine -->
-	<meta name="description" content="{{ .Description }}">
-	<meta name="image" content="{{ $.Param "image" }}">
-	<!-- Schema.org for Google -->
-	<meta itemprop="name" content="{{ .Title }}">
-	<meta itemprop="description" content="{{ .Description }}">
-	<meta itemprop="image" content="{{ $.Param "image" }}">
-	<!-- Twitter -->
+	<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+	{{- $description := or .Description .Site.Params.description }}
+	<meta name="description" content="{{ $description }}">
+	<link rel="icon" href="/img/favicon.ico">
+	<!-- Open Graph (Facebook, LinkedIn, Slack, etc.); Twitter falls back to these -->
+	<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+	<meta property="og:description" content="{{ $description }}">
+	{{ with $.Param "image" }}<meta property="og:image" content="{{ . }}">{{ end }}
+	<meta property="og:url" content="{{ .Permalink }}">
+	<meta property="og:site_name" content="{{ .Site.Title }}">
+	<meta property="og:type" content="website">
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="{{ .Title }}">
-	<meta name="twitter:description" content="{{ .Description }}">
-	<meta name="twitter:site" content="@{{ $.Site.Params.twitter }}">
-	<meta name="twitter:creator" content="@{{ $.Site.Params.twitter }}">
-	<meta name="twitter:image:src" content="{{ $.Param "image" }}">
-	<!-- Twitter - Article -->
-	<!-- Open Graph general (Facebook, Pinterest & Google+) -->
-	<meta name="og:title" content="{{ .Title }}">
-	<meta name="og:description" content="{{ .Description }}">
-	{{ if $.Param "image" }}<meta name="og:image" content="{{ .Site.BaseURL}}{{ $.Param "image" }}">{{ end }}
-	<meta name="og:url" content="{{ .Permalink }}">
-	<meta name="og:site_name" content="{{ .Title }}">
-	<meta name="og:type" content="article">
-	<!-- Open Graph - Article -->
-	<meta name="article:author" content="{{ $.Site.Params.twitter }}">
-	<meta name="article:tag" content="{{ range .Params.tags }}{{.}} {{end}}">
-	<link rel="stylesheet" type="text/css" href="/css/style{{ $.Site.Params.style }}.css">
-	<script src="/js/caption.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Merriweather&display=swap">
+	<link rel="stylesheet" type="text/css" href="/css/style{{ .Site.Params.style }}.css">
 </head>
 <body>
 <header >
-	<a href="/" style="float: left;color:#777;"><strong>{{ $.Site.Title }}</strong>
+	<a href="/" style="float: left;color:#777;"><strong>{{ .Site.Params.logo }}</strong>
 	</a>&nbsp;&nbsp;·&nbsp;&nbsp;
 {{ range $i, $e:= $.Site.Params.navigation }}{{ if eq $i 0}}{{else}}&nbsp;&nbsp;·&nbsp;&nbsp;{{end}}{{ with $.Site.GetPage "page" . }}<a href="{{ lower .Permalink }}" style="color:#777;"><strong>{{ title .Title }}</strong></a>{{ end }}{{ end }}
 {{ if .Draft }}
