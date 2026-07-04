@@ -5,7 +5,7 @@ description: "Work history: Museums Victoria, RMIT University, 4Ward Productions
 ---
 
 <figure>
-  <img src="https://lh3.googleusercontent.com/sKOXGXXjvHkoJ-Ov5yFS6Xm76K7ftFpw6mC4ew7EO5BM9ZqMUtxt1lXAzQDsf6M" style="max-height: 100px; width: auto; border-radius: 0px;">
+  <img src="/img/mv.jpg" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # [Museums Victoria](https://museumsvictoria.com.au/) (2016 - 2019)
@@ -36,7 +36,7 @@ I was also involved in the
   
 for multiple major exhibitions.
 
-| {{< figure src="https://i.imgur.com/nYxXLZDl.jpg" >}} 	| {{< figure src="https://i.imgur.com/OVY8JYTl.jpg" >}} 	| {{< figure src="https://i.imgur.com/IThAjzll.jpg" >}} 	|
+| {{< figure src="/img/minimega.jpg" >}} 	| {{< figure src="/img/beyond-perception.jpg" >}} 	| {{< figure src="/img/childrens-gallery.jpg" >}} 	|
 |----	|----	|----	|
 | 2019| 2018 | 2017 |
 | [Mini Mega Model Museum](https://museumsvictoria.com.au/melbournemuseum/whats-on/mini-mega-model-museum/) | [Beyond Perception](https://www.youtube.com/watch?v=UIuquCXOj9s) | [Children's Gallery](https://www.youtube.com/watch?v=x_WbUBVbPpo) |
@@ -46,7 +46,7 @@ for multiple major exhibitions.
 In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adoption](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
 
 <figure>
-  <img class="img-desktop-width-75" src="https://i.imgur.com/cktw9KA.gif" loading="lazy" style="border-radius: 0px;">
+  <img class="img-desktop-width-75" src="/img/max-soundscape.gif" loading="lazy" style="border-radius: 0px;">
 </figure>
 <br>
 
@@ -72,7 +72,7 @@ I also taught a first-year course introducing students to object-oriented progra
 <br>
 
 <figure>
-  <img src="https://i.imgur.com/5hPD77n.png" style="max-height: 100px; width: auto; border-radius: 0px;">
+  <img src="/img/4ward.png" style="max-height: 100px; width: auto; border-radius: 0px;">
 </figure>
 
 # 4Ward Productions (2014 - 2015)
@@ -86,13 +86,13 @@ I also taught a first-year course introducing students to object-oriented progra
 📺 *You can watch the official, lovingly made, [recap here](https://youtu.be/UN-kQAIRo1s).*
 
 <figure>
-  <img src="/img/abc.svg" alt="ABC" style="max-height: 100px; width: auto; border-radius: 0px;">
+  <img src="/img/abc.svg" alt="ABC" style="max-height: 75px; width: auto; border-radius: 0px;">
 </figure>
 
 # ABC (2013 - 2015)
 
 <figure>
-  <img class="img-desktop-width-50" src="https://i.imgur.com/E32WdApl.jpg" loading="lazy">
+  <img class="img-desktop-width-50" src="/img/abc-studio.jpg" loading="lazy">
 </figure>
 
 <br>

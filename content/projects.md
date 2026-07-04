@@ -9,7 +9,7 @@ description: "Selected projects: a climate control system for Featherston House,
 
 *A dynamic control system for Featherston House.*
 
-{{< figure src="https://i.imgur.com/AuT8nia.jpg" >}}
+{{< figure src="/img/featherston.jpg" >}}
 
 <br>
 
@@ -20,7 +20,7 @@ description: "Selected projects: a climate control system for Featherston House,
 - Comprising over a dozen temperature and humidity sensors, plus solar and wind read across a series of ADAM-6017s, scraped forecast data, and then a series of ADAM-6060s, plus some vendor-specific controllers for HVAC, Solar shades, Destratification fans etc.
 
 <figure>
-  <a class="icon-social" href="https://i.imgur.com/5AZugtC.jpg"><img src="https://i.imgur.com/5AZugtCh.jpg" style="width: 75%; border-style: solid; border-width: 1px;"></a>
+  <a class="icon-social" href="/img/featherston-dashboard.jpg"><img src="/img/featherston-dashboard-thumb.jpg" style="width: 75%; border-style: solid; border-width: 1px;"></a>
 </figure>
 <br>
 
@@ -50,7 +50,7 @@ description: "Selected projects: a climate control system for Featherston House,
 
 *A capacitance-sensor giving scale to the microbiome.*
 
-<img src="https://i.imgur.com/GirRAYk.gif" loading="lazy" />
+<img src="/img/ticker.gif" loading="lazy" />
 
 <br>
 
@@ -65,7 +65,7 @@ description: "Selected projects: a climate control system for Featherston House,
 
 *A simulation of traditional Aboriginal burning technique.*
 
-{{< figure src="https://i.imgur.com/ZpRoQv8.jpg" >}}
+{{< figure src="/img/firestick.jpg" >}}
 
 <br>
 
