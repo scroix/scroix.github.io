@@ -559,22 +559,59 @@ section.chapter > h2 {
 	font-style: italic;
 }
 
-/* the last row of the table: what survived the degrees */
-.creds .keeps {
-	list-style: none;
-	font-size: 0.88rem;
-	font-style: italic;
-	line-height: 1.7;
-}
-
-.creds .keeps li {
-	display: inline;
-}
-
-.creds .keeps li + li::before {
-	content: " · ";
+/* the endnote, done on purpose: the degree that earned the souvenirs
+   carries the six classical footnote marks */
+sup.fn {
+	font-size: 0.72em;
+	line-height: 0;
 	color: var(--red);
-	font-style: normal;
+	cursor: help;
+	padding: 0 0.06em;
+	transition: color 0.2s, background 0.2s;
+}
+
+sup.fn.lit,
+sup.fn:hover {
+	color: var(--ink);
+	background: var(--blush);
+	border-radius: 4px;
+}
+
+.footnotes {
+	margin-top: 1.9rem;
+	max-width: 34rem;
+}
+
+.footnotes::before {
+	content: "";
+	display: block;
+	width: 8rem;
+	border-top: 1px solid var(--rule);
+	margin-bottom: 0.7rem;
+}
+
+.footnotes ol {
+	list-style: none;
+	font-size: 0.78rem;
+	line-height: 1.9;
+}
+
+.footnotes li {
+	padding-left: 1.3em;
+	text-indent: -1.3em;
+	border-radius: 6px;
+	transition: background 0.2s;
+}
+
+.footnotes li.lit {
+	background: var(--blush);
+}
+
+.footnotes .mark {
+	color: var(--red);
+	display: inline-block;
+	width: 1.3em;
+	text-indent: 0;
 }
 
 /* ---------- footer ---------- */

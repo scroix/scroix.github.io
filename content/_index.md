@@ -149,17 +149,17 @@ education:
   creds:
     - when: "2014 – 19"
       name: "Bachelor of Software Engineering, RMIT"
+      souvenirs:
+        - "[a turn-based strategy game of design patterns](https://gitlab.com/scroix/oo2018_assignment)"
+        - "[a maze generator (and solver!)](https://gitlab.com/scroix/AlgorithmsA2)"
+        - "[a solution to OpenAI's FrozenLake](https://gitlab.com/scroix/frozenlake-sol)"
+        - "[a Connect 4 bot](https://gitlab.com/scroix/s3369242-ai1901-connectfour)"
+        - "[a full-stack CRUD app](https://gitlab.com/scroix/its-ticket-crud)"
+        - "[three.js turtles calmly swimming in a pond](https://scroix.gitlab.io/tortue3d)"
     - when: "2013"
       name: "Diploma of Audiovisual Technology"
     - when: "2012"
       name: "Certificate IV, Audiovisual Technology"
-  souvenirs:
-    - "[a turn-based strategy game of design patterns](https://gitlab.com/scroix/oo2018_assignment)"
-    - "[a maze generator (and solver!)](https://gitlab.com/scroix/AlgorithmsA2)"
-    - "[a solution to OpenAI's FrozenLake](https://gitlab.com/scroix/frozenlake-sol)"
-    - "[a Connect 4 bot](https://gitlab.com/scroix/s3369242-ai1901-connectfour)"
-    - "[a full-stack CRUD app](https://gitlab.com/scroix/its-ticket-crud)"
-    - "[three.js turtles calmly swimming in a pond](https://scroix.gitlab.io/tortue3d)"
 ---
 
 I'm a *software engineer* and *creative technologist*. Since 2016 I've worked in museums, installation and the built environment; in past lives, on music festivals and in broadcast television.
