@@ -394,11 +394,6 @@ section.chapter > h2 {
 	padding-top: 0.9rem;
 }
 
-.pile-hint .count {
-	color: var(--red);
-	font-style: normal;
-}
-
 /* ---------- the moving picture: a poster print ---------- */
 .print.is-video .frame {
 	position: relative;

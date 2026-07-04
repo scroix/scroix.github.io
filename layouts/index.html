@@ -46,7 +46,7 @@
 		<h2>education</h2>
 		<ul class="creds">
 			{{ range .Params.education.creds }}
-			<li><span class="when">{{ .when }}</span><span>{{ .name }}</span><span class="note">{{ .note }}</span></li>
+			<li><span class="when">{{ .when }}</span><span>{{ .name }}</span>{{ with .note }}<span class="note">{{ . }}</span>{{ end }}</li>
 			{{ end }}
 		</ul>
 		<p class="note-aside">{{ .Params.education.souvenirs | markdownify }}</p>

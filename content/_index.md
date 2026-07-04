@@ -1,7 +1,7 @@
 ---
 title: "Hello, I'm Julien."
 date: "1988-10-28"
-aside: "The pictures say it better than I can. The code lives on [GitHub](https://github.com/scroix) and [GitLab](https://gitlab.com/scroix)."
+aside: "The code lives on [GitHub](https://github.com/scroix) and [GitLab](https://gitlab.com/scroix)."
 portrait:
   img: "/img/julien.jpg"
   alt: "Julien sitting in front of Robert Delaunay's Rythme"
@@ -149,19 +149,16 @@ education:
   creds:
     - when: "2014 – 19"
       name: "Bachelor of Software Engineering, RMIT"
-      note: "gpa 3.5"
-    - when: "2015 – 18"
-      name: "Diploma of Languages (French)"
-      note: "cefr b1"
     - when: "2013"
       name: "Diploma of Audiovisual Technology"
-      note: "gpa 3.6"
     - when: "2012"
       name: "Certificate IV, Audiovisual Technology"
-      note: "gpa 3.1"
   souvenirs: >-
-    Degree souvenirs: [a maze generator (and solver!)](https://gitlab.com/scroix/AlgorithmsA2),
-    [a Connect 4 bot](https://gitlab.com/scroix/s3369242-ai1901-connectfour), and
+    Degree souvenirs: [a turn-based strategy game of design patterns](https://gitlab.com/scroix/oo2018_assignment),
+    [a maze generator (and solver!)](https://gitlab.com/scroix/AlgorithmsA2),
+    [a solution to OpenAI's FrozenLake](https://gitlab.com/scroix/frozenlake-sol),
+    [a Connect 4 bot](https://gitlab.com/scroix/s3369242-ai1901-connectfour),
+    [a full-stack CRUD app](https://gitlab.com/scroix/its-ticket-crud), and
     [three.js turtles calmly swimming in a pond](https://scroix.gitlab.io/tortue3d).
 ---
 
