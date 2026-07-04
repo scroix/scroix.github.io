@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>animation lab · Julien de Sainte-Croix ʕ•ᴥ•ʔ</title>
+<meta name="description" content="Six studies in tasteful motion for scroix.github.io — interactive demos of staggered reveals, springs, scroll choreography, ASCII fields, and a living logo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* ---------- tokens: lifted straight from style.css ---------- */
+:root {
+  --paper: #ffffff;
+  --ink: #111111;
+  --slate: #666677;      /* the site's aside colour */
+  --red: #d21c1c;        /* the degree mark */
+  --blush: #fbf3f3;      /* the site's link hover */
+  --pad: #f5f7f9;        /* the site's <pre> background */
+  --hair: #cccccc;
+  --serif: 'Merriweather', Georgia, serif;
+  --sc: 'Alegreya Sans SC', 'Avenir Next', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 18px; height: 100%; }
+@media (max-width: 840px) { html { font-size: 17px; } }
+@media (max-width: 580px) { html { font-size: 16px; } }
+
+body {
+  font-family: var(--serif);
+  color: var(--ink);
+  background: var(--paper);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 7.5rem;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+@media (max-width: 840px) { body { padding: 0 5.5rem; } }
+@media (max-width: 760px) { body { padding: 0 2.5rem; } }
+@media (max-width: 580px) { body { padding: 0 1.5rem; } }
+
+h1, h2, h3, .sc { font-family: var(--sc); text-transform: lowercase; font-weight: 700; }
+
+p { line-height: 1.55; margin-bottom: 1em; }
+
+a { text-decoration: none; color: inherit; transition: background 0.2s; }
+a:hover { background: var(--blush); border-radius: 10px; }
+a:after {
+  position: relative; content: "\FEFF°";
+  margin-left: 0.10em; font-size: 80%; top: -0.30em; left: -0.1em;
+  color: var(--red);
+}
+a.bare:after { content: none; }
+
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- header / footer, as on the site ---------- */
+header {
+  padding: 0.5rem 0;
+  border-bottom: 0.10em solid black;
+  font-family: var(--sc);
+  font-weight: 700;
+  text-transform: lowercase;
+}
+header .crumb { color: #777; }
+
+footer {
+  padding: 3rem 0 5.5rem;
+  text-align: center;
+  color: var(--slate);
+  font-size: 0.84rem;
+}
+
+/* ---------- hero ---------- */
+.hero { padding: 4.5rem 0 1rem; }
+.hero .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-size: 2.9rem;
+  line-height: 1.08;
+  margin-bottom: 1.4rem;
+  max-width: 14em;
+}
+.hero h1 .ch { display: inline-block; will-change: transform, opacity; }
+.hero .standfirst {
+  font-size: 1rem;
+  color: var(--ink);
+  max-width: 34em;
+}
+.hero .standfirst em { color: var(--slate); }
+.hero-actions { margin: 1.4rem 0 0; font-size: 0.9rem; }
+
+.toc {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem;
+  margin: 2.8rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--hair);
+  font-family: var(--sc); font-weight: 700; text-transform: lowercase;
+  font-size: 0.95rem;
+}
+.toc .n { font-family: var(--mono); font-weight: 400; font-size: 0.7rem; color: var(--red); margin-right: 0.35em; }
+
+/* ---------- rules strip ---------- */
+.rules {
+  margin: 3.2rem 0 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem;
+}
+.rules div { border-top: 2px solid var(--ink); padding-top: 0.6rem; }
+.rules .k { font-family: var(--mono); font-size: 0.68rem; color: var(--red); display: block; margin-bottom: 0.35rem; }
+.rules p { font-size: 0.8rem; line-height: 1.5; color: var(--slate); margin: 0; }
+@media (max-width: 760px) { .rules { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .rules { grid-template-columns: 1fr; } }
+
+/* ---------- study anatomy ---------- */
+.study { margin: 5rem 0 0; scroll-margin-top: 2rem; }
+.study-head {
+  display: flex; align-items: baseline; gap: 0.9rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 0.7rem;
+  margin-bottom: 0.4rem;
+}
+.study-head .n { font-family: var(--mono); font-size: 0.75rem; color: var(--red); }
+.study-head h2 { font-size: 1.45rem; }
+.study-head aside {
+  margin-left: auto; text-align: right;
+  font-size: 0.72rem; color: var(--slate); font-style: italic;
+}
+.study > .intro { max-width: 38em; color: var(--ink); font-size: 0.92rem; margin-bottom: 1.3rem; }
+
+.pad {
+  background: var(--pad);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.5rem 1.6rem;
+  padding: 0.8rem 0.2rem;
+  font-family: var(--sc); text-transform: lowercase; font-weight: 700;
+  font-size: 0.82rem;
+}
+.controls label { display: inline-flex; align-items: center; gap: 0.5em; }
+.controls .val { font-family: var(--mono); font-weight: 400; font-size: 0.72rem; color: var(--red); min-width: 3.4em; }
+input[type="range"] { accent-color: var(--red); width: 110px; }
+input[type="checkbox"] { accent-color: var(--red); }
+select, button.btn {
+  font-family: var(--sc); font-weight: 700; text-transform: lowercase; font-size: 0.82rem;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--ink); border-radius: 8px;
+  padding: 0.28em 0.75em; cursor: pointer;
+}
+select:hover, button.btn:hover { background: var(--blush); }
+
+.notes {
+  display: grid; grid-template-columns: 3fr 2fr; gap: 2rem;
+  margin-top: 0.6rem;
+}
+.notes h3 { font-size: 0.82rem; color: var(--slate); margin-bottom: 0.4rem; }
+.notes p, .notes li { font-size: 0.82rem; line-height: 1.6; color: var(--ink); }
+.notes ul { list-style: none; }
+.notes li { padding-left: 1.1em; text-indent: -1.1em; }
+.notes li:before { content: "° "; color: var(--red); }
+.notes .ship { font-size: 0.78rem; }
+@media (max-width: 700px) { .notes { grid-template-columns: 1fr; gap: 0.8rem; } }
+
+/* ---------- 01 arrival ---------- */
+#arrival .pad { padding: 3.2rem 2.4rem; }
+#arrival .demo-title { font-family: var(--sc); text-transform: lowercase; font-weight: 700; font-size: 2rem; line-height: 1.15; }
+#arrival .demo-sub { color: var(--slate); font-size: 0.85rem; margin: 0.7rem 0 0; }
+#arrival .ch, #arrival .wd { display: inline-block; will-change: transform, opacity; }
+
+/* ---------- 02 reading ---------- */
+.scrollstage {
+  height: 400px; overflow-y: auto;
+  padding: 1.6rem 2.2rem;
+  scrollbar-width: thin;
+}
+.scrollstage .spacer { height: 6.5rem; }
+.entry {
+  padding: 1.05rem 0;
+  border-bottom: 1px solid #e3e6ea;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.55s var(--out-quint), transform 0.55s var(--out-quint);
+}
+.entry.in { opacity: 1; transform: none; }
+.entry h3 { font-size: 1.05rem; }
+.entry h3 .emo { margin-right: 0.4em; }
+.entry p { font-size: 0.8rem; color: var(--slate); font-style: italic; margin: 0.15rem 0 0; }
+.scroll-hint {
+  position: absolute; right: 1rem; top: 0.8rem;
+  font-family: var(--mono); font-size: 0.65rem; color: var(--slate);
+  pointer-events: none;
+}
+
+/* ---------- 03 pointing ---------- */
+#springpad { display: block; width: 100%; height: 320px; cursor: crosshair; touch-action: none; }
+.spring-row { display: grid; grid-template-columns: 1fr 220px; gap: 1rem; align-items: stretch; }
+.spring-side { display: flex; flex-direction: column; gap: 1rem; }
+.spring-side .pad { flex: 0 0 auto; padding: 0.8rem; }
+#stepgraph { display: block; width: 100%; height: 110px; }
+.zeta {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--slate);
+  padding: 0 0.2rem;
+}
+.zeta b { color: var(--red); font-weight: 400; }
+.deg-demo { padding: 1.1rem 0.9rem 0.9rem; font-family: var(--sc); font-weight: 700; text-transform: lowercase; font-size: 1rem; }
+.deg-demo .lab { display: block; font-family: var(--mono); font-weight: 400; font-size: 0.62rem; color: var(--slate); margin-bottom: 0.55rem; }
+.deg-demo a { margin-right: 1.1em; }
+.deg-demo a:after { content: none; }
+.deg-demo .deg { display: inline-block; color: var(--red); font-size: 80%; position: relative; top: -0.3em; margin-left: 0.1em; will-change: transform; }
+@media (max-width: 700px) { .spring-row { grid-template-columns: 1fr; } }
+
+/* ---------- 04 ambience ---------- */
+#asciipad { height: 360px; }
+#ascii { display: block; width: 100%; height: 100%; }
+.fps {
+  position: absolute; right: 0.9rem; bottom: 0.6rem;
+  font-family: var(--mono); font-size: 0.62rem; color: var(--slate);
+}
+
+/* ---------- 05 character ---------- */
+#bearpad { padding: 3.4rem 1rem; text-align: center; }
+.bear { display: inline-block; white-space: nowrap; cursor: pointer; user-select: none; }
+.bear .glyph { display: inline-block; will-change: transform; }
+.bear .eye { text-align: center; }
+.bear.big { font-size: 4.6rem; }
+.bear .eye.blink { transform: scaleY(0.12); }
+#bearcaption { font-family: var(--mono); font-size: 0.65rem; color: var(--slate); margin-top: 1.4rem; }
+
+/* ---------- 06 restraint ---------- */
+.mirror { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+.mirror figure { margin: 0; }
+.mirror figcaption {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--slate);
+  text-align: center; padding-top: 0.7rem;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  padding: 1.2rem 1.2rem 1.1rem;
+  cursor: pointer;
+  position: relative;
+}
+.card .thumb {
+  height: 120px; border-radius: 8px;
+  background: var(--pad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.9rem;
+}
+.card h3 { font-size: 1.02rem; }
+.card p { font-size: 0.78rem; color: var(--slate); font-style: italic; margin: 0.2rem 0 0.6rem; }
+.card .cta { font-family: var(--mono); font-size: 0.68rem; color: var(--red); }
+.card .cta .arr { display: inline-block; transition: transform 0.15s var(--out-quint); }
+
+.card.calm { transition: transform 0.15s var(--out-quint), box-shadow 0.15s var(--out-quint); }
+.card.calm:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(17,17,17,0.07); }
+.card.calm:hover .cta .arr { transform: translateX(3px); }
+
+.card.loud { animation: bob 2.1s ease-in-out infinite alternate; border: 2px solid transparent;
+  background: linear-gradient(var(--paper), var(--paper)) padding-box,
+              linear-gradient(90deg, #d21c1c, #f5a623, #d21c1c) border-box;
+  background-size: 100% 100%, 300% 100%;
+  animation: bob 2.1s ease-in-out infinite alternate, border-slide 3s linear infinite;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.card.loud:hover { transform: scale(1.07) rotate(-1.2deg); }
+.card.loud h3 {
+  background: linear-gradient(90deg, #d21c1c, #f5a623, #d21c1c);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.5s linear infinite;
+}
+.card.loud .thumb { animation: hue 4s linear infinite; }
+.card.loud:before, .card.loud:after {
+  content: "✨"; position: absolute; font-size: 0.9rem;
+  animation: twinkle 1.6s ease-in-out infinite;
+}
+.card.loud:before { top: 0.5rem; right: 0.7rem; }
+.card.loud:after { bottom: 0.6rem; left: 0.7rem; animation-delay: 0.8s; }
+@keyframes bob { from { transform: translateY(0); } to { transform: translateY(-7px); } }
+@keyframes border-slide { to { background-position: 0 0, 300% 0; } }
+@keyframes shimmer { to { background-position: 200% 0; } }
+@keyframes hue { to { filter: hue-rotate(360deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+@media (max-width: 640px) { .mirror { grid-template-columns: 1fr; } }
+
+/* ---------- shipping ---------- */
+.ship-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin: 1rem 0 0.4rem; }
+.ship-table th {
+  font-family: var(--sc); text-transform: lowercase; font-weight: 700;
+  text-align: left; font-size: 0.78rem;
+  border-bottom: 2px solid var(--ink);
+  padding: 0.35rem 0.8rem 0.35rem 0;
+}
+.ship-table td { padding: 0.55rem 0.8rem 0.55rem 0; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.5; }
+.ship-table td:first-child { font-family: var(--mono); font-size: 0.72rem; white-space: nowrap; }
+.ship-table .y { color: var(--red); }
+
+.rm-banner {
+  display: none;
+  margin: 1.2rem 0 0;
+  padding: 0.7rem 1rem;
+  background: var(--blush); border-radius: 10px;
+  font-size: 0.8rem; color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rm-banner { display: block; }
+  *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+  .entry { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://scroix.github.io/" class="bare" style="color:#777"><strong><span class="bear" id="bear-small">ʕ•ᴥ•ʔ</span></strong></a>
+  <span class="crumb">&nbsp;&nbsp;·&nbsp;&nbsp;animation studies</span>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">a proposal for scroix.github.io &nbsp;·&nbsp; six studies &nbsp;·&nbsp; nothing ships without a reason</p>
+  <h1 id="herotitle">motion, with manners.</h1>
+  <p class="standfirst">The site is quiet, typographic, and content-first — the animation should be too.
+  Each study below is a working demo of one idea, built the way it would ship:
+  <em>transforms and opacity only, springs where physics helps, everything honouring reduced-motion.</em>
+  The kind of polish you feel before you notice it.</p>
+  <p class="hero-actions"><a href="#" id="replay-hero" class="bare">replay the arrival<span style="color:var(--red);font-size:80%;position:relative;top:-0.3em;margin-left:0.1em">°</span></a></p>
+
+  <nav class="toc" aria-label="studies">
+    <a class="bare" href="#arrival"><span class="n">01</span>arrival</a>
+    <a class="bare" href="#reading"><span class="n">02</span>reading</a>
+    <a class="bare" href="#pointing"><span class="n">03</span>pointing</a>
+    <a class="bare" href="#ambience"><span class="n">04</span>ambience</a>
+    <a class="bare" href="#character"><span class="n">05</span>character</a>
+    <a class="bare" href="#restraint"><span class="n">06</span>restraint</a>
+  </nav>
+
+  <div class="rules">
+    <div><span class="k">rule 01</span><p>Motion explains — arrival, hierarchy, response. Never decoration for its own sake.</p></div>
+    <div><span class="k">rule 02</span><p>Animate only <code>transform</code> and <code>opacity</code>. The compositor does the work; the page never janks.</p></div>
+    <div><span class="k">rule 03</span><p>One orchestrated moment per page. Everything else stays under 300&nbsp;ms.</p></div>
+    <div><span class="k">rule 04</span><p><code>prefers-reduced-motion</code> is a contract, not a suggestion. Every demo here honours it.</p></div>
+  </div>
+
+  <p class="rm-banner">Your system asks for reduced motion, so the demos are holding still — which is itself the point of rule 04. Turn the OS setting off to see them move.</p>
+</section>
+
+<!-- ================= 01 ARRIVAL ================= -->
+<section class="study" id="arrival">
+  <div class="study-head">
+    <span class="n">01</span>
+    <h2>arrival — the staggered reveal</h2>
+    <aside>where it lives: the h1 + intro,<br>once per visit</aside>
+  </div>
+  <p class="intro">The headline you read above didn't fade in as a block — each word rose a little,
+  a few milliseconds after its neighbour. Stagger is the whole trick: it turns "content appeared"
+  into "content was set in place." Tune it below; watch how fast it tips from elegant into showy.</p>
+
+  <div class="pad">
+    <div style="padding:3.2rem 2.4rem">
+      <div class="demo-title" id="stagger-demo">hello, i'm julien. i make museums think.</div>
+      <p class="demo-sub" id="stagger-sub">software engineer 💻 &nbsp;·&nbsp; creative technologist 💡 &nbsp;·&nbsp; since 2016</p>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="btn" id="stagger-play">replay</button>
+    <label>stagger <input type="range" id="stagger-ms" min="8" max="90" value="26"> <span class="val" id="stagger-ms-v">26ms</span></label>
+    <label>duration <input type="range" id="stagger-dur" min="200" max="1400" step="50" value="650"> <span class="val" id="stagger-dur-v">650ms</span></label>
+    <label>easing
+      <select id="stagger-ease">
+        <option value="quint">ease-out quint</option>
+        <option value="spring">spring (physical)</option>
+        <option value="back">ease-out back</option>
+        <option value="linear">linear (for contrast)</option>
+      </select>
+    </label>
+    <label>split
+      <select id="stagger-split">
+        <option value="word">by word</option>
+        <option value="char">by character</option>
+      </select>
+    </label>
+  </div>
+  <div class="notes">
+    <div>
+      <h3>why it works</h3>
+      <p>Reading order is left-to-right, top-to-bottom; the stagger animates in reading order, so the
+      motion rehearses what your eye was about to do anyway. Around 20–35&nbsp;ms per word it reads as
+      craftsmanship; past 60&nbsp;ms it starts performing, and the linear easing shows how much the
+      deceleration curve carries. The "spring" option is a real damped spring sampled into a CSS
+      <code>linear()</code> timing function — physics, exported to the compositor.</p>
+    </div>
+    <div class="ship">
+      <h3>shipping it</h3>
+      <ul>
+        <li>Web Animations API, zero dependencies</li>
+        <li>runs once per page load, ~700&nbsp;ms total</li>
+        <li>reduced motion: content simply appears</li>
+        <li>anime.js buys the same in one line, if timelines grow</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 READING ================= -->
+<section class="study" id="reading">
+  <div class="study-head">
+    <span class="n">02</span>
+    <h2>reading — scroll choreography</h2>
+    <aside>where it lives: project entries<br>on /projects and /work</aside>
+  </div>
+  <p class="intro">Entries introduce themselves as they enter the viewport — 14&nbsp;px of rise, over in
+  half a second, and it never happens twice. Scroll the panel; these are the site's real projects.</p>
+
+  <div class="pad">
+    <span class="scroll-hint">scroll ↓</span>
+    <div class="scrollstage" id="scrollstage" tabindex="0">
+      <div class="spacer"></div>
+      <div class="entry"><h3><span class="emo">🏡</span>habitat abstraction layer</h3><p>a dynamic control system for Featherston House · 2017–2020</p></div>
+      <div class="entry"><h3><span class="emo">⚡</span>the pipes</h3><p>a digital art installation for Cato Square · 2019</p></div>
+      <div class="entry"><h3><span class="emo">🐛</span>ticker</h3><p>a capacitance-sensor giving scale to the microbiome · 2019</p></div>
+      <div class="entry"><h3><span class="emo">🔥</span>fire-stick</h3><p>a simulation of traditional Aboriginal burning technique · 2017</p></div>
+      <div class="entry"><h3><span class="emo">📺</span>abc melbourne studios</h3><p>broadcast television, a past life</p></div>
+      <div class="entry"><h3><span class="emo">🎓</span>rmit university</h3><p>where the whole thing started</p></div>
+      <div class="spacer"></div>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="btn" id="scroll-replay">reset &amp; replay</button>
+    <label><input type="checkbox" id="scroll-once" checked> animate once only</label>
+    <span class="val" style="min-width:auto" id="scroll-note">the tasteful default</span>
+  </div>
+  <div class="notes">
+    <div>
+      <h3>why it works</h3>
+      <p>The reveal confirms "you've arrived at something new" and then gets out of the way.
+      Untick <em>animate once only</em> and scroll up and down a few times — elements that
+      re-animate on every pass turn the page into a jack-in-the-box. The discipline (small distance,
+      one direction, one time) is what separates this from every over-eager marketing page.</p>
+    </div>
+    <div class="ship">
+      <h3>shipping it</h3>
+      <ul>
+        <li>IntersectionObserver + one CSS class, ~15 lines</li>
+        <li>observer disconnects after firing — zero idle cost</li>
+        <li>reduced motion: entries are simply visible</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 POINTING ================= -->
+<section class="study" id="pointing">
+  <div class="study-head">
+    <span class="n">03</span>
+    <h2>pointing — springs, not easings</h2>
+    <aside>where it lives: hover states,<br>the ° on every link</aside>
+  </div>
+  <p class="intro">Nature of Code, chapter three: a damped spring. Easings replay a recorded curve;
+  springs respond to where things actually are, so interruptions feel continuous instead of restarting.
+  Move your cursor through the field — the dot is solving <span style="font-family:var(--mono);font-size:0.8em">F = −kx − cv</span> every frame.</p>
+
+  <div class="spring-row">
+    <div class="pad"><canvas id="springpad"></canvas></div>
+    <div class="spring-side">
+      <div class="pad">
+        <canvas id="stepgraph"></canvas>
+        <p class="zeta" id="zeta-readout">ζ = 0.52 · <b>underdamped</b></p>
+      </div>
+      <div class="pad deg-demo">
+        <span class="lab">applied: the degree mark pops on hover</span>
+        <a href="#" onclick="return false">education<span class="deg">°</span></a>
+        <a href="#" onclick="return false">work<span class="deg">°</span></a>
+        <a href="#" onclick="return false">projects<span class="deg">°</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <label>stiffness <input type="range" id="spring-k" min="20" max="400" value="170"> <span class="val" id="spring-k-v">170</span></label>
+    <label>damping <input type="range" id="spring-c" min="2" max="42" value="14"> <span class="val" id="spring-c-v">14</span></label>
+    <button class="btn spring-preset" data-k="320" data-c="34">snappy</button>
+    <button class="btn spring-preset" data-k="170" data-c="9">wobbly</button>
+    <button class="btn spring-preset" data-k="45" data-c="28">molasses</button>
+  </div>
+  <div class="notes">
+    <div>
+      <h3>why it works</h3>
+      <p>The readout above the graph is the damping ratio ζ&nbsp;=&nbsp;c&nbsp;/&nbsp;2√(km). Below 1 the
+      system overshoots (personality); at exactly 1 it settles as fast as physics allows (professionalism);
+      above 1 it oozes (bureaucracy). UI wants ζ around 0.8–1: the merest hint of overshoot.
+      That's the number behind why Apple's sheets feel right and why "wobbly" here feels like a toy.</p>
+    </div>
+    <div class="ship">
+      <h3>shipping it</h3>
+      <ul>
+        <li>one 20-line spring class, or CSS <code>linear()</code> for fire-and-forget pops</li>
+        <li>only interactive elements get springs — never ambient ones</li>
+        <li>reduced motion: states snap instantly</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 AMBIENCE ================= -->
+<section class="study" id="ambience">
+  <div class="study-head">
+    <span class="n">04</span>
+    <h2>ambience — the ascii field</h2>
+    <aside>where it lives: hero background,<br>or a 404 page with a pulse</aside>
+  </div>
+  <p class="intro">The Kovalchuk reference, rebuilt honestly: a luminance field (three drifting metaballs)
+  sampled on a grid and printed as type. The cursor is not an attractor — the field ignores it until you
+  drift close to a blob, and only then does it energise. Atmosphere made of the site's own material —
+  characters — with no video, no WebGL, no library.</p>
+
+  <div class="pad" id="asciipad">
+    <canvas id="ascii"></canvas>
+    <span class="fps" id="ascii-fps"></span>
+  </div>
+  <div class="controls">
+    <label>cell <input type="range" id="ascii-cell" min="8" max="26" value="9"> <span class="val" id="ascii-cell-v">9px</span></label>
+    <label>alphabet
+      <select id="ascii-set">
+        <option value="dots"> ·:;+*#%@</option>
+        <option value="blocks"> ░▒▓█</option>
+        <option value="binary" selected> ·01</option>
+        <option value="bear"> ·°•ᴥʔʕ</option>
+      </select>
+    </label>
+    <label><input type="checkbox" id="ascii-red" checked> red signal</label>
+    <label><input type="checkbox" id="ascii-run" checked> run</label>
+  </div>
+  <div class="notes">
+    <div>
+      <h3>why it works</h3>
+      <p>Ambient motion is the riskiest idea on this page — it runs forever, so it must be cheap and
+      calm. This one drifts at walking pace, ignores the cursor until you approach a blob (ambient systems
+      react to approach; they don't chase), and pauses itself the moment it scrolls offscreen (watch the
+      fps counter stop). Try the <em>bear</em> alphabet: the field renders in ʕ&nbsp;•&nbsp;ᴥ&nbsp;°,
+      which is about as on-brand as physics gets.</p>
+    </div>
+    <div class="ship">
+      <h3>shipping it</h3>
+      <ul>
+        <li>one canvas, one rAF loop, ~80 lines</li>
+        <li>IntersectionObserver gates the loop — zero cost offscreen</li>
+        <li>reduced motion: renders a single still frame</li>
+        <li>keep contrast low if type sits above it</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 CHARACTER ================= -->
+<section class="study" id="character">
+  <div class="study-head">
+    <span class="n">05</span>
+    <h2>character — the living bear</h2>
+    <aside>where it lives: the header,<br>on every page, forever</aside>
+  </div>
+  <p class="intro">The logo is already a face. Faces blink. This bear watches your cursor
+  (eyes on springs from study 03), blinks on its own schedule, and squints happily when clicked —
+  the one in the page header up top is alive too. It's four glyphs and a spring; it's also the thing
+  visitors will tell someone else about.</p>
+
+  <div class="pad" id="bearpad">
+    <span class="bear big" id="bear-big" role="img" aria-label="the site's bear logo, watching the cursor">ʕ•ᴥ•ʔ</span>
+    <p id="bearcaption">it's watching. click it.</p>
+  </div>
+  <div class="controls">
+    <label>curiosity <input type="range" id="bear-track" min="0" max="100" value="55"> <span class="val" id="bear-track-v">55%</span></label>
+    <label>blinkiness <input type="range" id="bear-blink" min="0" max="100" value="40"> <span class="val" id="bear-blink-v">40%</span></label>
+  </div>
+  <div class="notes">
+    <div>
+      <h3>why it works</h3>
+      <p>This is the page's one permitted indulgence — and it obeys the same physics as everything else.
+      The eye travel is capped at a few pixels so it never distorts the mark, blinks are 120&nbsp;ms
+      (real blinks are 100–150), and the idle cost is one cheap transform. Micro-character beats
+      macro-spectacle: nobody remembers a parallax hero, everybody remembers that the bear looked at them.</p>
+    </div>
+    <div class="ship">
+      <h3>shipping it</h3>
+      <ul>
+        <li>five <code>&lt;span&gt;</code>s in the header partial, one small script</li>
+        <li>degrades to the plain ʕ•ᴥ•ʔ with JS off</li>
+        <li>reduced motion: it still blinks — eyes don't track</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 RESTRAINT ================= -->
+<section class="study" id="restraint">
+  <div class="study-head">
+    <span class="n">06</span>
+    <h2>restraint — the mirror test</h2>
+    <aside>where it lives: in every<br>code review, hopefully</aside>
+  </div>
+  <p class="intro">Chanel's rule: before leaving the house, remove one accessory. Both cards below
+  animate. Hover each. One of them you'd ship; the other is what happens when every idea survives.</p>
+
+  <div class="mirror">
+    <figure>
+      <div class="card calm" tabindex="0">
+        <div class="thumb">🏡</div>
+        <h3>habitat abstraction layer</h3>
+        <p>a dynamic control system for Featherston House</p>
+        <span class="cta">view case <span class="arr">→</span></span>
+      </div>
+      <figcaption>150ms · one transform · rests when ignored</figcaption>
+    </figure>
+    <figure>
+      <div class="card loud" tabindex="0">
+        <div class="thumb">🏡</div>
+        <h3>habitat abstraction layer</h3>
+        <p>a dynamic control system for Featherston House</p>
+        <span class="cta">view case <span class="arr">→</span></span>
+      </div>
+      <figcaption>bobbing · shimmering · hue-cycling · ✨ · never rests</figcaption>
+    </figure>
+  </div>
+  <div class="notes" style="margin-top:1.2rem">
+    <div>
+      <h3>why it works</h3>
+      <p>Nothing on the right is technically wrong — every effect exists on award-winning sites,
+      just not all at once, and not uninvited. The left card spends its entire motion budget on
+      answering one question: <em>am I interactive?</em> Two milliseconds of your attention, then silence.
+      Restraint isn't the absence of animation; it's animation with a job description.</p>
+    </div>
+    <div class="ship">
+      <h3>shipping it</h3>
+      <ul>
+        <li>budget: one ambient element per page, max (study 04 <em>or</em> 05 — not both at full volume)</li>
+        <li>hovers ≤ 150&nbsp;ms, reveals ≤ 600&nbsp;ms</li>
+        <li>if unsure whether an effect earns its place, it doesn't</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SHIPPING ================= -->
+<section class="study" id="shipping">
+  <div class="study-head">
+    <span class="n">→</span>
+    <h2>shipping notes</h2>
+    <aside>hugo-friendly, budget-friendly</aside>
+  </div>
+  <p class="intro">Everything above is vanilla — the whole lab is one file with no dependencies.
+  For the real site, the same ideas land as one small <code>motion.js</code> in <code>static/js/</code>,
+  loaded from the header partial.</p>
+  <table class="ship-table">
+    <tr><th>approach</th><th>weight</th><th>use it for</th><th>verdict</th></tr>
+    <tr><td>CSS + WAAPI</td><td>0 kB</td><td>studies 01, 02, 06 — reveals, hovers, transitions</td><td class="y">° default choice</td></tr>
+    <tr><td>20-line spring util</td><td>~0.4 kB</td><td>studies 03, 05 — anything that follows the cursor</td><td class="y">° write it once, keep it forever</td></tr>
+    <tr><td>canvas + rAF</td><td>0 kB</td><td>study 04 — ambient fields, generative texture</td><td class="y">° gate it behind IntersectionObserver</td></tr>
+    <tr><td>anime.js v4</td><td>~10 kB</td><td>only if timelines grow past three steps</td><td>° nice, not yet necessary</td></tr>
+    <tr><td>GSAP / three.js</td><td>30–150 kB</td><td>—</td><td>° this site doesn't need them</td></tr>
+  </table>
+  <p style="font-size:0.82rem;color:var(--slate);margin-top:0.8rem">Suggested first move: ship studies
+  05 and 02 (the bear and the reveals) — smallest code, most character. Hold 04 for the 404 page,
+  where an ascii bear made of drifting type would be a reason to get lost on purpose.</p>
+</section>
+
+<footer>
+  built as a working proposal · every demo honours prefers-reduced-motion ·
+  <span class="bear" id="bear-footer">ʕ•ᴥ•ʔ</span>
+</footer>
+
+<script>
+(() => {
+'use strict';
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+/* Damped spring: the one integrator every study shares. */
+class Spring {
+  constructor(k = 170, c = 14, x = 0) { this.k = k; this.c = c; this.x = x; this.v = 0; this.target = x; }
+  step(dt) {
+    dt = Math.min(dt, 0.032);
+    this.v += (-this.k * (this.x - this.target) - this.c * this.v) * dt;
+    this.x += this.v * dt;
+    return this.x;
+  }
+  get settled() { return Math.abs(this.x - this.target) < 0.001 && Math.abs(this.v) < 0.001; }
+}
+
+/* Sample a spring's step response into a CSS linear() easing. */
+function springEasing(k, c, ms) {
+  const s = new Spring(k, c, 0); s.target = 1;
+  const n = 60, pts = [];
+  for (let i = 0; i <= n; i++) { pts.push(s.x.toFixed(4)); s.step((ms / 1000) / n); }
+  pts[n] = '1';
+  return `linear(${pts.join(',')})`;
+}
+const SPRING_OK = CSS.supports('animation-timing-function', 'linear(0, 1)');
+
+/* Pause any rAF loop while its element is offscreen. */
+function whenVisible(el, state) {
+  new IntersectionObserver(es => es.forEach(e => state.visible = e.isIntersecting),
+    { threshold: 0.05 }).observe(el);
+}
+
+/* ============ 01 arrival ============ */
+const EASINGS = {
+  quint: 'cubic-bezier(0.22, 1, 0.36, 1)',
+  back: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+  linear: 'linear',
+};
+
+function splitInto(el, mode) {
+  const text = el.dataset.text ?? (el.dataset.text = el.textContent);
+  el.textContent = '';
+  const parts = mode === 'char' ? [...text] : text.split(/(\s+)/);
+  for (const p of parts) {
+    if (/^\s+$/.test(p) || p === '') { el.appendChild(document.createTextNode(p === '' ? '' : ' ')); continue; }
+    const s = document.createElement('span');
+    s.className = 'ch'; s.textContent = p;
+    el.appendChild(s);
+  }
+  return [...el.querySelectorAll('.ch')];
+}
+
+function playStagger(spans, { stagger, duration, ease }) {
+  const easing = ease === 'spring'
+    ? (SPRING_OK ? springEasing(190, 16, duration) : EASINGS.back)
+    : EASINGS[ease];
+  spans.forEach((s, i) => {
+    s.getAnimations().forEach(a => a.cancel());
+    s.animate(
+      [{ opacity: 0, transform: 'translateY(0.55em)' }, { opacity: 1, transform: 'none' }],
+      { duration, delay: i * stagger, easing, fill: 'both' });
+  });
+}
+
+{
+  const demo = document.getElementById('stagger-demo');
+  const sub = document.getElementById('stagger-sub');
+  const hero = document.getElementById('herotitle');
+  const ctl = {
+    ms: document.getElementById('stagger-ms'),
+    dur: document.getElementById('stagger-dur'),
+    ease: document.getElementById('stagger-ease'),
+    split: document.getElementById('stagger-split'),
+  };
+  const msV = document.getElementById('stagger-ms-v');
+  const durV = document.getElementById('stagger-dur-v');
+
+  const play = () => {
+    if (REDUCED) return;
+    const opts = { stagger: +ctl.ms.value, duration: +ctl.dur.value, ease: ctl.ease.value };
+    playStagger(splitInto(demo, ctl.split.value), opts);
+    playStagger(splitInto(sub, 'word'), { ...opts, stagger: opts.stagger * 0.6 });
+  };
+  document.getElementById('stagger-play').addEventListener('click', play);
+  ctl.ms.addEventListener('input', () => msV.textContent = ctl.ms.value + 'ms');
+  ctl.dur.addEventListener('input', () => durV.textContent = ctl.dur.value + 'ms');
+  [ctl.ease, ctl.split].forEach(c => c.addEventListener('change', play));
+
+  const playHero = () => {
+    if (REDUCED) return;
+    playStagger(splitInto(hero, 'word'), { stagger: 30, duration: 700, ease: 'quint' });
+  };
+  document.getElementById('replay-hero').addEventListener('click', e => { e.preventDefault(); playHero(); });
+  setTimeout(playHero, 120);
+  setTimeout(play, 350);
+}
+
+/* ============ 02 reading ============ */
+{
+  const stage = document.getElementById('scrollstage');
+  const entries = [...stage.querySelectorAll('.entry')];
+  const once = document.getElementById('scroll-once');
+  const note = document.getElementById('scroll-note');
+  let io;
+
+  const observe = () => {
+    io?.disconnect();
+    io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        if (once.checked) io.unobserve(e.target);
+      } else if (!once.checked) {
+        e.target.classList.remove('in');
+      }
+    }), { root: stage, threshold: 0.3 });
+    entries.forEach(el => io.observe(el));
+  };
+
+  document.getElementById('scroll-replay').addEventListener('click', () => {
+    entries.forEach(el => el.classList.remove('in'));
+    stage.scrollTo({ top: 0, behavior: 'instant' });
+    requestAnimationFrame(observe);
+  });
+  once.addEventListener('change', () => {
+    note.textContent = once.checked ? 'the tasteful default' : 'now scroll up & down — feel the difference';
+    observe();
+  });
+  if (REDUCED) entries.forEach(el => el.classList.add('in'));
+  else observe();
+}
+
+/* ============ 03 pointing ============ */
+{
+  const pad = document.getElementById('springpad');
+  const graph = document.getElementById('stepgraph');
+  const kIn = document.getElementById('spring-k');
+  const cIn = document.getElementById('spring-c');
+  const kV = document.getElementById('spring-k-v');
+  const cV = document.getElementById('spring-c-v');
+  const zeta = document.getElementById('zeta-readout');
+  const ctx = pad.getContext('2d');
+  const gtx = graph.getContext('2d');
+  const dpr = devicePixelRatio || 1;
+
+  const sx = new Spring(+kIn.value, +cIn.value, 0);
+  const sy = new Spring(+kIn.value, +cIn.value, 0);
+  const trail = [];
+  const state = { visible: true };
+  whenVisible(pad, state);
+
+  function size() {
+    const r = pad.getBoundingClientRect();
+    pad.width = r.width * dpr; pad.height = r.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (sx.target === 0) { sx.x = sx.target = r.width / 2; sy.x = sy.target = r.height / 2; }
+    const g = graph.getBoundingClientRect();
+    graph.width = g.width * dpr; graph.height = g.height * dpr;
+    gtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawGraph();
+  }
+
+  function drawGraph() {
+    const w = graph.getBoundingClientRect().width, h = graph.getBoundingClientRect().height;
+    gtx.clearRect(0, 0, w, h);
+    const y1 = h * 0.62, y0 = h * 0.9, span = 1.6;
+    gtx.strokeStyle = '#ccc'; gtx.setLineDash([3, 4]); gtx.beginPath();
+    gtx.moveTo(0, y1); gtx.lineTo(w, y1); gtx.stroke(); gtx.setLineDash([]);
+    const s = new Spring(+kIn.value, +cIn.value, 0); s.target = 1;
+    gtx.strokeStyle = '#d21c1c'; gtx.lineWidth = 1.6; gtx.beginPath();
+    for (let px = 0; px <= w; px++) {
+      s.step(span / w);
+      const y = y0 - (y0 - y1) * s.x;
+      px === 0 ? gtx.moveTo(px, y) : gtx.lineTo(px, y);
+    }
+    gtx.stroke();
+    const z = +cIn.value / (2 * Math.sqrt(+kIn.value));
+    const label = z < 0.9 ? 'underdamped — overshoots' : z <= 1.1 ? 'critically damped — ideal' : 'overdamped — sluggish';
+    zeta.innerHTML = `ζ = ${z.toFixed(2)} · <b>${label}</b>`;
+  }
+
+  function retune() {
+    sx.k = sy.k = +kIn.value; sx.c = sy.c = +cIn.value;
+    kV.textContent = kIn.value; cV.textContent = cIn.value;
+    drawGraph();
+  }
+  [kIn, cIn].forEach(i => i.addEventListener('input', retune));
+  document.querySelectorAll('.spring-preset').forEach(b => b.addEventListener('click', () => {
+    kIn.value = b.dataset.k; cIn.value = b.dataset.c; retune();
+    // give it a kick so the setting is felt immediately
+    sy.v -= 600;
+  }));
+
+  const setTarget = e => {
+    const r = pad.getBoundingClientRect();
+    sx.target = clamp(e.clientX - r.left, 10, r.width - 10);
+    sy.target = clamp(e.clientY - r.top, 10, r.height - 10);
+  };
+  pad.addEventListener('pointermove', setTarget);
+  pad.addEventListener('pointerdown', setTarget);
+
+  let last = performance.now();
+  (function frame(now) {
+    requestAnimationFrame(frame);
+    const dt = (now - last) / 1000; last = now;
+    if (!state.visible) return;
+    if (!REDUCED) { sx.step(dt); sy.step(dt); } else { sx.x = sx.target; sy.x = sy.target; }
+    const r = pad.getBoundingClientRect();
+    ctx.clearRect(0, 0, r.width, r.height);
+    trail.push([sx.x, sy.x]);
+    if (trail.length > 46) trail.shift();
+    trail.forEach(([tx, ty], i) => {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(210,28,28,${(i / trail.length) * 0.22})`;
+      ctx.arc(tx, ty, 3.2, 0, 7);
+      ctx.fill();
+    });
+    ctx.beginPath();
+    ctx.fillStyle = '#d21c1c';
+    ctx.arc(sx.x, sy.x, 8, 0, 7);
+    ctx.fill();
+    // target crosshair
+    ctx.strokeStyle = 'rgba(102,102,119,0.5)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(sx.target - 6, sy.target); ctx.lineTo(sx.target + 6, sy.target);
+    ctx.moveTo(sx.target, sy.target - 6); ctx.lineTo(sx.target, sy.target + 6);
+    ctx.stroke();
+  })(last);
+
+  addEventListener('resize', size);
+  size();
+
+  // the ° pop, driven by the same spring
+  document.querySelectorAll('.deg-demo a').forEach(a => {
+    const deg = a.querySelector('.deg');
+    const s = new Spring(240, 13, 1);
+    let raf = null;
+    const run = () => {
+      s.step(1 / 60);
+      deg.style.transform = `scale(${s.x}) translateY(${(1 - s.x) * 4}px)`;
+      if (!s.settled) raf = requestAnimationFrame(run); else raf = null;
+    };
+    a.addEventListener('pointerenter', () => {
+      if (REDUCED) return;
+      s.x = 0.4; s.v = 9; s.target = 1;
+      if (!raf) run();
+    });
+  });
+}
+
+/* ============ 04 ambience ============ */
+{
+  const pad = document.getElementById('asciipad');
+  const cv = document.getElementById('ascii');
+  const ctx = cv.getContext('2d');
+  const cellIn = document.getElementById('ascii-cell');
+  const cellV = document.getElementById('ascii-cell-v');
+  const setIn = document.getElementById('ascii-set');
+  const redIn = document.getElementById('ascii-red');
+  const runIn = document.getElementById('ascii-run');
+  const fpsEl = document.getElementById('ascii-fps');
+  const dpr = devicePixelRatio || 1;
+
+  const SETS = {
+    dots: ' ·:;+*#%@',
+    blocks: ' ░▒▓█',
+    binary: ' ··0011',
+    bear: ' ··°°•ᴥʔʕ',
+  };
+  const state = { visible: true };
+  whenVisible(pad, state);
+  const mouse = { x: -1e4, y: -1e4 };
+  pad.addEventListener('pointermove', e => {
+    const r = pad.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  pad.addEventListener('pointerleave', () => { mouse.x = mouse.y = -1e4; });
+
+  function size() {
+    const r = pad.getBoundingClientRect();
+    cv.width = r.width * dpr; cv.height = r.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  addEventListener('resize', () => { size(); if (REDUCED) draw(2.5); });
+  cellIn.addEventListener('input', () => { cellV.textContent = cellIn.value + 'px'; if (REDUCED) draw(2.5); });
+  [setIn, redIn].forEach(c => c.addEventListener('change', () => { if (REDUCED) draw(2.5); }));
+
+  // the cursor only energises the field when it nears a drifting blob —
+  // it is not an attractor of its own
+  let mouseWeight = 0;
+
+  function draw(t, dt) {
+    const r = pad.getBoundingClientRect();
+    const w = r.width, h = r.height;
+    const cell = +cellIn.value;
+    const chars = SETS[setIn.value];
+    const red = redIn.checked;
+    ctx.clearRect(0, 0, w, h);
+    ctx.font = `${cell * 0.92}px ${getComputedStyle(document.documentElement).getPropertyValue('--mono')}`;
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    const balls = [
+      [w * (0.5 + 0.36 * Math.sin(t * 0.42)), h * (0.5 + 0.30 * Math.cos(t * 0.31)), 110],
+      [w * (0.5 + 0.30 * Math.sin(t * 0.23 + 2.1)), h * (0.5 + 0.34 * Math.sin(t * 0.37 + 0.7)), 90],
+      [w * (0.5 + 0.38 * Math.cos(t * 0.29 + 4.0)), h * (0.5 + 0.28 * Math.sin(t * 0.47 + 3.1)), 75],
+    ];
+    let nearest = Infinity;
+    for (const [bx, by, br] of balls) {
+      nearest = Math.min(nearest, Math.hypot(mouse.x - bx, mouse.y - by) / br);
+    }
+    const engaged = clamp(2.2 - nearest, 0, 1);
+    mouseWeight += (engaged - mouseWeight) * Math.min(1, (dt || 0) * 5);
+    if (mouseWeight > 0.02) balls.push([mouse.x, mouse.y, 70 * mouseWeight]);
+    for (let y = cell / 2; y < h; y += cell) {
+      for (let x = cell / 2; x < w; x += cell) {
+        let v = 0;
+        for (const [bx, by, br] of balls) {
+          const dx = x - bx, dy = y - by;
+          v += (br * br) / (dx * dx + dy * dy + br * br * 0.28);
+        }
+        v = clamp(v * 0.5 - 0.18, 0, 1);
+        const idx = Math.min(chars.length - 1, (v * chars.length) | 0);
+        if (idx === 0) continue;
+        ctx.fillStyle = red && v > 0.78 ? '#d21c1c' : `rgba(17,17,17,${0.16 + v * 0.55})`;
+        ctx.fillText(chars[idx], x, y);
+      }
+    }
+  }
+
+  let frames = 0, fpsLast = performance.now();
+  let t0 = performance.now();
+  let lastT = t0;
+  (function frame(now) {
+    requestAnimationFrame(frame);
+    const dt = (now - lastT) / 1000; lastT = now;
+    if (REDUCED) return;
+    if (!state.visible || !runIn.checked) { fpsEl.textContent = state.visible ? 'paused' : 'offscreen — 0 fps'; fpsLast = now; frames = 0; return; }
+    draw((now - t0) / 1000, dt);
+    frames++;
+    if (now - fpsLast > 500) {
+      fpsEl.textContent = Math.round(frames * 1000 / (now - fpsLast)) + ' fps';
+      frames = 0; fpsLast = now;
+    }
+  })(t0);
+
+  size();
+  if (REDUCED) { draw(2.5); fpsEl.textContent = 'still frame — reduced motion'; }
+}
+
+/* ============ 05 character ============ */
+{
+  const trackIn = document.getElementById('bear-track');
+  const blinkIn = document.getElementById('bear-blink');
+  const trackV = document.getElementById('bear-track-v');
+  const blinkV = document.getElementById('bear-blink-v');
+  trackIn.addEventListener('input', () => trackV.textContent = trackIn.value + '%');
+  blinkIn.addEventListener('input', () => blinkV.textContent = blinkIn.value + '%');
+
+  const bears = [];
+  document.querySelectorAll('.bear').forEach(el => {
+    const glyphs = [...el.textContent];        // ʕ • ᴥ • ʔ
+    el.textContent = '';
+    const spans = glyphs.map(g => {
+      const s = document.createElement('span');
+      s.className = 'glyph' + (g === '•' ? ' eye' : '');
+      s.textContent = g;
+      el.appendChild(s);
+      return s;
+    });
+    const eyes = spans.filter(s => s.classList.contains('eye'));
+    // lock each eye at its natural width so the ᵔ swap can't nudge the layout
+    eyes.forEach(e => e.style.width = e.getBoundingClientRect().width + 'px');
+    const bear = { el, eyes, hovered: false, squinting: false,
+      sx: new Spring(120, 16, 0), sy: new Spring(120, 16, 0), squint: { dy: 0, s: 1 } };
+    // ᵔ carries superscript metrics from its fallback font — measure both
+    // glyphs and derive the transform that seats the squint where the eye was
+    {
+      const cs = getComputedStyle(eyes[0]);
+      const m = document.createElement('canvas').getContext('2d');
+      m.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const dot = m.measureText('•');
+      const arc = m.measureText('ᵔ');
+      if ('actualBoundingBoxAscent' in dot && arc.width > 0) {
+        const mid = t => (t.actualBoundingBoxAscent - t.actualBoundingBoxDescent) / 2;
+        bear.squint.dy = mid(arc) - mid(dot);
+        bear.squint.s = clamp(dot.width * 1.2 / arc.width, 0.7, 1.5);
+      }
+    }
+    // eyes settle to centre while hovered — a squint shouldn't dart around
+    el.addEventListener('pointerenter', () => bear.hovered = true);
+    el.addEventListener('pointerleave', () => bear.hovered = false);
+    bears.push(bear);
+
+    el.addEventListener('click', () => {
+      bear.squinting = true;
+      eyes.forEach(e => e.textContent = 'ᵔ');
+      const cap = document.getElementById('bearcaption');
+      if (cap && el.id === 'bear-big') cap.textContent = 'ʕ ᵔᴥᵔ ʔ  it likes you';
+      setTimeout(() => {
+        bear.squinting = false;
+        eyes.forEach(e => e.textContent = '•');
+        if (cap && el.id === 'bear-big') cap.textContent = "it's watching. click it.";
+      }, 900);
+    });
+  });
+
+  const cursor = { x: innerWidth / 2, y: innerHeight / 3 };
+  addEventListener('pointermove', e => { cursor.x = e.clientX; cursor.y = e.clientY; });
+
+  let last = performance.now();
+  (function frame(now) {
+    requestAnimationFrame(frame);
+    const dt = (now - last) / 1000; last = now;
+    if (REDUCED) return;
+    const curiosity = +trackIn.value / 100;
+    for (const b of bears) {
+      const r = b.el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) continue;
+      const fs = parseFloat(getComputedStyle(b.el).fontSize);
+      const max = fs * 0.075 * curiosity;
+      const dx = cursor.x - (r.left + r.width / 2);
+      const dy = cursor.y - (r.top + r.height / 2);
+      const d = Math.hypot(dx, dy) || 1;
+      b.sx.target = b.hovered ? 0 : clamp(dx / d * max * Math.min(1, d / 80), -max, max);
+      b.sy.target = b.hovered ? 0 : clamp(dy / d * max * Math.min(1, d / 80), -max, max);
+      b.sx.step(dt); b.sy.step(dt);
+      const t = `translate(${b.sx.x}px, ${b.sy.x}px)`
+        + (b.squinting ? ` translateY(${b.squint.dy.toFixed(2)}px) scale(${b.squint.s.toFixed(3)})` : '');
+      for (const e of b.eyes) e.style.transform = t;
+    }
+  })(last);
+
+  (function blinkLoop() {
+    const rate = +blinkIn.value / 100;
+    const delay = rate === 0 ? 4000 : 1600 + Math.random() * 5200 * (1.15 - rate);
+    setTimeout(() => {
+      if (rate > 0) {
+        document.querySelectorAll('.bear .eye').forEach(e => e.classList.add('blink'));
+        setTimeout(() => document.querySelectorAll('.bear .eye').forEach(e => e.classList.remove('blink')), 130);
+      }
+      blinkLoop();
+    }, delay);
+  })();
+}
+
+})();
+</script>
+</body>
+</html>
