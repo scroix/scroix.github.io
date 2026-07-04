@@ -1,11 +1,11 @@
-<div class="entry{{ if .side }} has-print{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
+<div class="entry{{ if .media }} has-print{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
 	<span class="when">{{ .when }}</span>
 	<div>
 		<h3>{{ with .emoji }}<span class="emoji">{{ . }}</span>{{ end }}{{ if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
 		<p class="tagline">{{ .tagline }}</p>
 		<p>{{ .body | markdownify }}</p>
 		{{ with .interlude }}
-		<div class="interlude">{{ partial "print.html" . }}</div>
+		<div class="interlude">{{ partial "print.html" (merge . (dict "view" true)) }}</div>
 		{{ end }}
 		{{ with .list }}
 		<ul class="quiet-list">
@@ -13,7 +13,16 @@
 		</ul>
 		{{ end }}
 	</div>
-	{{ with .side }}
-	<div class="side">{{ partial "print.html" . }}</div>
+	{{ with .media }}
+	<div class="side">
+		{{ if gt (len .) 1 }}
+		<div class="pile">
+			{{ range $i, $m := . }}{{ partial "print.html" (merge $m (dict "view" true "depth" $i)) }}{{ end }}
+		</div>
+		<p class="pile-hint"><span class="count">{{ len . }} photographs</span> · click to leaf through · <a class="deg enlarge" href="#">enlarge</a></p>
+		{{ else }}
+		{{ partial "print.html" (merge (index . 0) (dict "view" true)) }}
+		{{ end }}
+	</div>
 	{{ end }}
 </div>

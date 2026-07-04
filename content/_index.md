@@ -43,10 +43,11 @@ projects:
       sensors, and a hand-rolled brain in Jython and Python. Featured in
       [ArchDaily](https://www.archdaily.com/912803/featherston-studio-two-feathers) and
       [The Design Files](https://thedesignfiles.net/2016/08/featherston-2016/).
-    side:
-      img: "/img/featherston-dashboard-thumb.jpg"
-      alt: "Featherston climate dashboard"
-      caption: "the house, taking its own temperature"
+    media:
+      - img: "/img/featherston-dashboard-thumb.jpg"
+        full: "/img/featherston-dashboard.jpg"
+        alt: "Featherston climate dashboard"
+        caption: "the house, taking its own temperature"
   - id: "pipes"
     when: "2019"
     emoji: "⚡"
@@ -56,6 +57,11 @@ projects:
       Twenty-eight 11-metre poles of high-resolution LED, with Ramus Lighting. I built the
       content creators' tools inside their Unity project.
       [Watch it run.](https://www.youtube.com/watch?v=eyr7atLp2Q8)
+    media:
+      - img: "/img/pipes-poster.jpg"
+        youtube: "eyr7atLp2Q8"
+        alt: "The Pipes running at dusk (video)"
+        caption: "the pipes, running at dusk"
   - id: "ticker"
     when: "2019"
     emoji: "🐛"
@@ -64,10 +70,10 @@ projects:
     body: >-
       An Arduino compares the microbes in your gut with the universe's other big numbers.
       Touch opt-in; wonder mandatory.
-    side:
-      img: "/img/ticker.gif"
-      alt: "Ticker exhibit counting"
-      caption: "counting the microbiome"
+    media:
+      - img: "/img/ticker.gif"
+        alt: "Ticker exhibit counting"
+        caption: "counting the microbiome"
   - id: "firestick"
     when: "2017"
     emoji: "🔥"
@@ -77,10 +83,10 @@ projects:
       A rotary encoder, a humidity sensor and a NeoPixel flame: rub and blow, and the fire
       answers. Built with Michael Borthwick Consulting for an exhibition on Australia's
       First Peoples.
-    side:
-      img: "/img/firestick.jpg"
-      alt: "Fire-stick exhibit"
-      caption: "fire you start by hand"
+    media:
+      - img: "/img/firestick.jpg"
+        alt: "Fire-stick exhibit"
+        caption: "fire you start by hand"
 work:
   - id: "mv"
     when: "2016 – 19"
@@ -100,10 +106,16 @@ work:
     list:
       - "recipes I'm fond of: [a VLC wrapper](https://github.com/museumsvictoria/nodel-recipes/tree/master/VLC%20media%20player), [a Windows controller](https://github.com/museumsvictoria/nodel-recipes/tree/master/Computer%20Controller/Windows%2010), [an exhibit template](https://github.com/museumsvictoria/nodel-recipes/tree/master/Exhibit)"
       - "exhibitions built along the way: Mini Mega Model Museum, Beyond Perception, the Children's Gallery"
-    side:
-      img: "/img/minimega.jpg"
-      alt: "Mini Mega Model Museum"
-      caption: "small things, writ large"
+    media:
+      - img: "/img/minimega.jpg"
+        alt: "Mini Mega Model Museum"
+        caption: "small things, writ large"
+      - img: "/img/beyond-perception.jpg"
+        alt: "Beyond Perception exhibition"
+        caption: "81 channels, live-modulated"
+      - img: "/img/childrens-gallery.jpg"
+        alt: "Children's Gallery at Melbourne Museum"
+        caption: "a gallery for small visitors"
   - id: "rmit"
     when: "2017 – 18"
     name: "rmit university"
@@ -129,10 +141,10 @@ work:
     body: >-
       Camera operator on *Studio 3*; camera assistant on *Mad as Hell* and
       *Spicks and Specks*; CCU at the Australian Open, on loan to Seven.
-    side:
-      img: "/img/abc-studio.jpg"
-      alt: "On the Studio 3 floor at the ABC"
-      caption: "the studio 3 floor"
+    media:
+      - img: "/img/abc-studio.jpg"
+        alt: "On the Studio 3 floor at the ABC"
+        caption: "the studio 3 floor"
 education:
   creds:
     - when: "2014 – 19"
