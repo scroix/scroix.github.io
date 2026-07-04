@@ -48,13 +48,11 @@
 			{{ range .Params.education.creds }}
 			<li><span class="when">{{ .when }}</span><span>{{ .name }}</span>{{ with .note }}<span class="note">{{ . }}</span>{{ end }}</li>
 			{{ end }}
+			<li>
+				<span class="when">souvenirs</span>
+				<ul class="keeps">{{ range .Params.education.souvenirs }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+			</li>
 		</ul>
-		<div class="souvenirs">
-			<div class="sc-label">degree souvenirs</div>
-			<ul>
-				{{ range .Params.education.souvenirs }}<li>{{ . | markdownify }}</li>{{ end }}
-			</ul>
-		</div>
 	</section>
 
 </div>

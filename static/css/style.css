@@ -539,7 +539,7 @@ section.chapter > h2 {
 	max-width: 46rem;
 }
 
-.creds li {
+.creds > li {
 	display: grid;
 	grid-template-columns: var(--gutter) minmax(0, 1fr) auto;
 	gap: 1.3rem;
@@ -549,7 +549,7 @@ section.chapter > h2 {
 	align-items: baseline;
 }
 
-.creds li:last-child {
+.creds > li:last-child {
 	border-bottom: none;
 }
 
@@ -559,30 +559,20 @@ section.chapter > h2 {
 	font-style: italic;
 }
 
-.souvenirs {
-	margin-top: 1.6rem;
-	max-width: 42rem;
-}
-
-.souvenirs .sc-label {
-	margin-bottom: 0.5rem;
-}
-
-.souvenirs ul {
+/* the last row of the table: what survived the degrees */
+.creds .keeps {
 	list-style: none;
-	columns: 2;
-	column-gap: 3rem;
 	font-size: 0.88rem;
 	font-style: italic;
+	line-height: 1.7;
 }
 
-.souvenirs li {
-	padding: 0.22em 0;
-	break-inside: avoid;
+.creds .keeps li {
+	display: inline;
 }
 
-.souvenirs li::before {
-	content: "· ";
+.creds .keeps li + li::before {
+	content: " · ";
 	color: var(--red);
 	font-style: normal;
 }
@@ -728,11 +718,8 @@ canvas#ascii-bg {
 	:root {
 		--gutter: 4.4rem;
 	}
-	.creds li {
+	.creds > li {
 		grid-template-columns: var(--gutter) minmax(0, 1fr);
-	}
-	.souvenirs ul {
-		columns: 1;
 	}
 	.plate-viewer .plate {
 		max-width: calc(100vw - 2rem);
