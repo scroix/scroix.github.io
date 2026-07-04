@@ -1,0 +1,8 @@
+{{- /* One print: a polaroid figure. Takes an image dict {img, alt, caption};
+     pass "eager" true for above-the-fold images (the portrait).
+     Dimensions come from the file itself, so content never carries them. */ -}}
+{{- $dim := imageConfig (printf "static%s" .img) -}}
+<figure class="print">
+	<img src="{{ .img }}" alt="{{ .alt }}" width="{{ $dim.Width }}" height="{{ $dim.Height }}"{{ if not .eager }} loading="lazy"{{ end }}>
+	<figcaption>{{ .caption }}</figcaption>
+</figure>

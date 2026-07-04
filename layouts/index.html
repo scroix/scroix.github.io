@@ -1,0 +1,56 @@
+{{ define "main" }}
+<div class="content">
+
+	<section class="hello">
+		<div class="words">
+			<h1>{{ .Title }}</h1>
+			{{ .Content }}
+			<div class="small">{{ .Params.aside | markdownify }}</div>
+		</div>
+		<div class="portrait-wrap">
+			<!-- the delaunay behind julien, continuing past its frame -->
+			<svg class="arcs" viewBox="0 0 700 700" aria-hidden="true">
+				<circle cx="350" cy="350" r="192" fill="none" stroke="var(--red)" stroke-width="2.5" opacity="0.20"/>
+				<circle cx="350" cy="350" r="237" fill="none" stroke="var(--d-blue)" stroke-width="2.5" opacity="0.16"/>
+				<circle cx="350" cy="350" r="276" fill="none" stroke="var(--d-ochre)" stroke-width="2.5" opacity="0.20"/>
+				<circle cx="350" cy="350" r="308" fill="none" stroke="var(--d-green)" stroke-width="2" opacity="0.13"/>
+			</svg>
+			{{ with .Params.portrait }}{{ partial "print.html" (merge . (dict "eager" true)) }}{{ end }}
+		</div>
+	</section>
+
+	<section class="shelf-wrap">
+		<div class="sc-label">some things i've helped make</div>
+		<div class="shelf">
+			{{ range .Params.shelf }}
+			<a href="#{{ .anchor }}">{{ partial "print.html" . }}</a>
+			{{ end }}
+		</div>
+	</section>
+
+	<section class="chapter" id="projects">
+		<h2>projects</h2>
+		{{ range .Params.projects }}
+		{{ partial "entry.html" . }}
+		{{ end }}
+	</section>
+
+	<section class="chapter" id="work">
+		<h2>work</h2>
+		{{ range .Params.work }}
+		{{ partial "entry.html" . }}
+		{{ end }}
+	</section>
+
+	<section class="chapter" id="education">
+		<h2>education</h2>
+		<ul class="creds">
+			{{ range .Params.education.creds }}
+			<li><span class="when">{{ .when }}</span><span>{{ .name }}</span><span class="note">{{ .note }}</span></li>
+			{{ end }}
+		</ul>
+		<p class="note-aside">{{ .Params.education.souvenirs | markdownify }}</p>
+	</section>
+
+</div>
+{{ end }}

@@ -1,260 +1,430 @@
-body, li p {
-	font-family: 'Merriweather', serif;
-}
-
-h1, h2, h3, h4, h5, h6, header {
-	text-transform: lowercase;
-	font-family: 'Alegreya Sans SC', sans-serif;
-}
-
-header {
-	font-weight: bold;
-}
-
-html {
-	font-size: 18px;
-}
-
-body > * {
-	font-size: 100%;
-	margin-left: 7.5rem;
-	margin-right: 7.5rem;
-}
-
-@media all and (max-width: 840px) {
-	html {
-		font-size: 17px;
-	}
-	body > * {
-		margin-left: 5.5rem;
-		margin-right: 5.5rem;
-	}
-}
-@media all and (max-width: 760px) {
-	body > * {
-		margin-left: 2.5rem;
-		margin-right: 2.5rem;
-	}
-}
-@media all and (max-width: 580px) {
-	html {
-		font-size: 16px;
-	}
-	body > * {
-		margin: 0.7rem 1.5rem 0 1.5rem;
-	}
-}
-@media all and (min-width: 580px) {
-	.img-desktop-width-50 {
-		width: 50%;
-	}
-	.img-desktop-width-75 {
-		width: 75%;
-	}
+:root {
+	--paper: #fffdf8;
+	--ink: #1a1a1a;
+	--soft: #6f6a60;
+	--red: #d21c1c;
+	--blush: #fbf3f3;
+	--rule: #e8e2d4;
+	/* three pixels each, borrowed from the delaunay behind julien */
+	--d-blue: #2456a4;
+	--d-green: #3e7d4f;
+	--d-ochre: #d9a441;
+	/* layout contracts shared by header, content and footer */
+	--page: 960px;
+	--pad: 1.5rem;
+	--gutter: 5.2rem; /* the margin-year column */
+	--ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* reset */
 * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-	height: 100%;
+	scroll-behavior: smooth;
+	overflow-x: clip;
+	/* the paper lives on html, not body — an opaque body background
+	   would paint over the z-index:-1 ascii field canvas */
+	background: var(--paper);
 }
 
 body {
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-	max-width: 1000px;
-	min-height: 100%;
+	color: var(--ink);
+	font-family: 'Merriweather', Georgia, serif;
+	font-size: 18px;
+	line-height: 1.55;
 	text-rendering: optimizeLegibility;
 	font-feature-settings: 'kern' 1, 'liga' 1;
+	overflow-x: clip;
 }
 
-div.content {
-	display: block;
-	padding: 1rem 0 5rem 0;
+::selection {
+	background: var(--blush);
+	color: var(--red);
 }
 
-header {
-	display: block;
-	padding: 0.5rem 0 0.5rem 0;
-	border-bottom: 0.10em solid black;
+h1, h2, h3, h4, h5, h6, header nav, .sc-label {
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+	font-weight: 700;
 }
 
-header a {
-	color: #777;
-}
-
-header .logo {
-	float: left;
-}
-
-header nav {
-	display: inline;
-}
-
-footer {
-	display: block;
-	padding: 0.5rem 0 5.5rem 0;
-	text-align: center;
-}
-
-@media all and (max-width: 520px) {
-	div.content {
-		padding: 0;
-	}
-}
-
-h1 {
-	display: block;
-	font-size: 170%;
-	line-height: 1.1;
-	margin-top: 1rem;
-	margin-bottom: 1.5rem;
-	padding-top: 0.02em;
-	hyphens: none;
-}
-
-p {
-	margin-bottom: 1em;
-	line-height: 1.45;
-}
-
-ul, ol {
-	margin-bottom: 1em;
-	padding-left: 1em;
-}
-
-li {
-	line-height: 1.75;
-}
-
-table {
-	table-layout: fixed;
-	font-size: smaller;
-	margin-bottom: 1.5em;
-	border-collapse: collapse;
-	width: 95%;
-}
-
-table tr + tr {
-	border-top: 1px solid #ccc;
-}
-
-table td + td {
-	border-left: 1px solid #ccc;
-}
-
-table td {
-	padding: 0.4em;
-	text-align: center;
-	hyphens: none;
-}
-
-table th {
-	font-weight: normal;
-	text-transform: uppercase;
-	font-size: 95%;
-	padding: 0.3rem 0.5rem 0.3rem 0.5rem;
-	line-height: 1.05;
-}
-
-img {
-	width: 100%;
-	border-radius: 25px;
-}
-
-.icon-social:after {
-	content: none;
-}
-
-.icon-social:hover {
-	background: none;
-}
-
+/* ---------- links: degree marks and the pink pill ---------- */
 a {
 	text-decoration: none;
 	color: inherit;
 	transition: background 0.2s;
 }
 
+a:hover {
+	background: var(--blush);
+	border-radius: 10px;
+}
+
 a:active {
 	color: #777;
 }
 
-a:hover {
-	background: #fbf3f3;
-	border-radius: 10px;
-}
-
-a:after {
+a::after {
 	position: relative;
 	content: "\FEFF°";
-	margin-left: 0.10em;
+	margin-left: 0.1em;
 	font-size: 80%;
-	top: -0.30em;
-	left: -0.1em;
-	color: #d21c1c;
+	top: -0.3em;
+	left: -0.05em;
+	color: var(--red);
 }
 
-code {
-	font-size: 95%;
-	hyphens: none;
+/* chrome links and links that wrap a print carry no degree marks */
+header a::after,
+a:has(.print)::after {
+	content: none;
 }
 
-pre {
-	font-size: 0.8rem;
-	background: #f5f7f9;
-	padding: 1em;
-	margin-bottom: 20px;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
+a:has(.print):hover {
+	background: none;
 }
 
-figcaption {
-	font-weight: 400;
+/* ---------- header ---------- */
+header {
+	max-width: var(--page);
+	margin: 0 auto;
+	padding: 1rem var(--pad) 0.6rem;
+	border-bottom: 0.12em solid var(--ink);
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+header .logo {
+	font-size: 1.05rem;
+	letter-spacing: 0.02em;
+}
+
+header nav a {
+	color: #777;
+	padding: 0.05em 0.35em;
+}
+
+header nav a:hover {
+	color: var(--ink);
+}
+
+header nav .dot {
+	margin: 0 0.35em;
+}
+
+.dot.b { color: var(--d-blue); }
+.dot.o { color: var(--d-ochre); }
+.dot.g { color: var(--d-green); }
+
+/* ---------- the page column ---------- */
+.content {
+	max-width: var(--page);
+	margin: 0 auto;
+	padding: 0 var(--pad) 4rem;
+}
+
+/* 404 and other stray pages */
+.content > h1 {
+	font-size: 175%;
+	margin: 3rem 0 1rem;
+}
+
+/* ---------- hello ---------- */
+.hello {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 330px;
+	gap: 3rem;
+	align-items: center;
+	padding: 3.2rem 0 2.6rem;
+}
+
+.hello .words {
+	position: relative;
+	z-index: 1;
+	max-width: 34rem;
+}
+
+.hello h1 {
+	font-size: 175%;
+	line-height: 1.1;
+	margin-bottom: 1rem;
+}
+
+.hello p {
+	margin-bottom: 0.9em;
+}
+
+.hello p:last-child {
+	margin-bottom: 0;
+}
+
+.small {
+	font-size: 0.82rem;
+	color: var(--soft);
+}
+
+/* the whole photograph, and the painting continuing past its frame */
+.portrait-wrap {
+	position: relative;
+}
+
+.portrait-wrap .arcs {
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	width: 700px;
+	height: 700px;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+.portrait-wrap .print {
+	position: relative;
+	z-index: 1;
+	transform: rotate(1.4deg);
+}
+
+.portrait-wrap .print:hover {
+	transform: rotate(0deg);
+}
+
+/* ---------- prints: photographs on a desk ---------- */
+.print {
+	margin: 0;
+	background: #fff;
+	padding: 7px 7px 9px;
+	border: 1px solid var(--rule);
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(26, 26, 26, 0.10);
+	transform: rotate(var(--tilt, 0deg));
+	transition: transform 0.35s var(--ease), box-shadow 0.35s;
+}
+
+/* the hand-placed scatter: tilts come from position, not content */
+.shelf a:nth-child(odd) .print { --tilt: -1.1deg; }
+.shelf a:nth-child(even) .print { --tilt: 0.9deg; }
+.shelf a:nth-child(3n) .print { --tilt: -0.6deg; }
+.entry .side .print { --tilt: 1.1deg; }
+.entry:nth-of-type(even) .side .print { --tilt: -1deg; }
+
+/* anything hover-able straightens and lifts */
+.shelf a:hover .print,
+.shelf a:focus-visible .print,
+.entry .side .print:hover {
+	transform: rotate(0deg) translateY(-4px);
+	box-shadow: 0 8px 20px rgba(26, 26, 26, 0.16);
+}
+
+.print img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 2px;
+}
+
+.print figcaption {
+	font-size: 0.68rem;
 	font-style: italic;
-	font-size: 0.7em;
-	line-height: 1.3;
-	color: #666665;
+	color: var(--soft);
 	text-align: center;
+	padding-top: 7px;
+	line-height: 1.3;
 }
 
-blockquote {
+/* ---------- the shelf: six contact prints as contents ---------- */
+.shelf-wrap {
+	padding: 1.6rem 0 0.4rem;
+	max-width: 44rem;
+}
+
+.sc-label {
+	color: var(--soft);
+	font-size: 0.95rem;
+	margin-bottom: 1.1rem;
+}
+
+.shelf {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.3rem 1.1rem;
+}
+
+.shelf a {
+	display: block;
+	border-radius: 4px;
+}
+
+.shelf .print img {
+	height: 92px;
+	object-fit: cover;
+}
+
+/* ---------- entries with margin years and margin prints ---------- */
+section.chapter {
+	padding-top: 3rem;
+}
+
+section.chapter > h2 {
+	font-size: 140%;
+	margin-bottom: 1.6rem;
+	padding-bottom: 0.35rem;
+	border-bottom: 1px solid var(--rule);
+}
+
+.entry {
+	display: grid;
+	grid-template-columns: var(--gutter) minmax(0, 34rem);
+	gap: 1.3rem;
+	margin-bottom: 2.4rem;
+}
+
+.entry.has-print {
+	grid-template-columns: var(--gutter) minmax(0, 34rem) 178px;
+}
+
+/* the year in the margin */
+.when {
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+	font-weight: 700;
+	font-size: 0.85rem;
+	color: var(--red);
+	text-align: right;
+}
+
+.entry .when {
+	padding-top: 0.35em;
+	line-height: 1.4;
+}
+
+.entry h3 {
+	font-size: 112%;
+	margin-bottom: 0.25rem;
+}
+
+#projects .entry h3 {
+	font-size: 128%;
+}
+
+.entry h3 .emoji {
+	margin-right: 0.4em;
+	font-size: 0.95em;
+}
+
+.entry .tagline {
 	font-style: italic;
-	font-size: 1.1em;
-	margin: 0.7em 10px 0;
-	padding: 1.2em 20px;
-	quotes: "\201C" "\201D" "\2018" "\2019";
+	color: var(--soft);
+	font-size: 0.92rem;
+	margin-bottom: 0.5rem;
 }
 
-blockquote:before {
-	color: #ccc;
-	content: open-quote;
-	font-size: 3em;
-	line-height: 0.1em;
-	margin-right: 0.25em;
-	vertical-align: -0.4em;
+.entry p {
+	font-size: 0.94rem;
+	margin-bottom: 0.6em;
 }
 
-blockquote:after {
-	color: #ccc;
-	content: close-quote;
-	font-size: 3em;
-	line-height: 0.1em;
-	margin-right: 0.25em;
-	vertical-align: -0.4em;
+.entry p:last-child {
+	margin-bottom: 0;
 }
 
-blockquote p {
-	display: inline;
+.entry .quiet-list {
+	list-style: none;
+	font-size: 0.9rem;
+	margin-top: 0.3rem;
 }
 
-/* motion (see static/js/motion.js) */
+.entry .quiet-list li {
+	padding: 0.14em 0;
+}
 
+.entry .quiet-list li::before {
+	content: "· ";
+	color: var(--red);
+}
+
+/* evidence hangs in the right margin */
+.entry .side {
+	align-self: start;
+	padding-top: 0.4rem;
+}
+
+/* wide figures for the pieces that reward a bigger look */
+.interlude {
+	margin: 1.3rem 0 0.4rem;
+}
+
+/* ---------- education: one quiet list ---------- */
+.creds {
+	list-style: none;
+	max-width: 46rem;
+}
+
+.creds li {
+	display: grid;
+	grid-template-columns: var(--gutter) minmax(0, 1fr) auto;
+	gap: 1.3rem;
+	padding: 0.55em 0;
+	border-bottom: 1px dotted var(--rule);
+	font-size: 0.94rem;
+	align-items: baseline;
+}
+
+.creds li:last-child {
+	border-bottom: none;
+}
+
+.creds .note {
+	font-size: 0.8rem;
+	color: var(--soft);
+	font-style: italic;
+}
+
+.note-aside {
+	font-size: 0.85rem;
+	font-style: italic;
+	color: var(--soft);
+	border-left: 2px solid var(--rule);
+	padding-left: 0.9em;
+	margin: 1rem 0 0;
+	max-width: 40rem;
+}
+
+/* ---------- footer ---------- */
+footer {
+	max-width: var(--page);
+	margin: 0 auto;
+	padding: 2.2rem var(--pad) 4.5rem;
+	text-align: center;
+	border-top: 0.12em solid var(--ink);
+}
+
+footer .sign {
+	font-size: 1.15rem;
+	margin-bottom: 0.5rem;
+}
+
+footer .fine {
+	font-size: 0.8rem;
+	color: var(--soft);
+	font-style: italic;
+}
+
+footer .fine a {
+	padding: 0.05em 0.3em;
+}
+
+/* the footer bear waves goodbye */
+footer .sign:hover .bear-foot::after {
+	content: "ﾉ";
+}
+
+/* ---------- motion (see static/js/motion.js) ---------- */
 canvas#ascii-bg {
 	position: fixed;
 	top: 0;
@@ -269,8 +439,7 @@ canvas#ascii-bg {
 .reveal {
 	opacity: 0;
 	transform: translateY(14px);
-	transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-	            transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
 
 .reveal.in {
@@ -288,9 +457,83 @@ canvas#ascii-bg {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 	.reveal {
 		opacity: 1;
 		transform: none;
 		transition: none;
+	}
+	.print {
+		transform: none !important;
+	}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+	.hello {
+		grid-template-columns: minmax(0, 1fr) 260px;
+		gap: 2rem;
+	}
+	.entry.has-print {
+		grid-template-columns: 5.2rem minmax(0, 1fr);
+	}
+	.entry .side {
+		grid-column: 2;
+		max-width: 300px;
+		padding-top: 0.2rem;
+	}
+}
+
+@media (max-width: 640px) {
+	body {
+		font-size: 16px;
+	}
+	header {
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+	.hello {
+		grid-template-columns: 1fr;
+		gap: 2.4rem;
+		padding-top: 2.2rem;
+	}
+	.portrait-wrap {
+		max-width: 320px;
+	}
+	.portrait-wrap .arcs {
+		width: 560px;
+		height: 560px;
+	}
+	.shelf {
+		gap: 0.8rem;
+	}
+	.shelf .print img {
+		height: 68px;
+	}
+	.shelf .print figcaption {
+		font-size: 0.6rem;
+	}
+	.entry, .entry.has-print {
+		grid-template-columns: 1fr;
+		gap: 0.2rem;
+	}
+	.entry .when {
+		text-align: left;
+		padding-top: 0;
+	}
+	.entry .side {
+		grid-column: 1;
+		margin-top: 0.5rem;
+	}
+	:root {
+		--gutter: 4.4rem;
+	}
+	.creds li {
+		grid-template-columns: var(--gutter) minmax(0, 1fr);
+	}
+	.creds .note {
+		grid-column: 2;
 	}
 }

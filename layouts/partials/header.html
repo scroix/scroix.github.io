@@ -17,7 +17,7 @@
 	<meta name="twitter:card" content="summary">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Merriweather&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Merriweather:ital@0;1&display=swap">
 	<link rel="stylesheet" href="/css/style.css">
 	<script defer src="/js/motion.js"></script>
 </head>
@@ -25,6 +25,8 @@
 <canvas id="ascii-bg" aria-hidden="true"{{ if not .IsHome }} data-quiet{{ end }}></canvas>
 <header>
 	<a class="logo" href="/"><span class="bear">{{ .Site.Params.logo }}</span></a>
-	<nav>{{ range .Site.Params.navigation }}{{ with $.Site.GetPage "page" . }}&nbsp;&nbsp;·&nbsp;&nbsp;<a href="{{ .Permalink }}">{{ title .Title }}</a>{{ end }}{{ end }}</nav>
+	<nav>
+		<a href="/#projects">projects</a><span class="dot b">·</span><a href="/#work">work</a><span class="dot o">·</span><a href="/#education">education</a>
+	</nav>
 	{{ if .Draft }}<span class="draft">DRAFT</span>{{ end }}
 </header>

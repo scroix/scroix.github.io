@@ -1,0 +1,19 @@
+<div class="entry{{ if .side }} has-print{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
+	<span class="when">{{ .when }}</span>
+	<div>
+		<h3>{{ with .emoji }}<span class="emoji">{{ . }}</span>{{ end }}{{ if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+		<p class="tagline">{{ .tagline }}</p>
+		<p>{{ .body | markdownify }}</p>
+		{{ with .interlude }}
+		<div class="interlude">{{ partial "print.html" . }}</div>
+		{{ end }}
+		{{ with .list }}
+		<ul class="quiet-list">
+			{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+		</ul>
+		{{ end }}
+	</div>
+	{{ with .side }}
+	<div class="side">{{ partial "print.html" . }}</div>
+	{{ end }}
+</div>

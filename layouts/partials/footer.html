@@ -1,10 +1,9 @@
 <footer>
-{{ with .Site.Params.Github }}
-<a class="icon-social" href="{{.}}"><img src="/img/github.svg" alt="GitHub" style="width: 50px; vertical-align: middle"/></a>
-{{ end }}
-{{ with .Site.Params.Gitlab }}
-<a class="icon-social" href="{{.}}"><img src="/img/gitlab.svg" alt="GitLab" style="width: 75px; vertical-align: middle"/></a>
-{{ end }}
+	<div class="sign"><span class="bear-foot">{{ .Site.Params.logo }}</span></div>
+	<p class="fine">made in melbourne
+		{{ with .Site.Params.github }}<span class="dot g">·</span> <a href="{{ . }}">github</a>{{ end }}
+		{{ with .Site.Params.gitlab }}<span class="dot b">·</span> <a href="{{ . }}">gitlab</a>{{ end }}
+	</p>
 </footer>
 </body>
 </html>
