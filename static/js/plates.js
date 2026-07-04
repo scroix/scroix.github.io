@@ -11,6 +11,8 @@ if (!viewer) return;
 const mediaBox = viewer.querySelector('.media');
 const capEl = viewer.querySelector('.cap');
 const idxEl = viewer.querySelector('.idx');
+const prevBtn = viewer.querySelector('.prev');
+const nextBtn = viewer.querySelector('.next');
 let group = [], at = 0;
 
 const itemOf = p => ({
@@ -26,8 +28,8 @@ function render() {
     : `<img src="${item.src}" alt="${item.caption}">`;
   capEl.textContent = item.caption;
   idxEl.textContent = group.length > 1 ? `${at + 1} / ${group.length}` : '';
-  viewer.querySelector('.prev').hidden = group.length < 2;
-  viewer.querySelector('.next').hidden = group.length < 2;
+  prevBtn.hidden = group.length < 2;
+  nextBtn.hidden = group.length < 2;
 }
 
 function open(startPrint) {
@@ -49,8 +51,8 @@ function close() {
 const step = d => { at = (at + d + group.length) % group.length; render(); };
 
 viewer.querySelector('.close').addEventListener('click', close);
-viewer.querySelector('.prev').addEventListener('click', () => step(-1));
-viewer.querySelector('.next').addEventListener('click', () => step(1));
+prevBtn.addEventListener('click', () => step(-1));
+nextBtn.addEventListener('click', () => step(1));
 viewer.addEventListener('click', e => { if (e.target === viewer) close(); });
 addEventListener('keydown', e => {
   if (!viewer.classList.contains('open')) return;

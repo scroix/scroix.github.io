@@ -46,7 +46,7 @@ body {
 	color: var(--red);
 }
 
-h1, h2, h3, h4, h5, h6, header nav, .sc-label {
+h1, h2, h3, h4, h5, h6, header nav, .sc-label, .plate-viewer .idx {
 	font-family: 'Alegreya Sans SC', sans-serif;
 	text-transform: lowercase;
 	font-weight: 700;
@@ -115,8 +115,7 @@ header.away {
 }
 
 /* a returning header shouldn't sit on top of what an anchor jumps to */
-section.chapter,
-.entry[id] {
+[id] {
 	scroll-margin-top: 3.6rem;
 }
 
@@ -248,7 +247,8 @@ header nav .dot {
 	border-radius: 2px;
 }
 
-.print figcaption {
+.print figcaption,
+.entry p.pile-hint {
 	font-size: 0.68rem;
 	font-style: italic;
 	color: var(--soft);
@@ -374,8 +374,9 @@ section.chapter > h2 {
 	padding-top: 0.4rem;
 }
 
-/* anything that opens in the plate viewer says so */
-[data-view] {
+/* anything that opens in the plate viewer on click says so — pile prints
+   are in the viewer's group but a click deals the pile instead */
+[data-view]:not(.pile .print) {
 	cursor: zoom-in;
 }
 
@@ -406,11 +407,7 @@ section.chapter > h2 {
 .pile:hover .print[data-depth="3"] { transform: rotate(-2.5deg) translate(4px, 11px); }
 .pile .print.dealing { transform: rotate(8deg) translate(105%, -4px) !important; opacity: 0; }
 
-.pile-hint {
-	font-size: 0.68rem;
-	font-style: italic;
-	color: var(--soft);
-	text-align: center;
+.entry p.pile-hint {
 	padding-top: 0.9rem;
 }
 
@@ -473,14 +470,12 @@ section.chapter > h2 {
 	display: flex;
 }
 
+/* the plate IS a print (same paper, border, radius); only the scale,
+   the deeper shadow and the flex column are its own */
 .plate-viewer .plate {
 	max-width: min(860px, calc(100vw - 7rem));
 	max-height: calc(100vh - 6rem);
-	margin: 0;
-	background: #fff;
 	padding: 12px 12px 14px;
-	border: 1px solid var(--rule);
-	border-radius: 3px;
 	box-shadow: 0 22px 60px rgba(26, 26, 26, 0.25);
 	display: flex;
 	flex-direction: column;
@@ -494,10 +489,9 @@ section.chapter > h2 {
 }
 
 .plate-viewer .plate img {
+	width: auto;
 	max-width: 100%;
 	max-height: calc(100vh - 12rem);
-	border-radius: 2px;
-	display: block;
 }
 
 .plate-viewer .plate iframe {
@@ -512,17 +506,14 @@ section.chapter > h2 {
 	display: flex;
 	justify-content: space-between;
 	gap: 1rem;
+	text-align: left;
 	font-size: 0.75rem;
-	font-style: italic;
-	color: var(--soft);
 	padding-top: 10px;
 }
 
 .plate-viewer .plate figcaption .idx {
 	color: var(--red);
 	font-style: normal;
-	font-family: 'Alegreya Sans SC', sans-serif;
-	font-weight: 700;
 }
 
 .plate-viewer button {
@@ -530,7 +521,7 @@ section.chapter > h2 {
 	background: none;
 	border: none;
 	cursor: pointer;
-	font-family: 'Merriweather', Georgia, serif;
+	font-family: inherit;
 	font-size: 1.6rem;
 	color: var(--ink);
 	padding: 0.4em 0.55em;
@@ -546,7 +537,6 @@ section.chapter > h2 {
 .plate-viewer .close { top: 0.8rem; right: 1.1rem; }
 .plate-viewer .prev { left: 0.9rem; top: 50%; transform: translateY(-50%); }
 .plate-viewer .next { right: 0.9rem; top: 50%; transform: translateY(-50%); }
-.plate-viewer button[hidden] { display: none; }
 
 /* wide figures for the pieces that reward a bigger look */
 .interlude {
@@ -561,7 +551,7 @@ section.chapter > h2 {
 
 .creds > li {
 	display: grid;
-	grid-template-columns: var(--gutter) minmax(0, 1fr) auto;
+	grid-template-columns: var(--gutter) minmax(0, 1fr);
 	gap: 1.3rem;
 	padding: 0.55em 0;
 	border-bottom: 1px dotted var(--rule);
@@ -571,12 +561,6 @@ section.chapter > h2 {
 
 .creds > li:last-child {
 	border-bottom: none;
-}
-
-.creds .note {
-	font-size: 0.8rem;
-	color: var(--soft);
-	font-style: italic;
 }
 
 /* the endnote, done on purpose: the degree that earned the souvenirs
@@ -789,9 +773,6 @@ canvas#ascii-bg {
 	:root {
 		--gutter: 4.4rem;
 	}
-	.creds > li {
-		grid-template-columns: var(--gutter) minmax(0, 1fr);
-	}
 	.plate-viewer .plate {
 		max-width: calc(100vw - 2rem);
 	}
@@ -806,9 +787,6 @@ canvas#ascii-bg {
 	}
 	.plate-viewer .prev { left: 25%; }
 	.plate-viewer .next { right: 25%; }
-	.creds .note {
-		grid-column: 2;
-	}
 }
 
 /* the narrowest phones: the nav slims down so the bear keeps his row */

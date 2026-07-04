@@ -19,7 +19,7 @@
 		<div class="pile">
 			{{ range $i, $m := . }}{{ partial "print.html" (merge $m (dict "view" true "depth" $i)) }}{{ end }}
 		</div>
-		<p class="pile-hint">click to leaf through · <a class="deg enlarge" href="#">enlarge</a></p>
+		<p class="pile-hint">click to leaf through · <a class="enlarge" href="#">enlarge</a></p>
 		{{ else }}
 		{{ partial "print.html" (merge (index . 0) (dict "view" true)) }}
 		{{ end }}

@@ -122,6 +122,10 @@ function initBear() {
 function initHeader() {
   const el = document.querySelector('header');
   if (!el) return;
+  // measured once, not per scroll tick — a layout read inside the handler
+  // would force a reflow against the class writes below
+  let threshold = el.offsetHeight * 1.5;
+  addEventListener('resize', () => { threshold = el.offsetHeight * 1.5; });
   let last = scrollY;
   addEventListener('scroll', () => {
     const y = Math.max(0, scrollY);
@@ -129,13 +133,22 @@ function initHeader() {
     last = y;
     // near the top the header simply belongs there; past it, it ducks away
     // downhill and returns the moment the visitor turns around
-    if (y < el.offsetHeight * 1.5) el.classList.remove('away');
+    if (y < threshold) el.classList.remove('away');
     else if (dy > 0) el.classList.add('away');
     else if (dy < -3) el.classList.remove('away');
     el.classList.toggle('floating', y > 4);
   }, { passive: true });
   // keyboard visitors tabbing into the nav deserve to see it too
   el.addEventListener('focusin', () => el.classList.remove('away'));
+}
+
+/* ---- footnotes: hovering a mark lights its note, and back ------------ */
+function initFootnotes() {
+  document.querySelectorAll('[data-fn]').forEach(el => {
+    const twins = () => document.querySelectorAll(`[data-fn="${el.dataset.fn}"]`);
+    el.addEventListener('mouseenter', () => twins().forEach(t => t.classList.add('lit')));
+    el.addEventListener('mouseleave', () => twins().forEach(t => t.classList.remove('lit')));
+  });
 }
 
 /* ---- scroll reveals -------------------------------------------------- */
@@ -235,6 +248,7 @@ function initField() {
 
 initBear();
 initHeader();
+initFootnotes();
 initReveals();
 initField();
 

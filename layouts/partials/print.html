@@ -7,13 +7,8 @@
 <figure class="print{{ if .youtube }} is-video{{ end }}"
 	{{- if .view }} data-view{{ with .full }} data-full="{{ . }}"{{ end }}{{ with .youtube }} data-youtube="{{ . }}"{{ end }}{{ end }}
 	{{- if isset . "depth" }} data-depth="{{ .depth }}"{{ end }}>
-	{{- if .youtube }}
-	<span class="frame">
-		<img src="{{ .img }}" alt="{{ .alt }}" width="{{ $dim.Width }}" height="{{ $dim.Height }}"{{ if not .eager }} loading="lazy"{{ end }}>
-		<span class="play-badge" aria-hidden="true"></span>
-	</span>
-	{{- else }}
+	{{- if .youtube }}<span class="frame">{{ end -}}
 	<img src="{{ .img }}" alt="{{ .alt }}" width="{{ $dim.Width }}" height="{{ $dim.Height }}"{{ if not .eager }} loading="lazy"{{ end }}>
-	{{- end }}
+	{{- if .youtube }}<span class="play-badge" aria-hidden="true"></span></span>{{ end }}
 	<figcaption>{{ .caption }}</figcaption>
 </figure>
