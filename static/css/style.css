@@ -716,16 +716,27 @@ canvas#ascii-bg {
 		font-size: 16px;
 	}
 	header {
-		flex-direction: column;
-		gap: 0.15rem;
+		flex-wrap: wrap;
+		gap: 0.15rem 1rem;
 	}
+	/* greet, show the face, then tell the story: the words dissolve into
+	   the grid so the portrait can sit right under the hello */
 	.hello {
 		grid-template-columns: 1fr;
-		gap: 2.4rem;
+		gap: 0;
 		padding-top: 2.2rem;
 	}
+	.hello .words {
+		display: contents;
+	}
+	.hello h1 {
+		order: -2;
+	}
 	.portrait-wrap {
+		order: -1;
 		max-width: 320px;
+		justify-self: center;
+		margin: 0.4rem 0 1.8rem;
 	}
 	.portrait-wrap .arcs {
 		width: 560px;
@@ -774,5 +785,12 @@ canvas#ascii-bg {
 	.plate-viewer .next { right: 25%; }
 	.creds .note {
 		grid-column: 2;
+	}
+}
+
+/* the narrowest phones: the nav slims down so the bear keeps his row */
+@media (max-width: 360px) {
+	header nav {
+		font-size: 0.9em;
 	}
 }
