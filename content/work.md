@@ -86,7 +86,7 @@ I also taught a first-year course introducing students to object-oriented progra
 📺 *You can watch the official, lovingly made, [recap here](https://youtu.be/UN-kQAIRo1s).*
 
 <figure>
-  <img src="/img/abc.svg" alt="ABC" style="max-height: 100px; width: auto; border-radius: 0px;">
+  <img src="/img/abc.svg" alt="ABC" style="max-height: 75px; width: auto; border-radius: 0px;">
 </figure>
 
 # ABC (2013 - 2015)
