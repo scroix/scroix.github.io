@@ -4,7 +4,7 @@ date: "1988-10-28"
 ---
 
 <figure>
-  <img class="img-desktop-width-50" src="https://i.imgur.com/tdiDbY4h.jpg" alt="">
+  <img class="img-desktop-width-50" src="/img/julien.jpg" alt="">
 </figure>
 <br>
 
