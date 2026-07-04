@@ -19,10 +19,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Merriweather&display=swap">
 	<link rel="stylesheet" href="/css/style.css">
+	<script defer src="/js/motion.js"></script>
 </head>
 <body>
+<canvas id="ascii-bg" aria-hidden="true"{{ if not .IsHome }} data-quiet{{ end }}></canvas>
 <header>
-	<a class="logo" href="/">{{ .Site.Params.logo }}</a>
+	<a class="logo" href="/"><span class="bear">{{ .Site.Params.logo }}</span></a>
 	<nav>{{ range .Site.Params.navigation }}{{ with $.Site.GetPage "page" . }}&nbsp;&nbsp;·&nbsp;&nbsp;<a href="{{ .Permalink }}">{{ title .Title }}</a>{{ end }}{{ end }}</nav>
 	{{ if .Draft }}<span class="draft">DRAFT</span>{{ end }}
 </header>
