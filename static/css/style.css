@@ -98,6 +98,26 @@ header {
 	align-items: baseline;
 	justify-content: space-between;
 	gap: 1rem;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	transition: transform 0.3s var(--ease), background 0.3s;
+}
+
+/* mid-page the header travels on its own strip of paper */
+header.floating {
+	background: var(--paper);
+}
+
+/* it ducks away downhill and returns the moment you turn around */
+header.away {
+	transform: translateY(-105%);
+}
+
+/* a returning header shouldn't sit on top of what an anchor jumps to */
+section.chapter,
+.entry[id] {
+	scroll-margin-top: 3.6rem;
 }
 
 header .logo {
@@ -689,6 +709,9 @@ canvas#ascii-bg {
 	}
 	.print:not(.pile .print) {
 		transform: none !important;
+	}
+	header {
+		transition: none;
 	}
 	.plate-viewer {
 		backdrop-filter: none;

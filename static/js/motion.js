@@ -1,7 +1,7 @@
 /* motion.js — the studies that shipped from the animation lab:
-   the living bear (and its echo in the tab), scroll reveals, and the
-   homepage ascii field. Everything in-page animates transform/opacity
-   only and honours reduced-motion. */
+   the living bear (and its echo in the tab), the returning header,
+   scroll reveals, and the homepage ascii field. Everything in-page
+   animates transform/opacity only and honours reduced-motion. */
 (() => {
 'use strict';
 
@@ -118,6 +118,26 @@ function initBear() {
   })(last);
 }
 
+/* ---- the returning header -------------------------------------------- */
+function initHeader() {
+  const el = document.querySelector('header');
+  if (!el) return;
+  let last = scrollY;
+  addEventListener('scroll', () => {
+    const y = Math.max(0, scrollY);
+    const dy = y - last;
+    last = y;
+    // near the top the header simply belongs there; past it, it ducks away
+    // downhill and returns the moment the visitor turns around
+    if (y < el.offsetHeight * 1.5) el.classList.remove('away');
+    else if (dy > 0) el.classList.add('away');
+    else if (dy < -3) el.classList.remove('away');
+    el.classList.toggle('floating', y > 4);
+  }, { passive: true });
+  // keyboard visitors tabbing into the nav deserve to see it too
+  el.addEventListener('focusin', () => el.classList.remove('away'));
+}
+
 /* ---- scroll reveals -------------------------------------------------- */
 function initReveals() {
   if (REDUCED || !('IntersectionObserver' in window)) return;
@@ -214,6 +234,7 @@ function initField() {
 }
 
 initBear();
+initHeader();
 initReveals();
 initField();
 
