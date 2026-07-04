@@ -49,7 +49,12 @@
 			<li><span class="when">{{ .when }}</span><span>{{ .name }}</span>{{ with .note }}<span class="note">{{ . }}</span>{{ end }}</li>
 			{{ end }}
 		</ul>
-		<p class="note-aside">{{ .Params.education.souvenirs | markdownify }}</p>
+		<div class="souvenirs">
+			<div class="sc-label">degree souvenirs</div>
+			<ul>
+				{{ range .Params.education.souvenirs }}<li>{{ . | markdownify }}</li>{{ end }}
+			</ul>
+		</div>
 	</section>
 
 </div>

@@ -559,14 +559,32 @@ section.chapter > h2 {
 	font-style: italic;
 }
 
-.note-aside {
-	font-size: 0.85rem;
+.souvenirs {
+	margin-top: 1.6rem;
+	max-width: 42rem;
+}
+
+.souvenirs .sc-label {
+	margin-bottom: 0.5rem;
+}
+
+.souvenirs ul {
+	list-style: none;
+	columns: 2;
+	column-gap: 3rem;
+	font-size: 0.88rem;
 	font-style: italic;
-	color: var(--soft);
-	border-left: 2px solid var(--rule);
-	padding-left: 0.9em;
-	margin: 1rem 0 0;
-	max-width: 40rem;
+}
+
+.souvenirs li {
+	padding: 0.22em 0;
+	break-inside: avoid;
+}
+
+.souvenirs li::before {
+	content: "· ";
+	color: var(--red);
+	font-style: normal;
 }
 
 /* ---------- footer ---------- */
@@ -712,6 +730,9 @@ canvas#ascii-bg {
 	}
 	.creds li {
 		grid-template-columns: var(--gutter) minmax(0, 1fr);
+	}
+	.souvenirs ul {
+		columns: 1;
 	}
 	.plate-viewer .plate {
 		max-width: calc(100vw - 2rem);
