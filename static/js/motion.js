@@ -1,6 +1,7 @@
-/* motion.js — the three studies that shipped from the animation lab:
-   the living bear, scroll reveals, and the homepage ascii field.
-   Everything animates transform/opacity only and honours reduced-motion. */
+/* motion.js — the studies that shipped from the animation lab:
+   the living bear (and its echo in the tab), scroll reveals, and the
+   homepage ascii field. Everything in-page animates transform/opacity
+   only and honours reduced-motion. */
 (() => {
 'use strict';
 
@@ -53,11 +54,28 @@ function initBear() {
     }
   }
 
+  // the tab bear blinks on the same clock: the favicon svg carries both
+  // eye states, so a blink is one style swap on the same artwork. browsers
+  // without dynamic-favicon support (safari) just keep the open eyes.
+  const tab = { shut() {}, open() {} };
+  {
+    const fav = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (fav) {
+      const rest = fav.href;
+      fetch(rest).then(r => r.text()).then(svg => {
+        const shut = 'data:image/svg+xml,'
+          + encodeURIComponent(svg.replace('.lid{display:none}', '.eye{display:none}'));
+        tab.shut = () => fav.setAttribute('href', shut);
+        tab.open = () => fav.setAttribute('href', rest);
+      }).catch(() => {});
+    }
+  }
+
   let blinking = false;
   (function blink() {
     setTimeout(() => {
-      blinking = true;
-      setTimeout(() => { blinking = false; }, 130);
+      blinking = true; tab.shut();
+      setTimeout(() => { blinking = false; tab.open(); }, 130);
       blink();
     }, 2400 + Math.random() * 4200);
   })();

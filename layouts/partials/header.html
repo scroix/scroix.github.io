@@ -6,7 +6,9 @@
 	<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
 	{{- $description := or .Description .Site.Params.description }}
 	<meta name="description" content="{{ $description }}">
-	<link rel="icon" href="/img/favicon.ico">
+	<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/img/favicon.ico" sizes="32x32">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 	<!-- Open Graph (Facebook, LinkedIn, Slack, etc.); Twitter falls back to these -->
 	<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
 	<meta property="og:description" content="{{ $description }}">
