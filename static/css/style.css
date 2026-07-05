@@ -75,7 +75,7 @@ body {
 	color: var(--red);
 }
 
-h1, h2, h3, h4, h5, h6, header nav, .sc-label, .plate-viewer .idx {
+h1, h2, h3, h4, h5, h6, header nav, .sc-label, .plate-viewer .idx, .wall-label .name {
 	font-family: 'Alegreya Sans SC', sans-serif;
 	text-transform: lowercase;
 	font-weight: 700;
@@ -264,7 +264,8 @@ header nav .dot {
 /* anything hover-able straightens and lifts */
 .shelf a:hover .print,
 .shelf a:focus-visible .print,
-.entry .side .print:hover {
+.entry .side .print:hover,
+.wall .print:hover {
 	transform: rotate(0deg) translateY(-4px);
 	box-shadow: 0 8px 20px rgba(26, 26, 26, 0.16);
 }
@@ -335,8 +336,57 @@ section.chapter > h2 {
 	margin-bottom: 2.4rem;
 }
 
-.entry.has-print {
+.entry.has-print,
+.entry.has-wall {
 	grid-template-columns: var(--gutter) minmax(0, 34rem) 178px;
+}
+
+/* ---------- the wall: exhibitions hung with their own labels ---------- */
+.wall {
+	grid-column: 2 / -1;
+	margin-top: 0.5rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.6rem 1.4rem;
+	align-items: start;
+}
+
+.wall > div:nth-child(odd) .print { --tilt: -1deg; }
+.wall > div:nth-child(even) .print { --tilt: 0.9deg; }
+
+/* the label does the captioning; the polaroid's own strip stays blank
+   (the caption still feeds the plate viewer) */
+.wall .print figcaption {
+	display: none;
+}
+
+.wall-label {
+	margin-top: 0.55rem;
+	border-left: 2px solid var(--rule);
+	padding-left: 0.7rem;
+}
+
+.wall-label .name {
+	display: block;
+	font-size: 0.95rem;
+	line-height: 1.35;
+}
+
+.wall-label .ex-year {
+	display: block;
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+	font-weight: 700;
+	font-size: 0.72rem;
+	color: var(--red);
+}
+
+.wall-label .ex-line {
+	display: block;
+	font-size: 0.76rem;
+	font-style: italic;
+	color: var(--soft);
+	margin-top: 0.1rem;
 }
 
 /* the year in the margin */
@@ -740,7 +790,8 @@ canvas#ascii-bg {
 		grid-template-columns: minmax(0, 1fr) 260px;
 		gap: 2rem;
 	}
-	.entry.has-print {
+	.entry.has-print,
+	.entry.has-wall {
 		grid-template-columns: 5.2rem minmax(0, 1fr);
 	}
 	.entry .side {
@@ -791,9 +842,16 @@ canvas#ascii-bg {
 	.shelf .print figcaption {
 		font-size: 0.6rem;
 	}
-	.entry, .entry.has-print {
+	.entry, .entry.has-print, .entry.has-wall {
 		grid-template-columns: 1fr;
 		gap: 0.2rem;
+	}
+	.wall {
+		grid-column: 1;
+		grid-template-columns: 1fr;
+		max-width: 300px;
+		gap: 1.4rem;
+		margin-top: 0.9rem;
 	}
 	.entry .when {
 		text-align: left;

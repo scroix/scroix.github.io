@@ -1,4 +1,4 @@
-<div class="entry{{ if .media }} has-print{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
+<div class="entry{{ if .media }} has-print{{ end }}{{ if .exhibitions }} has-wall{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
 	<span class="when">{{ .when }}</span>
 	<div>
 		<h3>{{ with .emoji }}<span class="emoji">{{ . }}</span>{{ end }}{{ if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
@@ -13,6 +13,17 @@
 		</ul>
 		{{ end }}
 	</div>
+	{{ with .exhibitions }}
+	{{/* major exhibitions hang on the wall, each with its own label */}}
+	<div class="wall">
+		{{ range . }}
+		<div>
+			{{ partial "print.html" (merge . (dict "view" true "sizes" "(max-width: 640px) 92vw, 260px")) }}
+			<div class="wall-label"><span class="ex-year">{{ .when }}</span><span class="name">{{ .name }}</span><span class="ex-line">{{ .caption }}</span></div>
+		</div>
+		{{ end }}
+	</div>
+	{{ end }}
 	{{ with .media }}
 	<div class="side">
 		{{ if gt (len .) 1 }}
