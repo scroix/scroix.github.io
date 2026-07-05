@@ -1,0 +1,31 @@
+{{- /* One print: a polaroid figure. Takes an image dict {img, alt, caption};
+     optional keys: eager (skip lazy-loading, for above-the-fold images),
+     view (opens in the plate viewer), full (larger file for the viewer),
+     youtube (video id; img becomes the poster), video (a silent looping
+     film; img becomes its poster), depth (position in a pile), sizes
+     (how wide this print renders, for srcset selection).
+     Content refers to originals under assets/img; the WebP variants the
+     page actually serves are generated here, at build time. */ -}}
+{{- $orig := resources.Get (strings.TrimPrefix "/" .img) -}}
+{{- $srcset := slice -}}
+{{- range $w := slice 400 800 -}}
+	{{- if lt $w $orig.Width -}}
+		{{- $v := $orig.Process (printf "resize %dx webp q80" $w) -}}
+		{{- $srcset = $srcset | append (printf "%s %dw" $v.RelPermalink $w) -}}
+	{{- end -}}
+{{- end -}}
+{{- $best := $orig.Process "webp q80" -}}
+{{- $srcset = $srcset | append (printf "%s %dw" $best.RelPermalink $orig.Width) -}}
+{{- $sizes := .sizes | default "(max-width: 640px) 92vw, 330px" -}}
+<figure class="print{{ if .youtube }} is-video{{ end }}"
+	{{- if .view }} data-view{{ with .full }} data-full="{{ ((resources.Get (strings.TrimPrefix "/" .)).Process "webp q85").RelPermalink }}"{{ end }}{{ with .youtube }} data-youtube="{{ . }}"{{ end }}{{ with .video }} data-video="{{ . }}"{{ end }}{{ end }}
+	{{- if isset . "depth" }} data-depth="{{ .depth }}"{{ end }}>
+	{{- if .video -}}
+	<video src="{{ .video }}" poster="{{ $best.RelPermalink }}" width="{{ $orig.Width }}" height="{{ $orig.Height }}" autoplay muted loop playsinline aria-label="{{ .alt }}"></video>
+	{{- else -}}
+	{{- if .youtube }}<span class="frame">{{ end -}}
+	<img src="{{ $best.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ $sizes }}" alt="{{ .alt }}" width="{{ $orig.Width }}" height="{{ $orig.Height }}"{{ if .eager }} fetchpriority="high"{{ else }} loading="lazy" decoding="async"{{ end }}>
+	{{- if .youtube }}<span class="play-badge" aria-hidden="true"></span></span>{{ end }}
+	{{- end -}}
+	<figcaption>{{ .caption }}</figcaption>
+</figure>

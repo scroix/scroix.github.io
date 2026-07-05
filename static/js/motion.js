@@ -1,6 +1,7 @@
-/* motion.js — the three studies that shipped from the animation lab:
-   the living bear, scroll reveals, and the homepage ascii field.
-   Everything animates transform/opacity only and honours reduced-motion. */
+/* motion.js — the studies that shipped from the animation lab:
+   the living bear (and its echo in the tab), the returning header,
+   scroll reveals, and the homepage ascii field. Everything in-page
+   animates transform/opacity only and honours reduced-motion. */
 (() => {
 'use strict';
 
@@ -53,11 +54,28 @@ function initBear() {
     }
   }
 
+  // the tab bear blinks on the same clock: the favicon svg carries both
+  // eye states, so a blink is one style swap on the same artwork. browsers
+  // without dynamic-favicon support (safari) just keep the open eyes.
+  const tab = { shut() {}, open() {} };
+  {
+    const fav = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (fav) {
+      const rest = fav.href;
+      fetch(rest).then(r => r.text()).then(svg => {
+        const shut = 'data:image/svg+xml,'
+          + encodeURIComponent(svg.replace('.lid{display:none}', '.eye{display:none}'));
+        tab.shut = () => fav.setAttribute('href', shut);
+        tab.open = () => fav.setAttribute('href', rest);
+      }).catch(() => {});
+    }
+  }
+
   let blinking = false;
   (function blink() {
     setTimeout(() => {
-      blinking = true;
-      setTimeout(() => { blinking = false; }, 130);
+      blinking = true; tab.shut();
+      setTimeout(() => { blinking = false; tab.open(); }, 130);
       blink();
     }, 2400 + Math.random() * 4200);
   })();
@@ -98,6 +116,39 @@ function initBear() {
       + (hovered ? ` translateY(${squint.dy.toFixed(2)}px) scale(${squint.s.toFixed(3)})` : '');
     for (const e of eyes) if (e.style.transform !== t) e.style.transform = t;
   })(last);
+}
+
+/* ---- the returning header -------------------------------------------- */
+function initHeader() {
+  const el = document.querySelector('header');
+  if (!el) return;
+  // measured once, not per scroll tick — a layout read inside the handler
+  // would force a reflow against the class writes below
+  let threshold = el.offsetHeight * 1.5;
+  addEventListener('resize', () => { threshold = el.offsetHeight * 1.5; });
+  let last = scrollY;
+  addEventListener('scroll', () => {
+    const y = Math.max(0, scrollY);
+    const dy = y - last;
+    last = y;
+    // near the top the header simply belongs there; past it, it ducks away
+    // downhill and returns the moment the visitor turns around
+    if (y < threshold) el.classList.remove('away');
+    else if (dy > 0) el.classList.add('away');
+    else if (dy < -3) el.classList.remove('away');
+    el.classList.toggle('floating', y > 4);
+  }, { passive: true });
+  // keyboard visitors tabbing into the nav deserve to see it too
+  el.addEventListener('focusin', () => el.classList.remove('away'));
+}
+
+/* ---- footnotes: hovering a mark lights its note, and back ------------ */
+function initFootnotes() {
+  document.querySelectorAll('[data-fn]').forEach(el => {
+    const twins = () => document.querySelectorAll(`[data-fn="${el.dataset.fn}"]`);
+    el.addEventListener('mouseenter', () => twins().forEach(t => t.classList.add('lit')));
+    el.addEventListener('mouseleave', () => twins().forEach(t => t.classList.remove('lit')));
+  });
 }
 
 /* ---- scroll reveals -------------------------------------------------- */
@@ -195,7 +246,16 @@ function initField() {
   })(t0);
 }
 
+// the looping films (gif stand-ins) hold their poster frame instead —
+// something a real gif could never offer
+if (REDUCED) document.querySelectorAll('video[autoplay]').forEach(v => {
+  v.autoplay = false;
+  v.pause();
+});
+
 initBear();
+initHeader();
+initFootnotes();
 initReveals();
 initField();
 

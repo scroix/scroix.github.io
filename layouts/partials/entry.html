@@ -1,0 +1,39 @@
+<div class="entry{{ if .media }} has-print{{ end }}{{ if .exhibitions }} has-wall{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
+	<span class="when">{{ .when }}</span>
+	<div>
+		<h3>{{ with .emoji }}<span class="emoji">{{ . }}</span>{{ end }}{{ if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+		<p class="tagline">{{ .tagline }}</p>
+		<p>{{ .body | markdownify }}</p>
+		{{ with .interlude }}
+		<div class="interlude">{{ partial "print.html" (merge . (dict "view" true "sizes" "(max-width: 640px) 92vw, 540px")) }}</div>
+		{{ end }}
+		{{ with .list }}
+		<ul class="quiet-list">
+			{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+		</ul>
+		{{ end }}
+	</div>
+	{{ with .exhibitions }}
+	{{/* major exhibitions hang on the wall, each with its own label */}}
+	<div class="wall">
+		{{ range . }}
+		<div>
+			{{ partial "print.html" (merge . (dict "view" true "sizes" "(max-width: 640px) 92vw, 260px")) }}
+			<div class="wall-label"><span class="ex-year">{{ .when }}</span><span class="name">{{ .name }}</span><span class="ex-line">{{ .caption }}</span></div>
+		</div>
+		{{ end }}
+	</div>
+	{{ end }}
+	{{ with .media }}
+	<div class="side">
+		{{ if gt (len .) 1 }}
+		<div class="pile">
+			{{ range $i, $m := . }}{{ partial "print.html" (merge $m (dict "view" true "depth" $i)) }}{{ end }}
+		</div>
+		<p class="pile-hint">click to leaf through · <a class="enlarge" href="#">enlarge</a></p>
+		{{ else }}
+		{{ partial "print.html" (merge (index . 0) (dict "view" true)) }}
+		{{ end }}
+	</div>
+	{{ end }}
+</div>
