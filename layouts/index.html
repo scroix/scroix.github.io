@@ -6,6 +6,12 @@
 			<h1>{{ .Title }}</h1>
 			{{ .Content }}
 			<div class="small">{{ .Params.aside | markdownify }}</div>
+			{{ if or .Site.Params.github .Site.Params.gitlab }}
+			<div class="code-icons" aria-label="Code profiles">
+				{{ with .Site.Params.github }}<a href="{{ . }}" aria-label="GitHub"><img class="github" src="/img/github.svg" alt=""></a>{{ end }}
+				{{ with .Site.Params.gitlab }}<a href="{{ . }}" aria-label="GitLab"><img class="gitlab" src="/img/gitlab.svg" alt=""></a>{{ end }}
+			</div>
+			{{ end }}
 		</div>
 		<div class="portrait-wrap">
 			<!-- the delaunay behind julien, continuing past its frame -->
@@ -44,6 +50,7 @@
 
 	<section class="chapter" id="education">
 		<h2>education</h2>
+		{{ $educationNote := .Params.education.note }}
 		{{ $marks := slice "*" "†" "‡" "§" "‖" "¶" }}
 		{{ $notes := slice }}
 		<ul class="creds">
@@ -54,6 +61,7 @@
 		{{ with $notes }}
 		{{/* the endnote, done on purpose */}}
 		<div class="footnotes">
+			{{ with $educationNote }}<p class="education-note">{{ . | markdownify }}</p>{{ end }}
 			<ol>
 				{{ range $i, $note := . }}<li data-fn="{{ $i }}"><span class="mark">{{ index $marks $i }}</span>{{ $note | markdownify }}</li>{{ end }}
 			</ol>

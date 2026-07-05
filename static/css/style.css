@@ -217,6 +217,50 @@ header nav .dot {
 	color: var(--soft);
 }
 
+.code-icons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1.4rem;
+	max-width: 14rem;
+	margin-top: 0.7rem;
+}
+
+.code-icons a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+	border-radius: 10px;
+	opacity: 0.62;
+	transition: opacity 0.2s, transform 0.25s var(--ease), background 0.2s;
+}
+
+.code-icons a::after {
+	content: none;
+}
+
+.code-icons a:hover,
+.code-icons a:focus-visible {
+	background: var(--blush);
+	opacity: 0.9;
+	transform: translateY(-2px);
+}
+
+.code-icons img {
+	display: block;
+	height: auto;
+}
+
+.code-icons img.github {
+	width: 44px;
+}
+
+.code-icons img.gitlab {
+	width: 54px;
+}
+
 /* the whole photograph, and the painting continuing past its frame */
 .portrait-wrap {
 	position: relative;
@@ -626,6 +670,15 @@ section.chapter > h2 {
 }
 
 /* ---------- education: one quiet list ---------- */
+.education-note {
+	max-width: calc(34rem - 1rem);
+	margin: 0 0 0.25rem 1rem;
+	color: color-mix(in srgb, var(--soft) 72%, var(--paper));
+	font-size: 0.64rem;
+	font-style: italic;
+	line-height: 1.45;
+}
+
 .creds {
 	list-style: none;
 	max-width: 46rem;

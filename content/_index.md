@@ -1,7 +1,7 @@
 ---
 title: "Hello, I'm Julien."
 date: "1988-10-28"
-aside: "The code lives on [GitHub](https://github.com/scroix) and [GitLab](https://gitlab.com/scroix)."
+aside: "If you’re more interested in some of the code I’ve written, then perhaps explore my [GitHub](https://github.com/scroix), or [GitLab](https://gitlab.com/scroix)."
 portrait:
   img: "/img/julien.jpg"
   alt: "Julien sitting in front of Robert Delaunay's Rythme"
@@ -154,6 +154,7 @@ work:
         alt: "On the Studio 3 floor at the ABC"
         caption: "the studio 3 floor"
 education:
+  note: "A couple of neat projects completed during this degree…"
   creds:
     - when: "2014 – 19"
       name: "Bachelor of Software Engineering, RMIT"
