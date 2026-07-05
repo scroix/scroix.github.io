@@ -1,6 +1,6 @@
 baseURL = "https://scroix.github.io/"
 locale = "en-us"
-title = "Julien de Sainte-Croix ʕ•ᴥ•ʔ"
+title = "Hello, Julien"
 enableEmoji = true
 disableKinds = ["taxonomy", "term"]
 
