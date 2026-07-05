@@ -246,6 +246,13 @@ function initField() {
   })(t0);
 }
 
+// the looping films (gif stand-ins) hold their poster frame instead —
+// something a real gif could never offer
+if (REDUCED) document.querySelectorAll('video[autoplay]').forEach(v => {
+  v.autoplay = false;
+  v.pause();
+});
+
 initBear();
 initHeader();
 initFootnotes();

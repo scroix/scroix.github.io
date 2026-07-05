@@ -23,7 +23,7 @@
 		<div class="sc-label">some things i've helped make</div>
 		<div class="shelf">
 			{{ range .Params.shelf }}
-			<a href="#{{ .anchor }}">{{ partial "print.html" . }}</a>
+			<a href="#{{ .anchor }}">{{ partial "print.html" (merge . (dict "sizes" "(max-width: 640px) 30vw, 220px")) }}</a>
 			{{ end }}
 		</div>
 	</section>

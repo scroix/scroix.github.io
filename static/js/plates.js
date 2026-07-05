@@ -16,8 +16,9 @@ const nextBtn = viewer.querySelector('.next');
 let group = [], at = 0;
 
 const itemOf = p => ({
-  src: p.dataset.full || p.querySelector('img')?.src,
+  src: p.dataset.full || p.querySelector('img')?.src || p.querySelector('video')?.poster,
   youtube: p.dataset.youtube,
+  video: p.dataset.video,
   caption: p.querySelector('figcaption')?.textContent || ''
 });
 
@@ -25,6 +26,8 @@ function render() {
   const item = group[at];
   mediaBox.innerHTML = item.youtube
     ? `<iframe src="https://www.youtube.com/embed/${item.youtube}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen title="${item.caption}"></iframe>`
+    : item.video
+    ? `<video src="${item.video}" poster="${item.src}" autoplay muted loop playsinline aria-label="${item.caption}"></video>`
     : `<img src="${item.src}" alt="${item.caption}">`;
   capEl.textContent = item.caption;
   idxEl.textContent = group.length > 1 ? `${at + 1} / ${group.length}` : '';

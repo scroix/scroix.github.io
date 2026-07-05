@@ -1,3 +1,32 @@
+/* self-hosted latin subsets (OFL), formerly from Google Fonts —
+   the unicode-range keeps fallback behaviour identical to before */
+@font-face {
+	font-family: 'Merriweather';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/merriweather.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Merriweather';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/merriweather-italic.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Alegreya Sans SC';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/alegreya-sans-sc-700.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
 	--paper: #fffdf8;
 	--ink: #1a1a1a;
@@ -240,7 +269,8 @@ header nav .dot {
 	box-shadow: 0 8px 20px rgba(26, 26, 26, 0.16);
 }
 
-.print img {
+.print img,
+.print video {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -280,7 +310,8 @@ header nav .dot {
 	border-radius: 4px;
 }
 
-.shelf .print img {
+.shelf .print img,
+.shelf .print video {
 	height: 92px;
 	object-fit: cover;
 }
@@ -488,7 +519,8 @@ section.chapter > h2 {
 	justify-content: center;
 }
 
-.plate-viewer .plate img {
+.plate-viewer .plate img,
+.plate-viewer .plate video {
 	width: auto;
 	max-width: 100%;
 	max-height: calc(100vh - 12rem);
@@ -752,7 +784,8 @@ canvas#ascii-bg {
 	.shelf {
 		gap: 0.8rem;
 	}
-	.shelf .print img {
+	.shelf .print img,
+	.shelf .print video {
 		height: 68px;
 	}
 	.shelf .print figcaption {

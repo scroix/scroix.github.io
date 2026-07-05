@@ -5,7 +5,7 @@
 		<p class="tagline">{{ .tagline }}</p>
 		<p>{{ .body | markdownify }}</p>
 		{{ with .interlude }}
-		<div class="interlude">{{ partial "print.html" (merge . (dict "view" true)) }}</div>
+		<div class="interlude">{{ partial "print.html" (merge . (dict "view" true "sizes" "(max-width: 640px) 92vw, 540px")) }}</div>
 		{{ end }}
 		{{ with .list }}
 		<ul class="quiet-list">

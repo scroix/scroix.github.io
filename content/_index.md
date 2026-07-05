@@ -19,7 +19,8 @@ shelf:
     alt: "Children's Gallery at Melbourne Museum"
     caption: "a gallery for small visitors"
     anchor: "mv"
-  - img: "/img/ticker.gif"
+  - img: "/img/ticker.jpg"
+    video: "/img/ticker.mp4"
     alt: "Ticker exhibit counting microbes"
     caption: "counting the microbiome"
     anchor: "ticker"
@@ -71,7 +72,8 @@ projects:
       An Arduino compares the microbes in your gut with the universe's other big numbers.
       Touch opt-in; wonder mandatory.
     media:
-      - img: "/img/ticker.gif"
+      - img: "/img/ticker.jpg"
+        video: "/img/ticker.mp4"
         alt: "Ticker exhibit counting"
         caption: "counting the microbiome"
   - id: "firestick"
@@ -100,7 +102,8 @@ work:
       [led the move](https://github.com/scroix/mv-gallery-audio-max) to Max/MSP for gallery
       soundscapes, including an 81-channel spatial system fed live by the exhibits themselves.
     interlude:
-      img: "/img/max-soundscape.gif"
+      img: "/img/max-soundscape.jpg"
+      video: "/img/max-soundscape.mp4"
       alt: "Max/MSP gallery audio patch"
       caption: "the patch that plays the galleries"
     list:

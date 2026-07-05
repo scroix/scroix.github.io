@@ -12,14 +12,13 @@
 	<!-- Open Graph (Facebook, LinkedIn, Slack, etc.); Twitter falls back to these -->
 	<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
 	<meta property="og:description" content="{{ $description }}">
-	{{ with $.Param "image" }}<meta property="og:image" content="{{ . }}">{{ end }}
+	{{ with $.Param "image" }}<meta property="og:image" content="{{ (resources.Get .).Permalink }}">{{ end }}
 	<meta property="og:url" content="{{ .Permalink }}">
 	<meta property="og:site_name" content="{{ .Site.Title }}">
 	<meta property="og:type" content="website">
 	<meta name="twitter:card" content="summary">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Merriweather:ital@0;1&display=swap">
+	<link rel="preload" href="/fonts/merriweather.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="/fonts/alegreya-sans-sc-700.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="/css/style.css">
 	<script defer src="/js/motion.js"></script>
 	<script defer src="/js/plates.js"></script>
