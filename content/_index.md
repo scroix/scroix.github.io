@@ -114,16 +114,26 @@ work:
         img: "/img/minimega.jpg"
         alt: "Mini Mega Model Museum"
         caption: "small things, writ large"
+        copy: >-
+          A museum made of the museum's models. I looked after the exhibit AV,
+          wired into Nodel so the miniature runs exactly like the full-size one.
       - when: "2018"
         name: "Beyond Perception"
         img: "/img/beyond-perception.jpg"
         alt: "Beyond Perception exhibition"
         caption: "81 channels, live-modulated"
+        copy: >-
+          Science beyond the visible, carried by an 81-channel spatial
+          soundscape fed live by the exhibits themselves and re-mixed as the
+          room plays.
       - when: "2017"
         name: "Children's Gallery"
         img: "/img/childrens-gallery.jpg"
         alt: "Children's Gallery at Melbourne Museum"
         caption: "a gallery for small visitors"
+        copy: >-
+          The museum rebuilt at knee height: projection, sound and buttons
+          engineered to survive its two million smallest visitors.
   - id: "rmit"
     when: "2017 – 18"
     name: "rmit university"

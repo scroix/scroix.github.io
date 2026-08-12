@@ -1,7 +1,8 @@
 /* motion.js — the studies that shipped from the animation lab:
    the living bear (and its echo in the tab), the returning header,
-   scroll reveals, and the homepage ascii field. Everything in-page
-   animates transform/opacity only and honours reduced-motion. */
+   the wall's case notes, scroll reveals, and the homepage ascii field.
+   Everything in-page animates transform/opacity only and honours
+   reduced-motion. */
 (() => {
 'use strict';
 
@@ -142,6 +143,38 @@ function initHeader() {
   el.addEventListener('focusin', () => el.classList.remove('away'));
 }
 
+/* ---- the wall: selecting an exhibition opens its case note ----------- */
+function initWall() {
+  const cells = [...document.querySelectorAll('.wall .ex[aria-controls]')];
+  if (!cells.length) return;
+  const panelOf = c => document.getElementById(c.getAttribute('aria-controls'));
+  const shut = c => { c.setAttribute('aria-expanded', 'false'); panelOf(c).classList.remove('open'); };
+  const shutAll = () => cells.forEach(c => { if (c.getAttribute('aria-expanded') === 'true') shut(c); });
+  cells.forEach(cell => {
+    const toggle = () => {
+      const wasOpen = cell.getAttribute('aria-expanded') === 'true';
+      shutAll();
+      if (!wasOpen) {
+        cell.setAttribute('aria-expanded', 'true');
+        panelOf(cell).classList.add('open');
+      }
+    };
+    cell.addEventListener('click', toggle);
+    cell.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+    panelOf(cell).querySelector('.bo-close').addEventListener('click', () => {
+      shut(cell);
+      cell.focus();
+    });
+  });
+  // Esc closes the open case note — unless the plate viewer has the key
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape' || document.querySelector('.plate-viewer.open')) return;
+    shutAll();
+  });
+}
+
 /* ---- footnotes: hovering a mark lights its note, and back ------------ */
 function initFootnotes() {
   document.querySelectorAll('[data-fn]').forEach(el => {
@@ -255,6 +288,7 @@ if (REDUCED) document.querySelectorAll('video[autoplay]').forEach(v => {
 
 initBear();
 initHeader();
+initWall();
 initFootnotes();
 initReveals();
 initField();

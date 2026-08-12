@@ -309,7 +309,7 @@ header nav .dot {
 .shelf a:hover .print,
 .shelf a:focus-visible .print,
 .entry .side .print:hover,
-.wall .print:hover {
+.wall > div:hover .print {
 	transform: rotate(0deg) translateY(-4px);
 	box-shadow: 0 8px 20px rgba(26, 26, 26, 0.16);
 }
@@ -408,7 +408,111 @@ section.chapter > h2 {
 	margin-top: 0.55rem;
 	border-left: 2px solid var(--rule);
 	padding-left: 0.7rem;
+	transition: border-color 0.25s;
 }
+
+/* an exhibition carrying a case note is a button: the whole cell invites */
+.wall .ex {
+	cursor: pointer;
+}
+
+.wall .ex:focus-visible {
+	outline: 2px solid var(--red);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
+
+.wall .ex .more {
+	display: block;
+	font-size: 0.7rem;
+	font-style: italic;
+	color: var(--red);
+	margin-top: 0.1rem;
+}
+
+.wall .ex[aria-expanded="false"] .more::after { content: " ↓"; }
+.wall .ex[aria-expanded="true"] .more::after { content: " ↑"; }
+
+/* the selected label's rule turns red, its print sits up straight */
+.wall .ex[aria-expanded="true"] .wall-label { border-left-color: var(--red); }
+.wall .ex[aria-expanded="true"] .print { transform: rotate(0deg); }
+
+/* ---------- the case note: an exhibition opened beneath the wall ---------- */
+.breakout {
+	grid-column: 2 / -1;
+	display: none;
+	border-left: 2px solid var(--red);
+	padding: 0.4rem 0 0.6rem 1.4rem;
+	margin-top: 0.4rem;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1.6rem;
+	align-items: start;
+}
+
+.breakout.open {
+	display: grid;
+	animation: settle 0.4s var(--ease);
+}
+
+.breakout.open:has(.bo-prints) {
+	grid-template-columns: minmax(0, 1fr) 220px;
+}
+
+@keyframes settle {
+	from { opacity: 0; transform: translateY(6px); }
+	to   { opacity: 1; transform: none; }
+}
+
+.breakout .bo-year {
+	display: block;
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+	font-weight: 700;
+	font-size: 0.72rem;
+	color: var(--red);
+}
+
+.breakout .bo-name {
+	display: block;
+	font-family: 'Alegreya Sans SC', sans-serif;
+	text-transform: lowercase;
+	font-weight: 700;
+	font-size: 1.05rem;
+}
+
+.breakout p {
+	font-size: 0.88rem;
+	margin-top: 0.4rem;
+	max-width: 30rem;
+}
+
+.breakout .bo-close {
+	appearance: none;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 0.75rem;
+	font-style: italic;
+	color: var(--soft);
+	padding: 0.1em 0.4em;
+	border-radius: 8px;
+	margin-top: 0.6rem;
+	transition: background 0.2s, color 0.2s;
+}
+
+.breakout .bo-close:hover {
+	background: var(--blush);
+	color: var(--red);
+}
+
+.breakout .bo-prints {
+	display: grid;
+	gap: 1rem;
+}
+
+.breakout .bo-prints .print { --tilt: 0.9deg; }
+.breakout .bo-prints .print + .print { --tilt: -1deg; }
 
 .wall-label .name {
 	display: block;
@@ -823,6 +927,9 @@ canvas#ascii-bg {
 		transform: none;
 		transition: none;
 	}
+	.breakout.open {
+		animation: none;
+	}
 	.print {
 		transition: none;
 	}
@@ -905,6 +1012,16 @@ canvas#ascii-bg {
 		max-width: 300px;
 		gap: 1.4rem;
 		margin-top: 0.9rem;
+	}
+	.breakout {
+		grid-column: 1;
+		padding-left: 1rem;
+	}
+	.breakout.open:has(.bo-prints) {
+		grid-template-columns: 1fr;
+	}
+	.breakout .bo-prints {
+		max-width: 260px;
 	}
 	.entry .when {
 		text-align: left;

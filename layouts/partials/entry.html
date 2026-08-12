@@ -13,16 +13,35 @@
 		</ul>
 		{{ end }}
 	</div>
+	{{ $eid := .id }}
 	{{ with .exhibitions }}
-	{{/* major exhibitions hang on the wall, each with its own label */}}
+	{{/* major exhibitions hang on the wall, each with its own label; one
+	     carrying a case note opens it beneath the wall (see initWall) */}}
 	<div class="wall">
-		{{ range . }}
-		<div>
-			{{ partial "print.html" (merge . (dict "view" true "sizes" "(max-width: 640px) 92vw, 260px")) }}
-			<div class="wall-label"><span class="ex-year">{{ .when }}</span><span class="name">{{ .name }}</span><span class="ex-line">{{ .caption }}</span></div>
+		{{ range $i, $ex := . }}
+		<div{{ if $ex.copy }} class="ex" role="button" tabindex="0" aria-expanded="false" aria-controls="case-{{ $eid }}-{{ $i }}"{{ end }}>
+			{{ partial "print.html" (merge $ex (dict "view" (not $ex.copy) "sizes" "(max-width: 640px) 92vw, 260px")) }}
+			<div class="wall-label"><span class="ex-year">{{ $ex.when }}</span><span class="name">{{ $ex.name }}</span><span class="ex-line">{{ $ex.caption }}</span>{{ if $ex.copy }}<span class="more">the case note</span>{{ end }}</div>
 		</div>
 		{{ end }}
 	</div>
+	{{ range $i, $ex := . }}
+	{{ with $ex.copy }}
+	<div class="breakout" id="case-{{ $eid }}-{{ $i }}">
+		<div>
+			<span class="bo-year">{{ $ex.when }}</span>
+			<span class="bo-name">{{ $ex.name }}</span>
+			<p>{{ . | markdownify }}</p>
+			<button class="bo-close">close the case note</button>
+		</div>
+		{{ with $ex.prints }}
+		<div class="bo-prints">
+			{{ range . }}{{ partial "print.html" (merge . (dict "view" true "sizes" "220px")) }}{{ end }}
+		</div>
+		{{ end }}
+	</div>
+	{{ end }}
+	{{ end }}
 	{{ end }}
 	{{ with .media }}
 	<div class="side">
