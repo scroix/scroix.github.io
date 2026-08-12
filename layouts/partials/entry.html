@@ -1,0 +1,58 @@
+<div class="entry{{ if .media }} has-print{{ end }}{{ if .exhibitions }} has-wall{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>
+	<span class="when">{{ .when }}</span>
+	<div>
+		<h3>{{ with .emoji }}<span class="emoji">{{ . }}</span>{{ end }}{{ if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+		<p class="tagline">{{ .tagline }}</p>
+		<p>{{ .body | markdownify }}</p>
+		{{ with .interlude }}
+		<div class="interlude">{{ partial "print.html" (merge . (dict "view" true "sizes" "(max-width: 640px) 92vw, 540px")) }}</div>
+		{{ end }}
+		{{ with .list }}
+		<ul class="quiet-list">
+			{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+		</ul>
+		{{ end }}
+	</div>
+	{{ $eid := .id }}
+	{{ with .exhibitions }}
+	{{/* major exhibitions hang on the wall, each with its own label; one
+	     carrying a case note opens it beneath the wall (see initWall) */}}
+	<div class="wall">
+		{{ range $i, $ex := . }}
+		<div{{ if $ex.copy }} class="ex" role="button" tabindex="0" aria-expanded="false" aria-controls="case-{{ $eid }}-{{ $i }}"{{ end }}>
+			{{ partial "print.html" (merge $ex (dict "view" (not $ex.copy) "sizes" "(max-width: 640px) 92vw, 260px")) }}
+			<div class="wall-label"><span class="ex-year">{{ $ex.when }}</span><span class="name">{{ $ex.name }}</span><span class="ex-line">{{ $ex.caption }}</span>{{ if $ex.copy }}<span class="more">the case note</span>{{ end }}</div>
+		</div>
+		{{ end }}
+	</div>
+	{{ range $i, $ex := . }}
+	{{ with $ex.copy }}
+	<div class="breakout" id="case-{{ $eid }}-{{ $i }}">
+		<div>
+			<span class="bo-year">{{ $ex.when }}</span>
+			<span class="bo-name">{{ $ex.name }}</span>
+			<p>{{ . | markdownify }}</p>
+			<button class="bo-close">close the case note</button>
+		</div>
+		{{ with $ex.prints }}
+		<div class="bo-prints">
+			{{ range . }}{{ partial "print.html" (merge . (dict "view" true "sizes" "220px")) }}{{ end }}
+		</div>
+		{{ end }}
+	</div>
+	{{ end }}
+	{{ end }}
+	{{ end }}
+	{{ with .media }}
+	<div class="side">
+		{{ if gt (len .) 1 }}
+		<div class="pile">
+			{{ range $i, $m := . }}{{ partial "print.html" (merge $m (dict "view" true "depth" $i)) }}{{ end }}
+		</div>
+		<p class="pile-hint">click to leaf through · <a class="enlarge" href="#">enlarge</a></p>
+		{{ else }}
+		{{ partial "print.html" (merge (index . 0) (dict "view" true)) }}
+		{{ end }}
+	</div>
+	{{ end }}
+</div>

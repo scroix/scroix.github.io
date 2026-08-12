@@ -1,13 +1,13 @@
 baseURL = "https://scroix.github.io/"
 locale = "en-us"
-title = "Julien de Sainte-Croix ʕ•ᴥ•ʔ"
+title = "Hello, Julien"
 enableEmoji = true
+disableKinds = ["taxonomy", "term"]
 
 [params]
     logo = "ʕ•ᴥ•ʔ"
     description = "Julien de Sainte-Croix is a software engineer and creative technologist working in museums, installations and the built environment."
-    image = "https://scroix.github.io/img/julien.jpg"
-    navigation = ["education", "work", "projects"]
+    image = "img/julien.jpg"  # asset path; og:image publishes the original
     github = "https://github.com/scroix"
     gitlab = "https://gitlab.com/scroix"
 

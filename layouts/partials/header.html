@@ -6,25 +6,29 @@
 	<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
 	{{- $description := or .Description .Site.Params.description }}
 	<meta name="description" content="{{ $description }}">
-	<link rel="icon" href="/img/favicon.ico">
+	<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/img/favicon.ico" sizes="32x32">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 	<!-- Open Graph (Facebook, LinkedIn, Slack, etc.); Twitter falls back to these -->
 	<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
 	<meta property="og:description" content="{{ $description }}">
-	{{ with $.Param "image" }}<meta property="og:image" content="{{ . }}">{{ end }}
+	{{ with $.Param "image" }}<meta property="og:image" content="{{ (resources.Get .).Permalink }}">{{ end }}
 	<meta property="og:url" content="{{ .Permalink }}">
 	<meta property="og:site_name" content="{{ .Site.Title }}">
 	<meta property="og:type" content="website">
 	<meta name="twitter:card" content="summary">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Merriweather&display=swap">
+	<link rel="preload" href="/fonts/merriweather.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="/fonts/alegreya-sans-sc-700.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="/css/style.css">
 	<script defer src="/js/motion.js"></script>
+	<script defer src="/js/plates.js"></script>
 </head>
 <body>
 <canvas id="ascii-bg" aria-hidden="true"{{ if not .IsHome }} data-quiet{{ end }}></canvas>
 <header>
 	<a class="logo" href="/"><span class="bear">{{ .Site.Params.logo }}</span></a>
-	<nav>{{ range .Site.Params.navigation }}{{ with $.Site.GetPage "page" . }}&nbsp;&nbsp;·&nbsp;&nbsp;<a href="{{ .Permalink }}">{{ title .Title }}</a>{{ end }}{{ end }}</nav>
+	<nav>
+		<a href="/#projects">projects</a><span class="dot b">·</span><a href="/#work">work</a><span class="dot o">·</span><a href="/#education">education</a>
+	</nav>
 	{{ if .Draft }}<span class="draft">DRAFT</span>{{ end }}
 </header>
