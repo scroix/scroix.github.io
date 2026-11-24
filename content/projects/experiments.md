@@ -6,7 +6,7 @@ period: "2019 - 2026"
 role: "Creative Technologist, Lab Lead, and Independent Author"
 summary: "Urban LED tools for The Pipes at Cato Square, Art Processors' internal R&D lab, a Rust/GPUI game, agent skills for Nodel, and eTextile MIDI."
 featured: false
-weight: 11
+weight: 13
 hero_image: "/media/independent/pipes-cato-square-hero.jpg"
 hero_alt: "Twenty-eight 11-metre illuminated LED poles at Cato Square in Melbourne"
 hero_loop: "/media/independent/pipes-cato-square-loop.mp4"

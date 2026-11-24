@@ -230,6 +230,11 @@ p {
 	margin-bottom: 1.15rem;
 }
 
+code {
+	font-family: var(--font-mono);
+	font-size: 0.86em;
+}
+
 .prose-narrow {
 	max-width: var(--prose-max);
 }
@@ -695,6 +700,15 @@ p {
 
 .media-block {
 	margin: 2.25rem 0;
+}
+
+.media-block--compact {
+	max-width: var(--prose-max);
+}
+
+.media-block--framed img {
+	border: 1px solid var(--rule);
+	background: var(--bg);
 }
 
 .media-block img {

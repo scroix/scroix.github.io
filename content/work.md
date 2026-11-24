@@ -42,7 +42,7 @@ aliases:
 	<div class="timeline-body">
 		<h3>Museums Victoria</h3>
 		<p class="timeline-role">Multimedia Engineer and Exhibition Technical Lead</p>
-		<p>Deferred my degree for 18 months to lead the rollout of open-source <a href="/projects/nodel/">Nodel</a> across 427 multimedia exhibits and ~2,000 networked AV devices at Melbourne Museum, Scienceworks, and the Immigration Museum. Built interactives and spatial audio across <a href="/projects/museums-victoria/">Pauline Gandel Children's Gallery</a> (2017), <em>Beyond Perception</em> (81-channel Dante AoIP, 2018), <em>Mini Mega Model Museum</em> (2019), <em>Gut Feelings</em>, and <em>First Peoples</em>.</p>
+		<p>Deferred my degree for 18 months to lead the rollout of open-source <a href="/projects/nodel/">Nodel</a> across 427 multimedia exhibits and ~2,000 networked AV devices at Melbourne Museum, Scienceworks, and the Immigration Museum. Built interactives and spatial audio across <a href="/projects/mini-mega-model-museum/">Mini Mega Model Museum</a> (2019), <a href="/projects/beyond-perception/">Beyond Perception</a> (81-channel Dante AoIP, 2018), and the <a href="/projects/pauline-gandel-childrens-gallery/">Pauline Gandel Children's Gallery</a> (2017).</p>
 	</div>
 </div>
 

@@ -18,9 +18,9 @@ wide: true
 	<li><span>Australian Good Design Awards, Best in Class (Architectural Design) for <a href="/projects/pentridge/">Pentridge Prison Tours</a></span> <span class="meta-inline">2023</span></li>
 	<li><span>Victorian Premier's Design Awards, Winner (Communication Design) for <a href="/projects/pentridge/">Pentridge Prison Tours</a></span> <span class="meta-inline">2023</span></li>
 	<li><span>MUSE Creative Awards, Winner for <a href="/projects/decoded/">Decoded (NMA and ASD)</a></span> <span class="meta-inline">2023</span></li>
-	<li><span>Melbourne Awards, Winner for <a href="/projects/museums-victoria/">Pauline Gandel Children's Gallery</a></span> <span class="meta-inline">2017</span></li>
-	<li><span>Victorian Premier's Design Awards, Winner for <a href="/projects/museums-victoria/">Pauline Gandel Children's Gallery</a></span> <span class="meta-inline">2017</span></li>
-	<li><span>MAGNA (Museums and Galleries National Awards), Winner for <a href="/projects/museums-victoria/">Pauline Gandel Children's Gallery</a></span> <span class="meta-inline">2017</span></li>
+	<li><span>Melbourne Awards, Winner for <a href="/projects/pauline-gandel-childrens-gallery/">Pauline Gandel Children's Gallery</a></span> <span class="meta-inline">2017</span></li>
+	<li><span>Victorian Premier's Design Awards, Winner for <a href="/projects/pauline-gandel-childrens-gallery/">Pauline Gandel Children's Gallery</a></span> <span class="meta-inline">2017</span></li>
+	<li><span>MAGNA (Museums and Galleries National Awards), Winner for <a href="/projects/pauline-gandel-childrens-gallery/">Pauline Gandel Children's Gallery</a></span> <span class="meta-inline">2017</span></li>
 	<li><span>Golden Key International Honour Society, RMIT University</span> <span class="meta-inline">2015</span></li>
 	<li><span>SMPTE Young Industry Person of the Year</span> <span class="meta-inline">2013</span></li>
 </ul>
