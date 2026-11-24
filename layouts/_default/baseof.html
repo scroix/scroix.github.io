@@ -1,5 +1,57 @@
-{{ partial "header.html" . }}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} / {{ .Site.Title }}{{ end }}</title>
+	{{- $description := or .Description .Site.Params.description }}
+	<meta name="description" content="{{ $description }}">
+	<link rel="icon" href="/img/favicon.ico">
+	<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} / {{ .Site.Title }}{{ end }}">
+	<meta property="og:description" content="{{ $description }}">
+	{{- $ogImage := .Site.Params.image }}
+	{{- with .Params.hero_image }}{{ $ogImage = absURL . }}{{ end }}
+	<meta property="og:image" content="{{ $ogImage }}">
+	<meta property="og:url" content="{{ .Permalink }}">
+	<meta property="og:site_name" content="{{ .Site.Title }}">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+	<link rel="stylesheet" href="/css/style.css">
+	<script defer src="/js/motion.js"></script>
+</head>
+<body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
+<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="ascii-bg" aria-hidden="true"{{ if not .IsHome }} data-quiet{{ end }}></canvas>
+<header class="site-header">
+	<div class="shell header-inner">
+		<a class="logo" href="/" aria-label="Julien de Sainte-Croix, Home">
+			<span class="bear">{{ .Site.Params.logo }}</span>
+			<span class="site-name">Julien de Sainte-Croix</span>
+		</a>
+		<nav class="site-nav" aria-label="Primary">
+			<a href="/projects/"{{ if eq .Section "projects" }} aria-current="page"{{ end }}>Projects</a>
+			<a href="/work/"{{ if eq .RelPermalink "/work/" }} aria-current="page"{{ end }}>Work</a>
+			<a href="/writing/"{{ if eq .RelPermalink "/writing/" }} aria-current="page"{{ end }}>Writing</a>
+			<a href="/about/"{{ if eq .RelPermalink "/about/" }} aria-current="page"{{ end }}>About</a>
+		</nav>
+	</div>
+</header>
+<main id="main">
 {{ block "main" . }}{{ end }}
-
-{{ partial "footer.html" . }}
+</main>
+<footer class="site-footer">
+	<div class="shell footer-inner">
+		<span class="footer-note">Melbourne, Australia</span>
+		<nav class="footer-links" aria-label="External links">
+			<a href="{{ .Site.Params.github }}" rel="me">GitHub</a>
+			<a href="{{ .Site.Params.gitlab }}" rel="me">GitLab</a>
+			<a href="{{ .Site.Params.linkedin }}" rel="me">LinkedIn</a>
+			<a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+		</nav>
+	</div>
+</footer>
+</body>
+</html>

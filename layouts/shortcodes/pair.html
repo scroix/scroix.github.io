@@ -1,0 +1,10 @@
+<div class="media-pair{{ with .Get "wide" }} media-block--wide{{ end }}">
+	<figure class="media-block">
+		<img src="{{ .Get "src1" }}" alt="{{ .Get "alt1" | default (.Get "cap1") }}" loading="lazy" decoding="async">
+		{{- with .Get "cap1" }}<figcaption>{{ . }}</figcaption>{{ end }}
+	</figure>
+	<figure class="media-block">
+		<img src="{{ .Get "src2" }}" alt="{{ .Get "alt2" | default (.Get "cap2") }}" loading="lazy" decoding="async">
+		{{- with .Get "cap2" }}<figcaption>{{ . }}</figcaption>{{ end }}
+	</figure>
+</div>

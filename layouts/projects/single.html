@@ -1,0 +1,85 @@
+{{ define "main" }}
+<article class="case-study">
+	<header class="shell case-head">
+		<p class="breadcrumb"><a href="/projects/">Projects</a> <span>/</span> <span>{{ .Params.org }}</span></p>
+		<h1>{{ .Title }}</h1>
+		<p class="case-lede">{{ .Params.summary }}</p>
+
+		<dl class="spec-grid">
+			<div>
+				<dt>Role</dt>
+				<dd>{{ .Params.role }}</dd>
+			</div>
+			<div>
+				<dt>Period</dt>
+				<dd>{{ .Params.period }}</dd>
+			</div>
+			<div>
+				<dt>Organisation</dt>
+				<dd>{{ .Params.org }}{{ with .Params.location }}, {{ . }}{{ end }}</dd>
+			</div>
+			{{- with .Params.stack }}
+			<div>
+				<dt>Stack</dt>
+				<dd>{{ delimit . ", " }}</dd>
+			</div>
+			{{- end }}
+		</dl>
+
+		{{- with .Params.awards }}
+		<ul class="award-strip" aria-label="Awards">
+			{{- range . }}
+			<li>{{ . }}</li>
+			{{- end }}
+		</ul>
+		{{- end }}
+	</header>
+
+	<div class="shell case-body content">
+		{{ .Content }}
+	</div>
+
+	{{- if or .Params.collaborators .Params.links }}
+	<aside class="shell case-credits" data-reveal>
+		<div class="credits-grid">
+			{{- with .Params.collaborators }}
+			<div>
+				<h2 class="section-kicker">Collaborators and credits</h2>
+				<ul class="plain-list">
+					{{- range . }}
+					<li>{{ . }}</li>
+					{{- end }}
+				</ul>
+			</div>
+			{{- end }}
+			{{- with .Params.links }}
+			<div>
+				<h2 class="section-kicker">Links and press</h2>
+				<ul class="plain-list">
+					{{- range . }}
+					<li><a href="{{ .url }}">{{ .label }}</a></li>
+					{{- end }}
+				</ul>
+			</div>
+			{{- end }}
+		</div>
+	</aside>
+	{{- end }}
+
+	{{- $all := sort (where .Site.RegularPages "Section" "projects") "Weight" -}}
+	{{- $next := index $all 0 -}}
+	{{- range $i, $p := $all -}}
+		{{- if eq $p.RelPermalink $.RelPermalink -}}
+			{{- $nextIdx := mod (add $i 1) (len $all) -}}
+			{{- $next = index $all $nextIdx -}}
+		{{- end -}}
+	{{- end -}}
+	<nav class="shell case-next" aria-label="Next project">
+		<span class="section-kicker">Next project</span>
+		<a class="next-link" href="{{ $next.RelPermalink }}">
+			<span class="next-title">{{ $next.Title }}</span>
+			<span class="next-meta">{{ $next.Params.org }} / {{ $next.Params.period }}</span>
+		</a>
+	</nav>
+</article>
+{{ end }}

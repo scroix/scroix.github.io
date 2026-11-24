@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{- $pages := sort .RegularPages "Weight" -}}
+<section class="shell page-head">
+	<p class="eyebrow">Archive / {{ len $pages }} entries</p>
+	<h1>{{ .Title }}</h1>
+	{{- with .Content }}
+	<div class="page-intro prose-narrow">{{ . }}</div>
+	{{- end }}
+</section>
+
+<section class="shell">
+	<div class="project-grid project-grid--all">
+		{{- range $idx, $p := $pages }}
+		<article class="project-card" data-reveal>
+			<a class="project-card-link" href="{{ $p.RelPermalink }}">
+				<div class="card-media{{ with $p.Params.hero_loop }} has-loop{{ end }}">
+					<img src="{{ $p.Params.hero_image }}" alt="{{ $p.Params.hero_alt | default $p.Title }}" loading="{{ if lt $idx 4 }}eager{{ else }}lazy{{ end }}" decoding="async">
+					{{- with $p.Params.hero_loop }}
+					<video class="card-loop" muted loop playsinline preload="none" data-src="{{ . }}" aria-hidden="true"></video>
+					{{- end }}
+				</div>
+				<div class="card-meta">
+					<span class="card-org">{{ $p.Params.org }}</span>
+					<span class="card-period">{{ $p.Params.period }}</span>
+				</div>
+				<h2 class="card-title">{{ $p.Title }}</h2>
+				<p class="card-summary">{{ $p.Params.summary }}</p>
+				{{- with $p.Params.award_short }}
+				<p class="card-award">{{ . }}</p>
+				{{- end }}
+			</a>
+		</article>
+		{{- end }}
+	</div>
+</section>
+{{ end }}

@@ -1,10 +1,11 @@
-/* motion.js — the three studies that shipped from the animation lab:
-   the living bear, scroll reveals, and the homepage ascii field.
-   Everything animates transform/opacity only and honours reduced-motion. */
+/* motion.js: living bear, scroll reveals, homepage ascii field,
+   card loop crossfades, and inline loop controls.
+   Animates transform and opacity only; honours prefers-reduced-motion. */
 (() => {
 'use strict';
 
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const COARSE = matchMedia('(hover: none), (pointer: coarse)').matches;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
 class Spring {
@@ -17,7 +18,7 @@ class Spring {
   }
 }
 
-/* ---- the living bear ------------------------------------------------ */
+/* ---- 1. The living bear --------------------------------------------- */
 function initBear() {
   const el = document.querySelector('header .bear');
   if (!el || !el.textContent.includes('ᴥ')) return;
@@ -33,12 +34,8 @@ function initBear() {
     el.appendChild(s);
   }
   if (!eyes.length) return;
-  // lock each eye at its natural width so the hover squint can't nudge the layout
   eyes.forEach(e => e.style.width = e.getBoundingClientRect().width + 'px');
 
-  // ᵔ is a modifier letter — whatever font supplies it seats it high, like a
-  // superscript. Measure both glyphs and derive the transform that centres the
-  // squint exactly where the eye was, instead of trusting glyph metrics.
   const squint = { dy: 0, s: 1 };
   {
     const cs = getComputedStyle(eyes[0]);
@@ -54,16 +51,16 @@ function initBear() {
   }
 
   let blinking = false;
-  (function blink() {
-    setTimeout(() => {
-      blinking = true;
-      setTimeout(() => { blinking = false; }, 130);
-      blink();
-    }, 2400 + Math.random() * 4200);
-  })();
+  if (!REDUCED) {
+    (function blink() {
+      setTimeout(() => {
+        blinking = true;
+        setTimeout(() => { blinking = false; }, 130);
+        blink();
+      }, 2400 + Math.random() * 4200);
+    })();
+  }
 
-  // while hovered the bear squints and its eyes settle back to centre —
-  // squinting eyes shouldn't keep darting around
   let hovered = false;
   const home = el.closest('a') || el;
   home.addEventListener('pointerenter', () => { hovered = true; eyes.forEach(e => e.textContent = 'ᵔ'); });
@@ -100,22 +97,23 @@ function initBear() {
   })(last);
 }
 
-/* ---- scroll reveals -------------------------------------------------- */
+/* ---- 2. Scroll reveals ---------------------------------------------- */
 function initReveals() {
   if (REDUCED || !('IntersectionObserver' in window)) return;
-  const blocks = [...document.querySelectorAll('.content > *')]
-    .filter(el => el.tagName !== 'BR');
-  // only blocks below the fold get the treatment — nothing already
-  // visible should move on page load
-  const below = blocks.filter(el => el.getBoundingClientRect().top > innerHeight);
+  const targets = [
+    ...document.querySelectorAll('[data-reveal]'),
+    ...document.querySelectorAll('.content > figure, .content > .media-pair')
+  ];
+  const unique = [...new Set(targets)];
+  const below = unique.filter(el => el.getBoundingClientRect().top > innerHeight * 0.96);
   if (!below.length) return;
   const io = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { rootMargin: '0px 0px -40px 0px' });
+  }), { rootMargin: '0px 0px -36px 0px' });
   below.forEach(el => { el.classList.add('reveal'); io.observe(el); });
 }
 
-/* ---- the ascii field (homepage backdrop) ----------------------------- */
+/* ---- 3. The ASCII field (metaball backdrop) ------------------------- */
 function initField() {
   const cv = document.getElementById('ascii-bg');
   if (!cv || innerWidth < 760) return;
@@ -123,9 +121,7 @@ function initField() {
   const dpr = devicePixelRatio || 1;
   const CHARS = ' ··0011';
   const CELL = 9;
-  // content pages carry data-quiet: same field, turned down so it never
-  // competes with reading
-  const VOL = cv.hasAttribute('data-quiet') ? 0.55 : 1;
+  const VOL = cv.hasAttribute('data-quiet') ? 0.5 : 1;
 
   function size() {
     cv.width = innerWidth * dpr;
@@ -136,14 +132,12 @@ function initField() {
   const mouse = { x: -1e4, y: -1e4 };
   addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-  // the cursor is not an attractor of its own — it only energises the field
-  // when it comes close to one of the drifting blobs
   let mouseWeight = 0;
 
   function draw(t, dt) {
     const w = innerWidth, h = innerHeight;
     ctx.clearRect(0, 0, w, h);
-    ctx.font = `${CELL * 0.9}px ui-monospace, Menlo, monospace`;
+    ctx.font = `${CELL * 0.9}px "IBM Plex Mono", ui-monospace, Menlo, monospace`;
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
     const balls = [
@@ -154,7 +148,6 @@ function initField() {
     for (const [bx, by, br] of balls) {
       nearest = Math.min(nearest, Math.hypot(mouse.x - bx, mouse.y - by) / br);
     }
-    // full strength inside 1.2 radii, nothing beyond 2.2 — eased over time
     const engaged = clamp(2.2 - nearest, 0, 1);
     mouseWeight += (engaged - mouseWeight) * Math.min(1, dt * 5);
     if (mouseWeight > 0.02) balls.push([mouse.x, mouse.y, 90 * mouseWeight]);
@@ -170,8 +163,8 @@ function initField() {
         const idx = Math.min(CHARS.length - 1, (v * CHARS.length) | 0);
         if (idx === 0) continue;
         ctx.fillStyle = v > 0.78
-          ? `rgba(210, 28, 28, ${(0.10 + v * 0.28) * VOL})`
-          : `rgba(17, 17, 17, ${(0.04 + v * 0.08) * VOL})`;
+          ? `rgba(210, 28, 28, ${(0.10 + v * 0.26) * VOL})`
+          : `rgba(17, 17, 17, ${(0.035 + v * 0.075) * VOL})`;
         ctx.fillText(CHARS[idx], x, y);
       }
     }
@@ -179,7 +172,6 @@ function initField() {
 
   size();
   addEventListener('resize', () => { size(); if (REDUCED) draw(2.5, 0); });
-
   if (REDUCED) { draw(2.5, 0); return; }
 
   const t0 = performance.now();
@@ -187,16 +179,93 @@ function initField() {
   (function frame(now) {
     requestAnimationFrame(frame);
     const dt = (now - last) / 1000; last = now;
-    // fade the field away as the visitor starts reading
-    const fade = clamp(1 - scrollY / (innerHeight * 0.8), 0, 1);
+    const fade = clamp(1 - scrollY / (innerHeight * 0.85), 0, 1);
     cv.style.opacity = fade.toFixed(2);
     if (document.hidden || fade === 0) return;
     draw((now - t0) / 1000, dt);
   })(t0);
 }
 
+/* ---- 4. Card still -> video loop crossfade -------------------------- */
+function initCardLoops() {
+  if (REDUCED) return;
+  const mediaEls = document.querySelectorAll('.card-media.has-loop');
+  if (!mediaEls.length) return;
+
+  function loadAndPlay(box, vid) {
+    if (!vid.src && vid.dataset.src) {
+      vid.src = vid.dataset.src;
+    }
+    const p = vid.play();
+    if (p && typeof p.then === 'function') {
+      p.then(() => box.classList.add('is-playing')).catch(() => {});
+    } else {
+      box.classList.add('is-playing');
+    }
+  }
+
+  function stopAndHide(box, vid) {
+    box.classList.remove('is-playing');
+    vid.pause();
+  }
+
+  if (COARSE && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        const vid = e.target.querySelector('video.card-loop');
+        if (!vid) continue;
+        if (e.isIntersecting) loadAndPlay(e.target, vid);
+        else stopAndHide(e.target, vid);
+      }
+    }, { threshold: 0.6 });
+    mediaEls.forEach(box => io.observe(box));
+    return;
+  }
+
+  mediaEls.forEach(box => {
+    const card = box.closest('.project-card-link') || box;
+    const vid = box.querySelector('video.card-loop');
+    if (!vid) return;
+    card.addEventListener('pointerenter', () => loadAndPlay(box, vid));
+    card.addEventListener('pointerleave', () => stopAndHide(box, vid));
+    card.addEventListener('focusin', () => loadAndPlay(box, vid));
+    card.addEventListener('focusout', () => stopAndHide(box, vid));
+  });
+}
+
+/* ---- 5. Case-study inline video pause/play controls ----------------- */
+function initMediaControls() {
+  document.querySelectorAll('.video-frame').forEach(frame => {
+    const vid = frame.querySelector('video.inline-loop');
+    const btn = frame.querySelector('.loop-toggle');
+    if (!vid || !btn) return;
+
+    function sync() {
+      const paused = vid.paused;
+      btn.textContent = paused ? 'play' : 'pause';
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.setAttribute('aria-label', paused ? 'Play video loop' : 'Pause video loop');
+    }
+
+    if (REDUCED) {
+      vid.removeAttribute('autoplay');
+      vid.pause();
+    }
+    sync();
+
+    btn.addEventListener('click', () => {
+      if (vid.paused) vid.play().then(sync).catch(sync);
+      else { vid.pause(); sync(); }
+    });
+    vid.addEventListener('play', sync);
+    vid.addEventListener('pause', sync);
+  });
+}
+
 initBear();
 initReveals();
 initField();
+initCardLoops();
+initMediaControls();
 
 })();

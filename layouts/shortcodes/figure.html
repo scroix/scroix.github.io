@@ -1,0 +1,6 @@
+<figure class="media-block{{ with .Get "wide" }} media-block--wide{{ end }}">
+	<img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default (.Get "caption") }}" loading="lazy" decoding="async">
+	{{- with .Get "caption" }}
+	<figcaption>{{ . }}</figcaption>
+	{{- end }}
+</figure>

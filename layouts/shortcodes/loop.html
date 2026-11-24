@@ -1,0 +1,11 @@
+<figure class="media-block media-block--video{{ with .Get "wide" }} media-block--wide{{ end }}">
+	<div class="video-frame">
+		<video class="inline-loop" autoplay muted loop playsinline preload="metadata"{{ with .Get "poster" }} poster="{{ . }}"{{ end }}>
+			<source src="{{ .Get "src" }}" type="video/mp4">
+		</video>
+		<button class="loop-toggle" type="button" aria-label="Pause video loop" aria-pressed="false">pause</button>
+	</div>
+	{{- with .Get "caption" }}
+	<figcaption>{{ . }}</figcaption>
+	{{- end }}
+</figure>

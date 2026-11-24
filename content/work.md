@@ -1,106 +1,98 @@
 ---
-date: "2020-02-16"
 title: "Work"
-description: "Work history: Museums Victoria, RMIT University, 4Ward Productions and the ABC."
+eyebrow: "Timeline / 2012 - present"
+lede: "A decade of designing, building, and running technology for museums, live installations, and adaptive buildings, starting from broadcast TV and live music."
+wide: true
+aliases:
+  - "/education/"
 ---
 
-<figure>
-  <img src="/img/mv.jpg" style="max-height: 100px; width: auto; border-radius: 0px;">
-</figure>
+<section aria-label="Experience">
 
-# [Museums Victoria](https://museumsvictoria.com.au/) (2016 - 2019)
+<div class="timeline-entry">
+	<div class="timeline-period">Oct 2021 - present</div>
+	<div class="timeline-body">
+		<h3>Art Processors</h3>
+		<p class="timeline-role">Lead Creative Technologist (Creative Technologist from Nov 2020)</p>
+		<p>Manage a technical team of four and run AP Lab, the studio's internal prototyping lab. Technical lead for the technology stream of Mona's $100M library wing, <a href="/projects/phrontisterion/">Phrontisterion</a> (2023 - 2026), where I co-led the computer vision pipeline scaling shelf-camera book ID to 25,000 books and still lead support.</p>
+		<p>Previously led technical delivery across <a href="/projects/maestro/">Maestro</a> (Museum of Sydney, 2023), <a href="/projects/pentridge/">Pentridge Prison Tours</a> (2023 Good Design Best in Class and VPDA Winner), <a href="/projects/great-southern-land/">Great Southern Land</a> (NMA, 2022), <a href="/projects/decoded/">Decoded</a> (NMA and ASD, 2023 MUSE Winner), and the <a href="/projects/ashof/">Australian Stockman's Hall of Fame</a> (Longreach, 2021).</p>
+	</div>
+</div>
 
-*Comprising Melbourne Museum (with Bunjilaka), Scienceworks, the Immigration Museum, and the Royal Exhibition Building, and hosting two million visitors annually. Museums Victoria is the largest museums organisation in Australasia.*
+<div class="timeline-entry">
+	<div class="timeline-period">Jul 2019 - Mar 2021</div>
+	<div class="timeline-body">
+		<h3>REELIZE.STUDIO</h3>
+		<p class="timeline-role">Creative Technologist</p>
+		<p>Designed playback, NDI, and CMS systems for the University of Melbourne's 226-screen <a href="/projects/digital-bricks/">Digital Bricks</a> facade at Science Gallery Melbourne. Built Unity authoring tools for <a href="/projects/experiments/">The Pipes</a> at Cato Square (28 eleven-metre LED poles) and containerised early GAN and GPT-3 prototypes.</p>
+	</div>
+</div>
 
-## Nodel Project
+<div class="timeline-entry">
+	<div class="timeline-period">Oct 2017 - Feb 2022<br>Nov 2026 - present</div>
+	<div class="timeline-body">
+		<h3>HAL Systems</h3>
+		<p class="timeline-role">Lead Software Engineer</p>
+		<p>Architected the original weather-predictive adaptive climate control platform for Robin Boyd's 1960s <a href="/projects/hal/">Featherston House</a> in Ivanhoe, linking 12+ live sensors, Advantech Modbus I/O, Raspberry Pi controllers, 37 Nodel nodes, and InfluxDB/Grafana telemetry. Returned in late 2026 with founder Julian Featherston to maintain and extend the live Ivanhoe system.</p>
+	</div>
+</div>
 
-I worked primarily on the integration of hardware, and development of new Python 🐍 "recipes" as part of a project to replace a legacy software system responsible for control, monitoring and scheduling for around 400 exhibits (that's ~2000 pieces of networked audio-visual equipment) across all venues.
+<div class="timeline-entry">
+	<div class="timeline-period">Jan 2016 - Dec 2019</div>
+	<div class="timeline-body">
+		<h3>Museums Victoria</h3>
+		<p class="timeline-role">Multimedia Engineer and Exhibition Technical Lead</p>
+		<p>Deferred my degree for 18 months to lead the rollout of open-source <a href="/projects/nodel/">Nodel</a> across 427 multimedia exhibits and ~2,000 networked AV devices at Melbourne Museum, Scienceworks, and the Immigration Museum. Built interactives and spatial audio across <a href="/projects/museums-victoria/">Pauline Gandel Children's Gallery</a> (2017), <em>Beyond Perception</em> (81-channel Dante AoIP, 2018), <em>Mini Mega Model Museum</em> (2019), <em>Gut Feelings</em>, and <em>First Peoples</em>.</p>
+	</div>
+</div>
 
-We [open-sourced it](https://github.com/museumsvictoria/nodel/). There's a bunch of [public recipes](https://github.com/museumsvictoria/nodel-recipes/) available being used in organisations across the globe (*Te Papa Tongarewa in Wellington*, *Scienceworld in Vancouver*, *Children's Museum of Indianapolis*).
+<div class="timeline-entry">
+	<div class="timeline-period">2016 - 2019</div>
+	<div class="timeline-body">
+		<h3>RMIT University</h3>
+		<p class="timeline-role">Tutor, Guest Lecturer, and Program Advisory Committee</p>
+		<p>Co-designed and tutored RMIT's first Programming Internet of Things course (<code>COSC2674</code>) and tutored Java Object-Oriented Programming (<code>COSC2511</code>) in 2017 - 2018. Guest lectured on museum technology (2018) and served on the RMIT TAFE AV Program Advisory Committee (2016 - 2019).</p>
+	</div>
+</div>
 
-Here's a couple of recipes I'm proud of:
+<div class="timeline-entry">
+	<div class="timeline-period">2013 - 2015</div>
+	<div class="timeline-body">
+		<h3>ABC, Seven Network, and 4Ward Productions</h3>
+		<p class="timeline-role">Broadcast Technical Crew and Live AV</p>
+		<p>Started out in broadcast television and live music before moving into software engineering: studio crew on ABC programs (<em>Studio 3</em>, <em>Shaun Micallef's Mad as Hell</em>, <em>Spicks and Specks</em>), Seven Network coverage of the <em>Australian Open</em>, and live audio/visual production for Piknic Electronik and Melbourne Music Week with 4Ward Productions.</p>
+	</div>
+</div>
 
-- ### [A wrapper for VLC](https://github.com/museumsvictoria/nodel-recipes/tree/master/VLC%20media%20player)
-- ### [A Windows-OS controller](https://github.com/museumsvictoria/nodel-recipes/tree/master/Computer%20Controller/Windows%2010).
-- ### [An exhibit **template**](https://github.com/museumsvictoria/nodel-recipes/tree/master/Exhibit).
+</section>
 
-## Exhibition Creation
+## Education
 
-I was also involved in the 
+<section aria-label="Education">
 
-\- design, 📏 <br>
-\- planning, 📖 <br>
-\- assembly, 🔧 <br>
-\- installation 😅 <br>
-\- and integration 💻 <br>
-  
-for multiple major exhibitions.
+<div class="timeline-entry">
+	<div class="timeline-period">2014 - 2019</div>
+	<div class="timeline-body">
+		<h3>Bachelor of Software Engineering</h3>
+		<p class="timeline-role">RMIT University (GPA 3.5 / 4.0) / Golden Key Honour Society (2015)</p>
+		<p>Completed alongside full-time engineering work at Museums Victoria and HAL Systems.</p>
+	</div>
+</div>
 
-| {{< figure src="/img/minimega.jpg" >}} 	| {{< figure src="/img/beyond-perception.jpg" >}} 	| {{< figure src="/img/childrens-gallery.jpg" >}} 	|
-|----	|----	|----	|
-| 2019| 2018 | 2017 |
-| [Mini Mega Model Museum](https://museumsvictoria.com.au/melbournemuseum/whats-on/mini-mega-model-museum/) | [Beyond Perception](https://www.youtube.com/watch?v=UIuquCXOj9s) | [Children's Gallery](https://www.youtube.com/watch?v=x_WbUBVbPpo) |
+<div class="timeline-entry">
+	<div class="timeline-period">2015 - 2018</div>
+	<div class="timeline-body">
+		<h3>Diploma of Languages (French)</h3>
+		<p class="timeline-role">RMIT University (CEFR B1)</p>
+	</div>
+</div>
 
-## Soundscape Re-designs
+<div class="timeline-entry">
+	<div class="timeline-period">2012 - 2013</div>
+	<div class="timeline-body">
+		<h3>Diploma of Creative Media Systems (AV) &amp; Certificate IV in AV</h3>
+		<p class="timeline-role">RMIT University (Diploma GPA 3.6, Cert IV GPA 3.1) / SMPTE Young Industry Person of the Year (2013)</p>
+	</div>
+</div>
 
-In an effort to unify the organisation's choice of engine for soundscapes :sound:, (*without* alienating staff lacking programming experience) I [led the adoption](https://github.com/scroix/mv-gallery-audio-max) of a node-based programming solution with [Max/MSP](https://cycling74.com/products/max). 
-
-<figure>
-  <img class="img-desktop-width-75" src="/img/max-soundscape.gif" loading="lazy" style="border-radius: 0px;">
-</figure>
-<br>
-
-This included introducing [support for OSC](https://gist.github.com/scroix/22a33fb8ebb868429e64042d153e288e) to our control system, and the [integration of an audio-over-IP (Dante) 81-channel soundscape](https://www.arup.com/projects/beyond-perception-seeing-the-unseen), which included several live components modulated from interactive experiences in the space (Cinder, openFrameworks) for a [spatialised audio experience](https://github.com/museumsvictoria/spatial_audio_server).
-
-<figure>
-  <img src="/img/rmit.svg" alt="RMIT University" style="max-height: 100px; width: auto; border-radius: 0px;">
-</figure>
-
-# [RMIT University](https://www.rmit.edu.au/) (2017 - 2018)
-
-*A public research university based in Melbourne, Australia. RMIT is known for their Art and Design, Architecture, Engineering and Computer Science programs.*
-
-In addition to a couple of guest lectures for *IT Infrastructure & Security COSC2737* and *Introduction to IT COSC1078 in 2018*, I was employed as a tutor for two subjects.
-
-- ### Programming Internet of Things (PIoT) COSC2674
-
-Where I helped design, and taught this advanced university elective utilising Python, a Raspberry Pi with SenseHAT, and Google Cloud APIs.
-
-- ### Introduction to Programming COSC2511
-
-I also taught a first-year course introducing students to object-oriented programming with Java, from variables up to generics and polymorphism.
-<br>
-
-<figure>
-  <img src="/img/4ward.png" style="max-height: 100px; width: auto; border-radius: 0px;">
-</figure>
-
-# 4Ward Productions (2014 - 2015)
-
-- The design of the site (SketchUp) and assisted in the build (signal flow, manual handling, assembly) for the audio-visual production company running the inaugural season of [Piknic Électronik](https://piknicelectronik.com/melbourne/), an electronic music festival run throughout the Melbourne summer.
-
-📺 *Here's some [official footage posted in retrospect](https://youtu.be/ZfgX1Z9GTSE), [and my recording here](https://youtu.be/yfZzuMG_Sxs).*
-
-- The supervision and coordination of a dozen sub-contracted staff members involved with the stage build and sound reinforcement for the flagship venue of [Melbourne Music Week](https://web.archive.org/web/20161005070655/http://mmw.melbourne.vic.gov.au/), an eight day music festival presented by the City of Melbourne. 
- 
-📺 *You can watch the official, lovingly made, [recap here](https://youtu.be/UN-kQAIRo1s).*
-
-<figure>
-  <img src="/img/abc.svg" alt="ABC" style="max-height: 75px; width: auto; border-radius: 0px;">
-</figure>
-
-# ABC (2013 - 2015)
-
-<figure>
-  <img class="img-desktop-width-50" src="/img/abc-studio.jpg" loading="lazy">
-</figure>
-
-<br>
-
-- A camera operator on ABC3’s flagship program, *Studio 3*.
-
-- A camera assistant (*Shaun Micallef's Mad as Hell*, *Spicks and Specks*, *Handa Women's Golf Open*) and CCU operator (*Australian Open*, on-loan to **Seven Network**).
-
-
-
-
+</section>

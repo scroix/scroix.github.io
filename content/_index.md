@@ -1,17 +1,6 @@
 ---
-title: "Hello, I'm Julien."
-date: "1988-10-28"
+title: "Julien de Sainte-Croix"
+description: "Lead creative technologist and software engineer in Melbourne, building interactive exhibitions, machine learning systems, and open-source museum control infrastructure."
 ---
 
-<figure>
-  <img class="img-desktop-width-50" src="/img/julien.jpg" alt="">
-</figure>
-<br>
-
-I'm a *software engineer* 💻 and *creative technologist* 💡.
-
-I've been working in museums, installation and built environment since 2016. In past lives I've worked on music festivals, and in broadcast television.
-
-This site presents my resume, including some of my work in museums, and other interesting projects.
-
-If you're more interested in some of the code I've written, then perhaps explore my [GitHub](https://github.com/scroix), or [GitLab](https://gitlab.com/scroix).
+I am a Melbourne-based software engineer and creative technologist. At [Art Processors](https://www.artprocessors.net/), I run the prototyping lab and lead technical delivery on permanent museum builds, most recently Mona's new library wing, [Phrontisterion](/projects/phrontisterion/). Before that I rolled out open-source [Nodel](/projects/nodel/) across 427 exhibits at Museums Victoria and built the control platform for [HAL Systems](/projects/hal/).

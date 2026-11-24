@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{- $featured := where (where .Site.RegularPages "Section" "projects") "Params.featured" true -}}
+{{- $featured = sort $featured "Weight" -}}
+{{- $allCount := len (where .Site.RegularPages "Section" "projects") -}}
+
+<section class="shell home-hero">
+	<p class="eyebrow">Lead Creative Technologist / Software Engineer</p>
+	<h1 class="hero-statement">Designing, building, and running technology for museums, installations, and the built environment.</h1>
+	<div class="hero-lead prose-narrow">
+		{{ .Content }}
+	</div>
+</section>
+
+<section class="shell home-featured" aria-labelledby="selected-work-heading">
+	<div class="section-bar">
+		<h2 id="selected-work-heading" class="section-kicker">Selected work</h2>
+		<a class="section-action" href="/projects/">All {{ $allCount }} projects</a>
+	</div>
+
+	<div class="project-grid project-grid--featured">
+		{{- range $idx, $p := $featured }}
+		<article class="project-card{{ if eq (mod $idx 2) 1 }} project-card--offset{{ end }}" data-reveal>
+			<a class="project-card-link" href="{{ $p.RelPermalink }}">
+				<div class="card-media{{ with $p.Params.hero_loop }} has-loop{{ end }}">
+					<img src="{{ $p.Params.hero_image }}" alt="{{ $p.Params.hero_alt | default $p.Title }}" loading="{{ if lt $idx 2 }}eager{{ else }}lazy{{ end }}" decoding="async">
+					{{- with $p.Params.hero_loop }}
+					<video class="card-loop" muted loop playsinline preload="none" data-src="{{ . }}" aria-hidden="true"></video>
+					{{- end }}
+				</div>
+				<div class="card-meta">
+					<span class="card-org">{{ $p.Params.org }}</span>
+					<span class="card-period">{{ $p.Params.period }}</span>
+				</div>
+				<h3 class="card-title">{{ $p.Title }}</h3>
+				<p class="card-summary">{{ $p.Params.summary }}</p>
+			</a>
+		</article>
+		{{- end }}
+	</div>
+</section>
+
+<section class="shell home-index" data-reveal>
+	<div class="index-columns">
+		<div class="index-col">
+			<h2 class="section-kicker">Institutions and clients</h2>
+			<ul class="plain-list institutions-list">
+				<li>Museum of Old and New Art (Mona)</li>
+				<li>Museums Victoria</li>
+				<li>National Museum of Australia</li>
+				<li>Museums of History NSW</li>
+				<li>University of Melbourne / Science Gallery</li>
+				<li>National Trust of Australia (Victoria)</li>
+				<li>Australian Signals Directorate</li>
+				<li>Australian Stockman's Hall of Fame</li>
+				<li>Australian Broadcasting Corporation</li>
+				<li>RMIT University</li>
+			</ul>
+		</div>
+		<div class="index-col">
+			<h2 class="section-kicker">Writing, talks, and press</h2>
+			<ul class="plain-list">
+				<li><a href="https://museum-id.com/phrontisterion-rethinking-the-library/">Phrontisterion: Rethinking the Library</a> <span class="meta-inline">Museum iD, 2026</span></li>
+				<li><a href="https://www.theguardian.com/artanddesign/2026/jun/22/phrontisteriona-mona-hobart-david-walsh-library-book-collection-shakespeare-bowie">Inside Mona's new $100m library</a> <span class="meta-inline">The Guardian, 2026</span></li>
+				<li><a href="https://www.archdaily.com/912803/featherston-studio-two-feathers">Featherston Studio / Two Feathers</a> <span class="meta-inline">ArchDaily, 2019</span></li>
+				<li><a href="https://thedesignfiles.net/2018/06/mary-featherstons-granny-flat">Update for Featherston House</a> <span class="meta-inline">The Design Files, 2018</span></li>
+				<li><a href="https://mw17.mwconf.org/proposal/hands-on-with-nodel-decentralised-and-open-source-multimedia-control-for-museums-and-galleries/index.html">Hands on with Nodel workshop</a> <span class="meta-inline">Museums and the Web, 2017</span></li>
+			</ul>
+			<p class="more-link"><a href="/writing/">All writing, awards, and press</a></p>
+		</div>
+	</div>
+</section>
+{{ end }}
