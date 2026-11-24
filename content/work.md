@@ -24,7 +24,7 @@ aliases:
 	<div class="timeline-body">
 		<h3>REELIZE.STUDIO</h3>
 		<p class="timeline-role">Creative Technologist</p>
-		<p>Designed playback, NDI, and CMS systems for the University of Melbourne's 226-screen <a href="/projects/digital-bricks/">Digital Bricks</a> facade at Science Gallery Melbourne. Built Unity authoring tools for <a href="/projects/experiments/">The Pipes</a> at Cato Square (28 eleven-metre LED poles) and containerised early GAN and GPT-3 prototypes.</p>
+		<p>Designed playback, NDI, and CMS systems for the University of Melbourne's 226-screen <a href="/projects/digital-bricks/">Digital Bricks</a> facade at Science Gallery Melbourne. Built Unity authoring tools for <a href="/projects/the-pipes/">The Pipes</a> at Prahran Square (28 eleven-metre LED poles) and containerised early GAN and GPT-3 prototypes.</p>
 	</div>
 </div>
 
